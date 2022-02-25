@@ -1,0 +1,10 @@
+[
+  {
+    "role": "controller",
+    "id": "test"
+  },
+  {
+    "role": "player",
+    "id": "test2"
+  }
+]

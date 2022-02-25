@@ -1,23 +1,31 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
-
+import {RouterModule} from "@angular/router";
 import {AppRoutingModule} from './app-routing.module';
+import {HttpClientModule} from "@angular/common/http";
+
 import {AppComponent} from './app.component';
 import {TopBarComponent} from './top-bar/top-bar.component';
 import {LogInComponent} from './log-in/log-in.component';
-import {RouterModule} from "@angular/router";
+import {ControllerViewComponent} from './controller-view/controller-view.component';
+import {PlayerViewComponent} from './player-view/player-view.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TopBarComponent,
-    LogInComponent
+    LogInComponent,
+    ControllerViewComponent,
+    PlayerViewComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     RouterModule.forRoot([
-      {path: '', component: LogInComponent}
+      {path: '', component: LogInComponent},
+      {path: ':userid/controller-view', component: ControllerViewComponent},
+      {path: ':userid/player-view', component: PlayerViewComponent}
     ])
   ],
   providers: [],
