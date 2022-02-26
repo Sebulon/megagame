@@ -4,7 +4,9 @@ public abstract class Ship implements IShip{
 
     private int crewSize;
     private double HP;
+    private double maxHP;
     private String faction;
+    private String name;
 
     
     @Override
@@ -65,6 +67,40 @@ public abstract class Ship implements IShip{
     @Override
     public void setFaction(String faction) {
         this.faction = faction;   
+    }
+
+    @Override
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public void setName(String name) {
+        if(name.length() == 0){
+            throw new IllegalArgumentException("Names cannot be empty");
+        }else{
+            this.name = name;
+        }
+        
+    }
+
+    @Override
+    public double getMaxHP() {
+        return maxHP;
+    }
+
+    @Override
+    public void setMaxHP(int maxHP) {
+        if(maxHP < 0){
+            throw new IllegalArgumentException("Negative maxHP not allowed");
+        }else{
+            this.maxHP = maxHP;
+        }
+
+        if(HP > maxHP){
+            setHP(maxHP);
+        }
+        
     }
 
             
