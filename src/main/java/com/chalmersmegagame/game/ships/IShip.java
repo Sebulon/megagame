@@ -1,11 +1,11 @@
 package com.chalmersmegagame.game.ships;
 
 public interface IShip {
-    double getHP();
-    void setHP(double newHP);
+    int getHP();
+    void setHP(int newHP);
     void modifyHP(int change);
 
-    double getMaxHP();
+    int getMaxHP();
     void setMaxHP(int maxHP);
 
     int getCrewSize();

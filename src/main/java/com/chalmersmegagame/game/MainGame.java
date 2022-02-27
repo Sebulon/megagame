@@ -15,11 +15,16 @@ public class MainGame extends Canvas implements Runnable{
     public MainGame(){
         ships.add(new TestShip("High Charity"));
         ships.add(new TestShip("Unyielding Hierophant"));
+        ships.get(1).setHP(39);
         new ApplicationView(600, 400, "GameView", this);
+        this.start();
     }
 
     public static void main(String[] args) {
-        new MainGame();
+        MainGame game = new MainGame();
+        if(game.running = true){
+            System.out.println("Game is running");
+        }
     }
 
 
@@ -42,5 +47,9 @@ public class MainGame extends Canvas implements Runnable{
     public void run() {
         // TODO Auto-generated method stub
         
+    }
+
+    public List<Ship> getShips(){
+        return ships;
     }
 }

@@ -3,8 +3,8 @@ package com.chalmersmegagame.game.ships;
 public abstract class Ship implements IShip{
 
     private int crewSize;
-    private double HP;
-    private double maxHP;
+    private int HP;
+    private int maxHP;
     private String faction;
     private String name;
 
@@ -15,7 +15,7 @@ public abstract class Ship implements IShip{
     }
 
     @Override
-    public double getHP() {
+    public int getHP() {
         return HP;
     }
 
@@ -37,7 +37,7 @@ public abstract class Ship implements IShip{
 
     @Override
     public void modifyHP(int change) {
-        double newHP = HP + change;
+        int newHP = HP + change;
         if(newHP > 0){
             HP = newHP;
         }else{
@@ -56,7 +56,7 @@ public abstract class Ship implements IShip{
     }
 
     @Override
-    public void setHP(double newHP) {
+    public void setHP(int newHP) {
         if(newHP < 0){
             throw new IllegalArgumentException("Negative HP not allowed");
         }else{
@@ -85,7 +85,7 @@ public abstract class Ship implements IShip{
     }
 
     @Override
-    public double getMaxHP() {
+    public int getMaxHP() {
         return maxHP;
     }
 
