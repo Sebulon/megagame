@@ -1,1 +1,6 @@
-<p>player-view works!</p>
+<div *ngIf="ship$ | async; let ship">
+  <h2>{{ship.name}}</h2>
+  <h3>{{ship.faction}}</h3>
+  <p>Crew size: {{ship.crewSize}}</p>
+  <p>HP: {{ship.hp}} / {{ship.maxHP}}</p>
+</div>

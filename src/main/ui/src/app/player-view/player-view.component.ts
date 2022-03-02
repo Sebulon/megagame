@@ -11,17 +11,21 @@ export class PlayerViewComponent implements OnInit {
 
   //TODO: If the user has the wrong role or no id, should not be able to be here
 
-  constructor(private playerService: PlayerService, private userDataService: UserDataService) {
-  }
 
-  ngOnInit(): void {
+  public ship$;
+
+  constructor(private playerService: PlayerService, private userDataService: UserDataService) {
     let id = this.userDataService.getId();
     if (id == null) {
       //TODO: Should not be able to reach here
       console.log("The player has no id");
+      this.ship$ = null
     } else {
-      this.playerService.getShip(id).subscribe(ship => console.log(ship))
+      this.ship$ = this.playerService.getShip(id)
     }
+  }
+
+  ngOnInit(): void {
   }
 
 }

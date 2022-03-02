@@ -13,6 +13,7 @@ export class PlayerService {
 
   getShip(id: string) {
     let queryParams = new HttpParams().append('id', id)
-    return this.http.get(this.rootURL + '/playerShip', {params: queryParams});
+    return this.http.get<{ "crewSize": number, "maxHP": number, "faction": string, "name": string, "hp": number }>
+    (this.rootURL + '/playerShip', {params: queryParams});
   }
 }
