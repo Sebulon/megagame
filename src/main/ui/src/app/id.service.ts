@@ -16,7 +16,7 @@ export class IdService {
 
   checkCorrectId(route: ActivatedRoute) {
     let id = localStorage.getItem("id");
-    return !(id == null || route.snapshot.paramMap.get('userid') != id);
+    return !(id == null || route.snapshot.paramMap.get('id') != id);
   }
 
   checkCorrectRole(role: string) {

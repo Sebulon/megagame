@@ -24,8 +24,8 @@ import {PlayerViewComponent} from './player-view/player-view.component';
     HttpClientModule,
     RouterModule.forRoot([
       {path: '', component: LogInComponent},
-      {path: ':userid/controller-view', component: ControllerViewComponent},
-      {path: ':userid/player-view', component: PlayerViewComponent}
+      {path: ':id/controller-view', component: ControllerViewComponent},
+      {path: ':id/player-view', component: PlayerViewComponent}
     ])
   ],
   providers: [],

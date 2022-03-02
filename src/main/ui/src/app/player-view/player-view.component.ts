@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {PlayerService} from "../player.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {IdService} from "../id.service";
+import {Observable} from "rxjs";
+import {Ship} from "../ship";
 
 @Component({
   selector: 'app-player-view',
@@ -13,7 +15,7 @@ export class PlayerViewComponent implements OnInit {
   //TODO: If the user has the wrong role or no id, should not be able to be here
 
 
-  public ship$;
+  public ship$: Observable<Ship>;
 
   constructor(private playerService: PlayerService,
               private idService: IdService,
@@ -22,9 +24,8 @@ export class PlayerViewComponent implements OnInit {
 
     if (!idService.checkCorrectId(route) || !idService.checkCorrectRole("player")) {
       router.navigate(['/'])
-    } else {
-      this.ship$ = this.playerService.getShip(localStorage.getItem('userid')!!)
     }
+    this.ship$ = this.playerService.getShip(localStorage.getItem('id')!!)
   }
 
   ngOnInit(): void {
