@@ -9,6 +9,7 @@ import {TopBarComponent} from './top-bar/top-bar.component';
 import {LogInComponent} from './log-in/log-in.component';
 import {ControllerViewComponent} from './controller-view/controller-view.component';
 import {PlayerViewComponent} from './player-view/player-view.component';
+import { ControllerShipComponent } from './controller-ship/controller-ship.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import {PlayerViewComponent} from './player-view/player-view.component';
     LogInComponent,
     ControllerViewComponent,
     PlayerViewComponent,
+    ControllerShipComponent,
   ],
   imports: [
     BrowserModule,
@@ -25,6 +27,7 @@ import {PlayerViewComponent} from './player-view/player-view.component';
     RouterModule.forRoot([
       {path: '', component: LogInComponent},
       {path: ':id/controller-view', component: ControllerViewComponent},
+      {path: ':id/controller-view/:ship', component: ControllerShipComponent},
       {path: ':id/player-view', component: PlayerViewComponent}
     ])
   ],
