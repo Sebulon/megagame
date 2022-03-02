@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {IdService} from "../id.service";
-import {UserDataService} from "../user-data.service";
 import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
@@ -12,7 +11,6 @@ export class LogInComponent implements OnInit {
 
   constructor(
     private idService: IdService,
-    private userData: UserDataService,
     private route: ActivatedRoute,
     private router: Router) {
   }
@@ -33,8 +31,8 @@ export class LogInComponent implements OnInit {
     }
 
     // Saves data for future usage
-    this.userData.setId(user.id);
-    this.userData.setRole(user.role);
+    localStorage.setItem("id", user.id)
+    localStorage.setItem("role", user.role)
 
     // Routes to a new page (a standard view page for the role)
     this.router.navigate([user.id, user.role + '-view'])

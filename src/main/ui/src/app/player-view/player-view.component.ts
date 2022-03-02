@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {PlayerService} from "../player.service";
-import {UserDataService} from "../user-data.service";
+import {ActivatedRoute, Router} from "@angular/router";
+import {IdService} from "../id.service";
 
 @Component({
   selector: 'app-player-view',
@@ -14,14 +15,15 @@ export class PlayerViewComponent implements OnInit {
 
   public ship$;
 
-  constructor(private playerService: PlayerService, private userDataService: UserDataService) {
-    let id = this.userDataService.getId();
-    if (id == null) {
-      //TODO: Should not be able to reach here
-      console.log("The player has no id");
-      this.ship$ = null
+  constructor(private playerService: PlayerService,
+              private idService: IdService,
+              private route: ActivatedRoute,
+              private router: Router) {
+
+    if (!idService.checkCorrectId(route) || !idService.checkCorrectRole("player")) {
+      router.navigate(['/'])
     } else {
-      this.ship$ = this.playerService.getShip(id)
+      this.ship$ = this.playerService.getShip(localStorage.getItem('userid')!!)
     }
   }
 

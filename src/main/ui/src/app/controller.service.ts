@@ -11,7 +11,8 @@ export class ControllerService {
   constructor(private http: HttpClient) {
   }
 
-  getUsers() {
-    return this.http.get(this.rootURL + '/users');
+  getState() {
+    //TODO: Add a getter for game state
+    return null
   }
 }
