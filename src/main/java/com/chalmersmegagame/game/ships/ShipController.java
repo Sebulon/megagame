@@ -10,23 +10,24 @@ import java.util.List;
 import com.chalmersmegagame.game.*;
 
 @RestController
+@RequestMapping("/api")
 public class ShipController {
 
     @Autowired
     private MainGame game;
 
-    @RequestMapping("/api/displayShip")
+    @RequestMapping("/displayShip")
     public String displayShip() {
         return "TestShip: The Forward Until Dawn";
     }
 
 
-    @RequestMapping("/api/allShips")
+    @RequestMapping("/allShips")
     public List<Ship> getAllShips() {
         return game.getShips();
     }
 
-    @RequestMapping("/api/playerShip")
+    @RequestMapping("/playerShip")
     public Ship getPlayerShip(@RequestParam("id") String id) {
         // TODO: Do something with id for getting the correct ship based on user
         System.out.println(id);

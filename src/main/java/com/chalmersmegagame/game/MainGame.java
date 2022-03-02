@@ -4,7 +4,6 @@ import java.awt.*;
 import java.util.List;
 import java.util.ArrayList;
 import com.chalmersmegagame.game.ships.*;
-import com.chalmersmegagame.game.views.ApplicationView;
 
 import org.springframework.stereotype.Component;
 
