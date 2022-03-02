@@ -1,6 +1,8 @@
-<div id="login">
-  <label for="player-id">PlayerID:</label>
-  <input id="player-id" #playerId/>
-
-  <button type="submit" class="submit-player-id" (click)="submitPlayerID(playerId.value)">Submit</button>
+<div id="log-in-body">
+  <div id="login">
+    <label for="player-id" id="player-id-label">Enter Player ID</label>
+    <input id="player-id" #playerId/>
+    <button type="submit" class="submit-player-id" (click)="submitPlayerID(playerId.value)">Submit!</button>
+  </div>
 </div>
+
