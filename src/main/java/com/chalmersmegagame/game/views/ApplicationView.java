@@ -1,4 +1,4 @@
-package com.chalmersmegagame.views;
+package com.chalmersmegagame.game.views;
 
 import java.awt.*;
 
