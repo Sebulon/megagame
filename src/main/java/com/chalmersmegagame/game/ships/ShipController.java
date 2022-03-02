@@ -13,13 +13,13 @@ public class ShipController {
     @Autowired
     private MainGame game;
 
-    @RequestMapping("/displayShip")
+    @RequestMapping("/api/displayShip")
     public String displayShip(){
         return "TestShip: The Forward Until Dawn";
     }
 
 
-    @RequestMapping("/allShips")
+    @RequestMapping("/api/allShips")
     public List<Ship> getAllShips(){
         return game.getShips(); 
     }
