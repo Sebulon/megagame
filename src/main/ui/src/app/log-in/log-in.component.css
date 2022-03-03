@@ -32,6 +32,7 @@
 }
 
 .submit-player-id {
+  cursor: pointer;
   width: 60%;
   height: 20%;
   border-radius: 20px;
