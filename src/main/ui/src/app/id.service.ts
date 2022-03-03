@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {ActivatedRoute} from "@angular/router";
+import {Links} from "./links";
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class IdService {
   }
 
   getIds() {
-    return this.http.get<{ id: string, role: string }[]>('/assets/temp.json');
+    return this.http.get<{ id: string, role: string }[]>(Links.ids);
   }
 
   checkCorrectId(route: ActivatedRoute) {

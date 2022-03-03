@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Ship} from "./ship";
+import {Links} from "./links";
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class ControllerService {
   }
 
   getShips() {
-    return this.http.get<Ship[]>(this.rootURL + '/allShips');
+    return this.http.get<Ship[]>(this.rootURL + Links.ships);
   }
 
   getState() {

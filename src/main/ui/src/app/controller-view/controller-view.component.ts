@@ -21,7 +21,7 @@ export class ControllerViewComponent implements OnInit {
               private route: ActivatedRoute,
               private router: Router
   ) {
-    if (!idService.checkCorrectId(route) || !idService.checkCorrectRole("controller")) {
+    if (!idService.checkCorrectId(route) || !idService.checkCorrectRole('controller')) {
       router.navigate(['/'])
     }
     this.ships = this.controllerService.getShips();
