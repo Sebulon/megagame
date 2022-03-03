@@ -54,4 +54,8 @@ public class MainGame extends Canvas implements Runnable{
     public List<Ship> getShips(){
         return ships;
     }
+
+    public void addShip(Ship ship){
+        ships.add(ship);
+    }
 }
