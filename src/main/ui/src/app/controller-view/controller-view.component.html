@@ -1,1 +1,8 @@
-<p>controller-view works!</p>
+<h2>Ships:</h2>
+<div *ngFor="let ship of ships | async">
+  <h4>
+    <a [routerLink]="ship.name">
+      {{ship.name}}
+    </a>
+  </h4>
+</div>
