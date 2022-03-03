@@ -6,3 +6,42 @@
     </a>
   </h4>
 </div>
+
+<form [formGroup]="shipConstructor" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="name">
+      Name
+    </label>
+    <input id="name" type="text" formControlName="name">
+  </div>
+
+  <div>
+    <label for="faction">
+      Faction
+    </label>
+    <input id="faction" type="text" formControlName="faction">
+  </div>
+
+  <div>
+    <label for="maxHP">
+      Max hp
+    </label>
+    <input id="maxHP" type="number" formControlName="maxHP">
+  </div>
+
+  <div>
+    <label for="hp">
+      Hp
+    </label>
+    <input id="hp" type="number" formControlName="hp">
+  </div>
+
+  <div>
+    <label for="crewSize">
+      Crew Size
+    </label>
+    <input id="crewSize" type="number" formControlName="crewSize">
+  </div>
+
+  <button type="submit">Create Ship</button>
+</form>

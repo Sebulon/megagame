@@ -9,7 +9,8 @@ import {TopBarComponent} from './top-bar/top-bar.component';
 import {LogInComponent} from './log-in/log-in.component';
 import {ControllerViewComponent} from './controller-view/controller-view.component';
 import {PlayerViewComponent} from './player-view/player-view.component';
-import { ControllerShipComponent } from './controller-ship/controller-ship.component';
+import {ControllerShipComponent} from './controller-ship/controller-ship.component';
+import {ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { ControllerShipComponent } from './controller-ship/controller-ship.compo
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    ReactiveFormsModule,
     RouterModule.forRoot([
       {path: '', component: LogInComponent},
       {path: ':id/controller-view', component: ControllerViewComponent},
