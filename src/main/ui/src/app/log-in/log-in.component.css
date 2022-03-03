@@ -1,0 +1,51 @@
+#log-in-body {
+  width: 100vw;
+  height: 90vh;
+  background-color: #24a5bd;
+}
+
+#login {
+  position: relative;
+  width: 20vw;
+  height: 15vw;
+  left: 40vw;
+  top: 30vh;
+  text-align: center;
+}
+
+#player-id-label{
+  color:white;
+  font-size: 2.5vw;
+  font-family: Calibri, sans-serif;
+}
+
+#player-id {
+  color: gray;
+  width: 90%;
+  text-align: center;
+  height: 20%;
+  border-radius: 20px;
+  border-width: 0;
+  margin: 5%;
+  font-size: 2vw;
+  outline: none;
+}
+
+.submit-player-id {
+  width: 60%;
+  height: 20%;
+  border-radius: 20px;
+  border-width: 0;
+  font-size: 2vw;
+  font-family: Calibri, sans-serif;
+  color: white;
+  background-color: #3e5b79;
+}
+
+.submit-player-id:hover {
+  background-color: #496881;
+}
+
+.submit-player-id:active {
+  background-color: #263646;
+}

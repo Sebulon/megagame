@@ -11,10 +11,9 @@ a:hover {
 }
 
 app-top-bar {
-  width: 100%;
-  height: 68px;
-  background-color: #1976d2;
-  padding: 16px;
+  width: 100vw;
+  height: 10vh;
+  background-color: #4b87bd;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -24,4 +23,8 @@ app-top-bar {
 app-top-bar h1 {
   color: white;
   margin: 0;
+}
+
+body {
+  margin: 0px;
 }
