@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ControllerService} from "../controller.service";
-import {IdService} from "../id.service";
+import {UsersService} from "../users.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Observable} from "rxjs";
 import {emptyShip, Ship} from "../ship";
@@ -20,12 +20,12 @@ export class ControllerViewComponent implements OnInit {
 
 
   constructor(private controllerService: ControllerService,
-              private idService: IdService,
+              private usersService: UsersService,
               private route: ActivatedRoute,
               private router: Router,
               private formBuilder: FormBuilder
   ) {
-    if (!idService.checkCorrectId(route) || !idService.checkCorrectRole('controller')) {
+    if (!usersService.checkCorrectId(route) || !usersService.checkCorrectRole('controller')) {
       router.navigate(['/'])
     }
     this.ships = this.controllerService.getShips();

@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {IdService} from "../id.service";
+import {UsersService} from "../users.service";
 import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
@@ -10,7 +10,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 export class LogInComponent implements OnInit {
 
   constructor(
-    private idService: IdService,
+    private usersService: UsersService,
     private route: ActivatedRoute,
     private router: Router) {
   }
@@ -19,7 +19,7 @@ export class LogInComponent implements OnInit {
   }
 
   submitPlayerID(id: string): void {
-    this.idService.getIds().subscribe(data => this.gotoNextScreen(id, data));
+    this.usersService.getUsers().subscribe(data => this.gotoNextScreen(id, data));
   }
 
   gotoNextScreen(id: string, data: { id: string, role: string }[]): void {

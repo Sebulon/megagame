@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {PlayerService} from "../player.service";
 import {ActivatedRoute, Router} from "@angular/router";
-import {IdService} from "../id.service";
+import {UsersService} from "../users.service";
 import {Observable} from "rxjs";
 import {Ship} from "../ship";
 
@@ -18,11 +18,11 @@ export class PlayerViewComponent implements OnInit {
   public ship$: Observable<Ship>;
 
   constructor(private playerService: PlayerService,
-              private idService: IdService,
+              private usersService: UsersService,
               private route: ActivatedRoute,
               private router: Router) {
 
-    if (!idService.checkCorrectId(route) || !idService.checkCorrectRole("player")) {
+    if (!usersService.checkCorrectId(route) || !usersService.checkCorrectRole("player")) {
       router.navigate(['/'])
     }
     this.ship$ = this.playerService.getShip(localStorage.getItem('id')!!)

@@ -6,13 +6,13 @@ import {Links} from "./links";
 @Injectable({
   providedIn: 'root'
 })
-export class IdService {
+export class UsersService {
 
   constructor(private http: HttpClient) {
   }
 
-  getIds() {
-    return this.http.get<{ id: string, role: string }[]>(Links.ids);
+  getUsers() {
+    return this.http.get<{ id: string, role: string }[]>('api/' + Links.users);
   }
 
   checkCorrectId(route: ActivatedRoute) {
