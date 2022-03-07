@@ -12,7 +12,7 @@ export class UsersService {
   }
 
   getUsers() {
-    return this.http.get<{ id: string, role: string }[]>('api/' + Links.users);
+    return this.http.get<{ id: string, role: string }[]>(Links.users);
   }
 
   checkCorrectId(route: ActivatedRoute) {

@@ -10,13 +10,11 @@ import {catchError, retry} from 'rxjs/operators';
 })
 export class ControllerService {
 
-  rootURL = '/api'
-
   constructor(private http: HttpClient) {
   }
 
   getShips() {
-    return this.http.get<Ship[]>(this.rootURL + Links.ships);
+    return this.http.get<Ship[]>(Links.ships);
   }
 
   /**
@@ -24,7 +22,7 @@ export class ControllerService {
    * @param newShip The ship data to create a ship with
    */
   addShip(newShip: Ship) {
-    return this.http.post(this.rootURL + Links.postShip, newShip).pipe(
+    return this.http.post(Links.postShip, newShip).pipe(
       retry(3),
       catchError(this.handleError)
     );

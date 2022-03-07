@@ -8,14 +8,12 @@ import {Links} from "./links";
 })
 export class PlayerService {
 
-  rootURL = '/api'
-
   constructor(private http: HttpClient) {
   }
 
   getShip(id: string) {
     let queryParams = new HttpParams().append('id', id)
 
-    return this.http.get<Ship>(this.rootURL + Links.playerShip, {params: queryParams});
+    return this.http.get<Ship>(Links.playerShip, {params: queryParams});
   }
 }
