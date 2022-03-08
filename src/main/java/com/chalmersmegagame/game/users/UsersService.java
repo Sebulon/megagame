@@ -2,7 +2,6 @@ package com.chalmersmegagame.game.users;
 
 import com.chalmersmegagame.game.users.repository.UsersRepository;
 import com.chalmersmegagame.game.users.user.User;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List; 
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/ships")
 public class ShipController {
 
     @Autowired
@@ -33,6 +33,12 @@ public class ShipController {
     @PostMapping("/allShips")
     public void createShip(@RequestBody TestShip ship) {
         shipService.addShip(ship);
+    }
+
+    @PutMapping("/{shipName}/modify/HP/{modifier}")
+    public void modifyShipHP(@PathVariable String shipName, @PathVariable int modifier){
+        Ship ship = shipService.getShipByName(shipName);
+        shipService.modifyShipHP(ship, modifier);
     }
 
 

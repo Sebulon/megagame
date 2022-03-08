@@ -23,6 +23,10 @@ public class ShipService {
 
     public void addShip(Ship ship) {
         game.addShip(ship);
-    }   
+    }
+
+    public void modifyShipHP(Ship ship, int HPmodifier){
+        ship.modifyHP(HPmodifier);
+    }
     
 }
