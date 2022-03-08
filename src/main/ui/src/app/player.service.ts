@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpParams} from "@angular/common/http";
-import {Ship} from "./ship";
+import {Ship} from "./objects/ship";
 import {Links} from "./links";
 
 @Injectable({

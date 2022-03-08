@@ -12,6 +12,7 @@ import {PlayerViewComponent} from './player-view/player-view.component';
 import {ControllerShipComponent} from './controller/controller-ship/controller-ship.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import {ControllerShipsComponent} from './controller/controller-ships/controller-ships.component';
+import {ControllerPlayersComponent} from './controller/controller-players/controller-players.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import {ControllerShipsComponent} from './controller/controller-ships/controller
     PlayerViewComponent,
     ControllerShipComponent,
     ControllerShipsComponent,
+    ControllerPlayersComponent,
   ],
   imports: [
     BrowserModule,
@@ -33,6 +35,7 @@ import {ControllerShipsComponent} from './controller/controller-ships/controller
       {path: ':id/controller-view', component: ControllerViewComponent},
       {path: ':id/controller-view/ships', component: ControllerShipsComponent},
       {path: ':id/controller-view/ships/:ship', component: ControllerShipComponent},
+      {path: ':id/controller-view/players', component: ControllerPlayersComponent},
       {path: ':id/player-view', component: PlayerViewComponent}
     ])
   ],

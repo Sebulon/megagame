@@ -3,7 +3,7 @@ import {PlayerService} from "../player.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {UsersService} from "../users.service";
 import {Observable} from "rxjs";
-import {Ship} from "../ship";
+import {Ship} from "../objects/ship";
 
 @Component({
   selector: 'app-player-view',

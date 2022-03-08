@@ -2,11 +2,11 @@
  * Template for how the ship data is stored
  */
 export interface Ship {
-  'crewSize': number;
-  'maxHP': number;
-  'faction': string;
-  'name': string;
-  'hp': number;
+  crewSize: number;
+  maxHP: number;
+  faction: string;
+  name: string;
+  hp: number;
 }
 
 /**

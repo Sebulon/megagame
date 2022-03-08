@@ -1,9 +1,10 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpErrorResponse} from "@angular/common/http";
-import {Ship} from "./ship";
+import {Ship} from "./objects/ship";
 import {Links} from "./links";
 import {throwError} from 'rxjs';
 import {catchError, retry} from 'rxjs/operators';
+import {Player} from "./objects/player";
 
 @Injectable({
   providedIn: 'root'
@@ -26,6 +27,13 @@ export class ControllerService {
       retry(3),
       catchError(this.handleError)
     );
+  }
+
+  /**
+   * Get all players that the backend knows of.
+   */
+  getPlayers() {
+    return this.http.get<Player[]>(Links.users + '/player');
   }
 
   /**

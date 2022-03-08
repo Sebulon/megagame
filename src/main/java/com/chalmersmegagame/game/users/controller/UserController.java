@@ -21,6 +21,11 @@ public class UserController {
         return ResponseEntity.ok(usersService.getAllUsers());
     }
 
+    @GetMapping("/users/{role}")
+    public ResponseEntity<?> getUsersBasedOnRole(@PathVariable String role) {
+        return ResponseEntity.ok(usersService.getUsersBasedOnRole(role));
+    }
+
     @PostMapping("/user")
     public ResponseEntity<?> addUser(@RequestBody User user) {
         return ResponseEntity.ok(usersService.addUser(user));
