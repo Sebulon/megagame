@@ -1,4 +1,4 @@
-package com.chalmersmegagame.game.users.controller;
+package com.chalmersmegagame.game.teams;
 
 import org.springframework.web.bind.annotation.*;
 

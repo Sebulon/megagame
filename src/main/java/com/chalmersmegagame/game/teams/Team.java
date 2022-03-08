@@ -1,4 +1,4 @@
-package com.chalmersmegagame.game.users;
+package com.chalmersmegagame.game.teams;
 
 import com.chalmersmegagame.game.users.user.*;
 
