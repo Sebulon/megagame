@@ -26,4 +26,7 @@ public class UsersService {
         return usersRepository.save(user);
     }
 
+    public List<User> getUsersBasedOnRole(String role) {
+        return usersRepository.findAll((user, cq, cb) -> cb.equal(user.get("role"), role));
+    }
 }

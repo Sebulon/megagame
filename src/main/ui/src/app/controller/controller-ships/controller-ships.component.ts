@@ -1,17 +1,17 @@
 import {Component, OnInit} from '@angular/core';
-import {ControllerService} from "../controller.service";
-import {UsersService} from "../users.service";
+import {emptyShip, Ship} from "../../objects/ship";
+import {ControllerService} from "../../controller.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Observable} from "rxjs";
-import {emptyShip, Ship} from "../ship";
+import {UsersService} from "../../users.service";
 import {FormBuilder} from "@angular/forms";
 
 @Component({
-  selector: 'app-controller-view',
-  templateUrl: './controller-view.component.html',
-  styleUrls: ['./controller-view.component.css']
+  selector: 'app-controller-ships',
+  templateUrl: './controller-ships.component.html',
+  styleUrls: ['./controller-ships.component.css']
 })
-export class ControllerViewComponent implements OnInit {
+export class ControllerShipsComponent implements OnInit {
 
   //TODO: If the user has the wrong role or no id, should not be able to be here
 
@@ -61,5 +61,4 @@ export class ControllerViewComponent implements OnInit {
     this.controllerService.addShip(newShip).subscribe(() => this.ships = this.controllerService.getShips());
     this.shipConstructor.reset();
   }
-
 }
