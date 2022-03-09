@@ -22,7 +22,7 @@ public class Planet extends CelestialBody implements IHasResources {
 
     @Override
     public void addResource(String resourceName, int quantity) {
-        
+
     }
 
     @Override
