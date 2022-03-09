@@ -9,6 +9,21 @@ public class Planet extends CelestialBody implements IHasResources {
 
     ArrayList<String> resources;
     HashMap<String, Integer> resourceQuantities;
+    ArrayList<Planet> satellites;
+
+    public Planet (int size, int distance, String type){
+        this.size = size;
+        this.distance = distance;
+        this.type = type;
+    }
+
+    public ArrayList<Planet> getSatellites() {
+        return satellites;
+    }
+
+    public void addSatellites(Planet satellite) {
+        satellites.add(satellite);
+    }
 
     @Override
     public ArrayList<String> getResources() {
