@@ -4,10 +4,10 @@ import java.util.ArrayList;
 
 public abstract class CelestialBody implements ICelestialObject {
 
-    private String type;
-    private ArrayList<Feature> features;
-    private int distance;
-    private int size;
+    protected String type;
+    protected ArrayList<Feature> features;
+    protected int distance;
+    protected int size;
 
     public int getSize(){
         return size;
