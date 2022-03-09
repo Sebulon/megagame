@@ -9,6 +9,7 @@ public abstract class CelestialBody implements ICelestialObject {
     protected int distance;
     protected int size;
 
+    @Override
     public int getSize(){
         return size;
     }
@@ -43,6 +44,7 @@ public abstract class CelestialBody implements ICelestialObject {
         this.distance = distance;
     }
 
+    @Override
     public void setSize(int size) {
         this.size = size;
     }
