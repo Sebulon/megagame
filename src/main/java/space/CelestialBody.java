@@ -11,22 +11,22 @@ public abstract class CelestialBody implements ICelestialObject {
 
     @Override
     public int getSize(){
-        return size;
+        return this.size;
     }
 
     @Override
     public String getType() {
-        return type;
+        return this.type;
     }
 
     @Override
     public ArrayList<Feature> getFeatures() {
-        return features;
+        return this.features;
     }
 
     @Override
     public int getDistance() {
-        return distance;
+        return this.distance;
     }
 
     @Override
@@ -36,7 +36,7 @@ public abstract class CelestialBody implements ICelestialObject {
 
     @Override
     public void addFeature(Feature feature) {
-        features.add(feature);
+        this.features.add(feature);
     }
 
     @Override
