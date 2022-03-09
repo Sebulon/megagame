@@ -18,6 +18,7 @@ public class SolarSystem {
     }
 
     public void addToObjectList(ICelestialObject object){
+
         objectList.add(object);
     }
 }
