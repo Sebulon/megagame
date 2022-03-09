@@ -5,23 +5,23 @@ import com.chalmersmegagame.game.game_resources.IHasResources;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Planet extends CelestialBody implements IHasResources {
+public class Planetoid extends CelestialBody implements IHasResources {
 
     ArrayList<String> resources;
     HashMap<String, Integer> resourceQuantities;
-    ArrayList<Planet> satellites;
+    ArrayList<Planetoid> satellites;
 
-    public Planet (int size, int distance, String type){
+    public Planetoid (int size, int distance, String type){
         this.size = size;
         this.distance = distance;
         this.type = type;
     }
 
-    public ArrayList<Planet> getSatellites() {
+    public ArrayList<Planetoid> getSatellites() {
         return satellites;
     }
 
-    public void addSatellites(Planet satellite) {
+    public void addSatellites(Planetoid satellite) {
         satellites.add(satellite);
     }
 
