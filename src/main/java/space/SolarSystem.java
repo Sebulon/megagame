@@ -17,7 +17,7 @@ public class SolarSystem {
         objectList.sort((Comparator.comparingInt(ICelestialObject::getDistance)));
     }
 
-    public void addToObjectList(ICelestialObject object){
+    public void addCelestialObject(ICelestialObject object){
         objectList.add(object);
     }
 }
