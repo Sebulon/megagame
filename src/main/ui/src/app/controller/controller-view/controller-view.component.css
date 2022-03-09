@@ -1,0 +1,41 @@
+#controller-view-body {
+  width: 100vw;
+  height: 85vh;
+  background-color: #282727;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding-top: 5vh;
+}
+
+#headline {
+  margin: 0;
+  width: 90vw;
+  height: 10vh;
+  left: 5vw;
+  top: 10vh;
+  text-align: center;
+  font-size: 5vh;
+  font-weight: bold;
+  color: white;
+}
+
+.controller-link {
+  position: relative;
+  background-color: #5e5e5e;
+  text-align: center;
+  margin: 2vh;
+  width: 80vw;
+  height: 10vh;
+  font-size: 7vh;
+  border-radius: 1vw;
+}
+
+a {
+  color: white;
+}
+
+a:active {
+  color: white;
+}

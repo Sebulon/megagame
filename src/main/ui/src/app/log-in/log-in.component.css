@@ -50,3 +50,31 @@
 .submit-player-id:active {
   background-color: #263646;
 }
+
+
+@media screen and (max-width: 500px) {
+  #login {
+    position: relative;
+    width: 90vw;
+    height: 50vh;
+    left: 5vw;
+    top: 5vh;
+  }
+
+  #player-id-label{
+    font-size: 9vh;
+  }
+
+  #player-id {
+    width: 90%;
+    height: 15vh;
+    font-size: 9vh;
+  }
+
+  .submit-player-id {
+    width: 80%;
+    height: 40%;
+    font-size: 8vh;
+  }
+
+}
