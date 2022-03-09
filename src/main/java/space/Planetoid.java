@@ -27,12 +27,12 @@ public class Planetoid extends CelestialBody implements IHasResources {
 
     @Override
     public ArrayList<String> getResources() {
-        return resources;
+        return this.resources;
     }
 
     @Override
     public HashMap<String, Integer> getResourceQuantities() {
-        return resourceQuantities;
+        return this.resourceQuantities;
     }
 
     @Override
