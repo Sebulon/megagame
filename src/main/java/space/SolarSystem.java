@@ -18,6 +18,12 @@ public class SolarSystem {
     }
 
     public void addCelestialObject(ICelestialObject object){
-        objectList.add(object);
+        if (objectList.size() <= size + 1){
+            objectList.add(object);
+        }
+        else
+        {
+
+        }
     }
 }
