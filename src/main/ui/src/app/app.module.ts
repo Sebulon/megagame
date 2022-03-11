@@ -10,7 +10,7 @@ import {LogInComponent} from './log-in/log-in.component';
 import {ControllerViewComponent} from './controller/controller-view/controller-view.component';
 import {PlayerViewComponent} from './player-view/player-view.component';
 import {ControllerShipComponent} from './controller/controller-ship/controller-ship.component';
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {ControllerShipsComponent} from './controller/controller-ships/controller-ships.component';
 import {ControllerPlayersComponent} from './controller/controller-players/controller-players.component';
 
@@ -30,6 +30,7 @@ import {ControllerPlayersComponent} from './controller/controller-players/contro
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
+    FormsModule,
     RouterModule.forRoot([
       {path: '', component: LogInComponent},
       {path: ':id/controller-view', component: ControllerViewComponent},

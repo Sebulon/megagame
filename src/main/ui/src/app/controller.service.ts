@@ -54,4 +54,15 @@ export class ControllerService {
     return throwError(() => new Error('Something bad happened; please try again later.'));
   }
 
+  /**
+   * Changes the hp of a ship in the backend.
+   * @param ship The name of the ship to change.
+   * @param hpChange The amount to change with.
+   */
+  changeShipHP(ship: string, hpChange: number) {
+    return this.http.put(Links.changeShipHP(ship, hpChange), null).pipe(
+      retry(3),
+      catchError(this.handleError)
+    );
+  }
 }

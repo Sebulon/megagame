@@ -6,4 +6,8 @@ export class Links {
   public static playerShip = 'api/ships/playerShip';
   public static postShip = 'api/ships/allShips';
   public static users = 'api/users';
+
+  public static changeShipHP(ship: string, hpChange: number) {
+    return `api/ships/${ship}/modify/HP/${hpChange}`;
+  }
 }
