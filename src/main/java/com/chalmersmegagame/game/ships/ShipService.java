@@ -28,5 +28,9 @@ public class ShipService {
     public void modifyShipHP(Ship ship, int HPmodifier){
         ship.modifyHP(HPmodifier);
     }
-    
+
+    public void deleteShip(String shipName) {
+        Ship shipToDelete = getShipByName(shipName);
+        getAllShips().remove(shipToDelete);
+    }
 }

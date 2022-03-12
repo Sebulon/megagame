@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {ControllerService} from "../../controller.service";
 import {Ship} from "../../objects/ship";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
+import {UsersService} from "../../users.service";
 
 @Component({
   selector: 'app-controller-ship',
@@ -13,11 +14,17 @@ export class ControllerShipComponent implements OnInit {
   public ship: Ship | null = null;
   public hpChange: number | null = null;
 
-  constructor(private controllerService: ControllerService, private route: ActivatedRoute) {
+  constructor(private controllerService: ControllerService,
+              private route: ActivatedRoute,
+              private usersService: UsersService,
+              private router: Router) {
+    if (!usersService.checkCorrectId(route) || !usersService.checkCorrectRole('controller')) {
+      router.navigate(['/'])
+    }
     this.updateShipValues();
   }
 
-  changeHP(): void {
+  public changeHP(): void {
 
     if (this.ship == null) return;
 
@@ -29,6 +36,14 @@ export class ControllerShipComponent implements OnInit {
     this.controllerService.changeShipHP(this.ship.name, this.hpChange).subscribe();
     this.hpChange = null;
     this.updateShipValues();
+  }
+
+  public deleteShip(): void {
+    if (this.ship == null) return;
+
+    this.controllerService.deleteShip(this.ship.name).subscribe(_ =>
+      this.router.navigate(['../'], {relativeTo: this.route})
+    );
   }
 
   /**

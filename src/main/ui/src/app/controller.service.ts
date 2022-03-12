@@ -65,4 +65,16 @@ export class ControllerService {
       catchError(this.handleError)
     );
   }
+
+  /**
+   * Sends a request to delete a ship.
+   * @param ship The name of the ship to be deleted.
+   */
+  deleteShip(ship: string) {
+    return this.http.delete(Links.deleteShip(ship)).pipe(
+      retry(3),
+      catchError(this.handleError)
+    );
+  }
+
 }

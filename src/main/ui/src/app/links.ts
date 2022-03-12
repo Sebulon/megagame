@@ -10,4 +10,8 @@ export class Links {
   public static changeShipHP(ship: string, hpChange: number) {
     return `api/ships/${ship}/modify/HP/${hpChange}`;
   }
+
+  public static deleteShip(ship: string) {
+    return `api/ships/${ship}/modify/delete`;
+  }
 }

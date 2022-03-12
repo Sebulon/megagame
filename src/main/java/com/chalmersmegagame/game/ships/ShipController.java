@@ -41,5 +41,10 @@ public class ShipController {
         shipService.modifyShipHP(ship, modifier);
     }
 
+    @DeleteMapping("/{shipName}/modify/delete")
+    public void deleteShip(@PathVariable String shipName) {
+        shipService.deleteShip(shipName);
+    }
+
 
 }
