@@ -4,6 +4,7 @@ import com.chalmersmegagame.game.game_resources.IHasResources;
 import com.jayway.jsonpath.internal.function.numeric.Sum;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 
 public class Planetoid extends CelestialBody implements IHasResources {
@@ -48,18 +49,25 @@ public class Planetoid extends CelestialBody implements IHasResources {
     }
 
     public Planetoid (int size, String type, ArrayList<Planetoid> satellites){
-        
+        if (satellites.stream().mapToInt(Planetoid :: getSize).sum() >= satelliteWeight){
+            throw new IllegalArgumentException("The total size of the satellites is too large");
+        }
         this.size = size;
         this.type = type;
         this.index = 0;
         this.satellites = satellites;
+        satelliteWeight += satellites.stream().mapToInt(Planetoid :: getSize).sum();
     }
 
     public Planetoid (int size, int index, String type, ArrayList<Planetoid> satellites){
+        if (satellites.stream().mapToInt(Planetoid :: getSize).sum() >= satelliteWeight){
+            throw new IllegalArgumentException("The total size of the satellites is too large");
+        }
         this.size = size;
         this.type = type;
         this.index= index;
         this.satellites = satellites;
+        satelliteWeight += satellites.stream().mapToInt(Planetoid :: getSize).sum();
     }
 
     public ArrayList<Planetoid> getSatellites() {
@@ -67,12 +75,19 @@ public class Planetoid extends CelestialBody implements IHasResources {
     }
 
     public void addSatellites(Planetoid satellite) {
-        satellites.add(satellite);
+        if (satellite.size >= this.size) {
+            throw new IllegalArgumentException("Satellite is too large");
+        }
+        if (satelliteWeight + satellite.size >= size){
+            throw new IllegalArgumentException("Satellite is either too large or the orbits are full");
+        }
+        this.satellites.add(satellite);
+        satelliteWeight += satellite.size;
     }
 
     @Override
     public ArrayList<String> getResources() {
-        return new ArrayList<String>(resources.keySet());
+        return new ArrayList<String>(this.resources.keySet());
     }
 
     @Override
