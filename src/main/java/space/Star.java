@@ -15,4 +15,14 @@ public class Star extends CelestialBody {
         this.index = index;
         this.size = size;
     }
+
+    public Star(int size, int index, String type){
+        if (type.equals("Star") || type.equals("Black Hole")){
+            throw new IllegalArgumentException("Illegal type");
+        }
+        this.index = index;
+        this.size = size;
+        this.type = type;
+    }
+
 }
