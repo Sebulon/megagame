@@ -1,20 +1,65 @@
 package space;
 
 import com.chalmersmegagame.game.game_resources.IHasResources;
+import com.jayway.jsonpath.internal.function.numeric.Sum;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Planetoid extends CelestialBody implements IHasResources {
 
-    ArrayList<String> resources;
+    private HashMap<String, Integer> resources = new HashMap<>();
     HashMap<String, Integer> resourceQuantities;
     ArrayList<Planetoid> satellites;
+    int satelliteWeight;
 
-    public Planetoid (int size, int distance, String type){
+    public Planetoid (int size, int index, String type){
         this.size = size;
-        this.distance = distance;
+        this.index = index;
         this.type = type;
+    }
+
+    public Planetoid (int size, String type){
+        this.size = size;
+        this.index = 0;
+        this.type = type;
+    }
+
+    public Planetoid (int size, String type, Planetoid satellite){
+        if (satellite.size >= this.size){
+            throw new IllegalArgumentException("Satellite is too large");
+        }
+        this.size = size;
+        this.type = type;
+        this.index = 0;
+        this.satellites.add(satellite);
+        this.satelliteWeight += satellite.size;
+    }
+
+    public Planetoid (int size, int index, String type, Planetoid satellite){
+        if (satellite.size >= this.size){
+            throw new IllegalArgumentException("Satellite is too large");
+        }
+        this.size = size;
+        this.type = type;
+        this.index = index;
+        this.satellites.add(satellite);
+        this.satelliteWeight += satellite.size;
+    }
+
+    public Planetoid (int size, String type, ArrayList<Planetoid> satellites){
+        
+        this.size = size;
+        this.type = type;
+        this.index = 0;
+        this.satellites = satellites;
+    }
+
+    public Planetoid (int size, int index, String type, ArrayList<Planetoid> satellites){
+        this.size = size;
+        this.type = type;
+        this.index= index;
+        this.satellites = satellites;
     }
 
     public ArrayList<Planetoid> getSatellites() {
@@ -27,7 +72,7 @@ public class Planetoid extends CelestialBody implements IHasResources {
 
     @Override
     public ArrayList<String> getResources() {
-        return this.resources;
+        return new ArrayList<String>(resources.keySet());
     }
 
     @Override
@@ -37,11 +82,28 @@ public class Planetoid extends CelestialBody implements IHasResources {
 
     @Override
     public void addResource(String resourceName, int quantity) {
-
+        if(resources.containsKey(resourceName)){
+            int oldQuantity = resources.get(resourceName);
+            resources.put(resourceName, oldQuantity + quantity);
+        }else{
+            resources.put(resourceName, quantity);
+        }
     }
 
     @Override
     public void removeResource(String resourceName, int quantity) {
+        if(resources.containsKey(resourceName)){
+            int oldQuantity = resources.get(resourceName);
+            int newQuantity = oldQuantity - quantity;
 
+            if(newQuantity < 0){
+                throw new RuntimeException("Can not remove " + quantity + " " + resourceName + ", only has " + oldQuantity);
+            }else{
+                resources.put(resourceName, newQuantity);
+            }
+
+        }else{
+            throw new IllegalArgumentException("This ship doesn't have the resource: " + resourceName);
+        }
     }
 }

@@ -10,7 +10,7 @@ public interface ICelestialObject {
 
     public ArrayList<Feature> getFeatures();
 
-    public int getDistance();
+    public int getIndex();
 
     public void setType(String type);
 
@@ -18,5 +18,5 @@ public interface ICelestialObject {
 
     public void addFeature(Feature feature);
 
-    public void setDistance(int distance);
+    public void setIndex(int index);
 }

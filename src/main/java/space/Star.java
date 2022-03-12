@@ -6,13 +6,13 @@ public class Star extends CelestialBody {
 
     public Star(int size) {
         this.type = "Star";
-        this.distance = 0;
+        this.index = 0;
         this.size = size;
     }
 
-    public Star(int size, int distance){
+    public Star(int size, int index){
         this.type = "Star";
-        this.distance = distance;
+        this.index = index;
         this.size = size;
     }
 }

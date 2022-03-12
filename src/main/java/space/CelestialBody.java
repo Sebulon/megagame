@@ -6,7 +6,7 @@ public abstract class CelestialBody implements ICelestialObject {
 
     protected String type;
     protected ArrayList<Feature> features;
-    protected int distance;
+    protected int index;
     protected int size;
 
     @Override
@@ -25,8 +25,8 @@ public abstract class CelestialBody implements ICelestialObject {
     }
 
     @Override
-    public int getDistance() {
-        return this.distance;
+    public int getIndex() {
+        return this.index;
     }
 
     @Override
@@ -40,8 +40,8 @@ public abstract class CelestialBody implements ICelestialObject {
     }
 
     @Override
-    public void setDistance(int distance) {
-        this.distance = distance;
+    public void setIndex(int index) {
+        this.index = index;
     }
 
     @Override
