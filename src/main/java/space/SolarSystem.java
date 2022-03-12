@@ -8,6 +8,7 @@ public class SolarSystem {
     private ArrayList<ICelestialObject> objectList;
 
     public SolarSystem (int size, Star star){
+        objectList = new ArrayList<ICelestialObject>(size);
         this.size = size;
         objectList.add(star);
     }
