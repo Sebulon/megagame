@@ -1,10 +1,8 @@
 package space;
 
 import com.chalmersmegagame.game.game_resources.IHasResources;
-import com.jayway.jsonpath.internal.function.numeric.Sum;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 
 public class Planetoid extends CelestialBody implements IHasResources {
