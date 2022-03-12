@@ -9,7 +9,7 @@ public class Planetoid extends CelestialBody implements IHasResources {
 
     private HashMap<String, Integer> resources = new HashMap<>();
     HashMap<String, Integer> resourceQuantities;
-    ArrayList<Planetoid> satellites;
+    ArrayList<Planetoid> satellites = new ArrayList<>();
     int satelliteWeight;
 
     public Planetoid (int size, int index, String type){
