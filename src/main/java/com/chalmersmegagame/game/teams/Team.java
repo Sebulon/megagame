@@ -5,31 +5,36 @@ import com.chalmersmegagame.game.users.user.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.*;
+
+@Entity
 public class Team {
 
-    String teamName;
-    private List<User> teamMembers = new ArrayList<>();
+    @Id
+    String name;
+    @OneToMany
+    private List<User> members = new ArrayList<>();
 
     public Team(String teamName){
-        this.teamName = teamName;
+        this.name = teamName;
     }
 
     public Team(){};
 
     public List<User> getTeamMembers(){
-        return teamMembers;
+        return members;
     }
 
     public void addTeamMember(User user){
-        teamMembers.add(user);
+        members.add(user);
     }
 
     public void removeTeamMember(User user){
-        teamMembers.remove(user);
+        members.remove(user);
     }
 
     public String getTeamName(){
-        return teamName;
+        return name;
     }
 
     

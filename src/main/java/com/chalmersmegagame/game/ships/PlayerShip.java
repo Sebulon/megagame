@@ -3,12 +3,19 @@ package com.chalmersmegagame.game.ships;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import javax.persistence.*;
+
 import com.chalmersmegagame.game.game_resources.*;
 import com.chalmersmegagame.game.teams.*;
 
+import lombok.Data;
+
+@Entity
+@Data   
 public class PlayerShip extends Ship implements IHasResources, IHasTeam{
 
     private HashMap<String, Integer> resources = new HashMap<>();
+    @OneToOne
     private Team team;
 
     public PlayerShip(){};
