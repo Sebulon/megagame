@@ -1,10 +1,12 @@
 package com.chalmersmegagame.game.users;
 
+import com.chalmersmegagame.game.players.Player;
 import com.chalmersmegagame.game.roles.UserRole;
 import com.chalmersmegagame.game.users.repository.UsersRepository;
 import com.chalmersmegagame.game.users.user.User;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -29,5 +31,12 @@ public class UsersService {
 
     public List<User> getUsersBasedOnRole(UserRole role) {
         return usersRepository.findAll((user, cq, cb) -> cb.equal(user.get("role"), role.name));
+    }
+
+    public List<Player> createPlayers() {
+        List<User> players = getUsersBasedOnRole(UserRole.PLAYER);
+        List<Player> returnList = new ArrayList<>();
+        players.forEach(p -> returnList.add(new Player(p.getId())));
+        return returnList;
     }
 }
