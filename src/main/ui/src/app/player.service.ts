@@ -14,4 +14,8 @@ export class PlayerService {
   getShip(id: string) {
     return this.http.get<Ship>(Links.playerShip(id));
   }
+
+  getResources(ship: string) {
+    return this.http.get(Links.playerShipResource(ship));
+  }
 }

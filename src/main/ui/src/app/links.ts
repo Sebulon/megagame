@@ -17,4 +17,8 @@ export class Links {
   public static playerShip(id: string) {
     return `api/players/${id}/current-ship`;
   }
+
+  public static playerShipResource(ship: string) {
+    return `api/ships/playerShip/${ship}/resources`;
+  }
 }
