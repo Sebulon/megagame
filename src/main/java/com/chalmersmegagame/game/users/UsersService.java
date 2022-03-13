@@ -1,5 +1,6 @@
 package com.chalmersmegagame.game.users;
 
+import com.chalmersmegagame.game.roles.UserRole;
 import com.chalmersmegagame.game.users.repository.UsersRepository;
 import com.chalmersmegagame.game.users.user.User;
 import org.springframework.stereotype.Component;
@@ -26,7 +27,7 @@ public class UsersService {
         return usersRepository.save(user);
     }
 
-    public List<User> getUsersBasedOnRole(String role) {
-        return usersRepository.findAll((user, cq, cb) -> cb.equal(user.get("role"), role));
+    public List<User> getUsersBasedOnRole(UserRole role) {
+        return usersRepository.findAll((user, cq, cb) -> cb.equal(user.get("role"), role.name));
     }
 }
