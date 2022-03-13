@@ -3,6 +3,10 @@ package com.chalmersmegagame.game.players;
 import com.chalmersmegagame.game.ships.Ship;
 import com.chalmersmegagame.game.ships.ShipService;
 import com.chalmersmegagame.game.users.UsersService;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.event.ApplicationReadyEvent;
+import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,19 +14,20 @@ import java.util.List;
 @Service
 public class PlayerService {
 
-    private final UsersService usersService;
-    private final ShipService shipService;
+    //Autowired automatically gets created instance, so you don't need to feed constructor
+    @Autowired
+    private UsersService usersService;
+    @Autowired
+    private ShipService shipService;
 
-    private final List<Player> players;
+    private List<Player> players;
 
-    // TODO: Make player have a good starting ship
-    public PlayerService(UsersService usersService, ShipService shipService) {
-        this.usersService = usersService;
-        this.shipService = shipService;
+    //Runs after startup is complete
+    @EventListener(ApplicationReadyEvent.class)
+    private void setup(){
         players = usersService.createPlayers();
         populatePlayersWithRandomShips();
     }
-
 
     public Player getPlayer(String id) {
         return players.stream()
