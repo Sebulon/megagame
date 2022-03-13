@@ -5,10 +5,9 @@ import java.util.Comparator;
 
 public class SolarSystem {
     private int size;
-    private ArrayList<ICelestialObject> objectList;
+    private ArrayList<ICelestialObject> objectList = new ArrayList<>();
 
     public SolarSystem (int size, Star star){
-        objectList = new ArrayList<>(size);
         this.size = size;
         objectList.add(star);
     }
