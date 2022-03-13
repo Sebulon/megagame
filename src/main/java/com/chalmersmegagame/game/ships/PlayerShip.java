@@ -18,10 +18,13 @@ public class PlayerShip extends Ship implements IHasResources, IHasTeam{
         setName(shipName);
         setFaction(faction);
 
-        resources.put("Food", 0);
-        resources.put("Water", 0);
-        resources.put("Fuel", 0);
-        resources.put("Materials", 0);
+        addResource("Food", 0);
+        addResource("Water", 0);
+        addResource("Fuel", 0);
+        addResource("Materials", 0);
+
+        setMaxHP(maxHP);
+        setHP(maxHP);
 
     }
 
@@ -42,7 +45,11 @@ public class PlayerShip extends Ship implements IHasResources, IHasTeam{
 
     @Override
     public void addResource(String resourceName, int quantity) {
-        if(resources.containsKey(resourceName)){
+        resourceName = resourceName.toUpperCase();
+
+        if(quantity < 0){
+            throw new IllegalArgumentException("Add can not be negative");
+        }else if(resources.containsKey(resourceName)){
             int oldQuantity = resources.get(resourceName);
             resources.put(resourceName, oldQuantity + quantity);
         }else{
@@ -53,6 +60,12 @@ public class PlayerShip extends Ship implements IHasResources, IHasTeam{
 
     @Override
     public void removeResource(String resourceName, int quantity) {
+        resourceName = resourceName.toUpperCase();
+
+        if(quantity > 0){
+            throw new IllegalArgumentException("May not remove negative quantity, add instead");
+        }
+
         if(resources.containsKey(resourceName)){
             int oldQuantity = resources.get(resourceName);
             int newQuantity = oldQuantity - quantity;

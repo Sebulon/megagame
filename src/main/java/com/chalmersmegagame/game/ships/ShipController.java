@@ -3,7 +3,8 @@ package com.chalmersmegagame.game.ships;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List; 
+import java.util.List;
+import java.util.Map; 
 
 @RestController
 @RequestMapping("/api/ships")
@@ -44,6 +45,16 @@ public class ShipController {
     @DeleteMapping("/{shipName}/modify/delete")
     public void deleteShip(@PathVariable String shipName) {
         shipService.deleteShip(shipName);
+    }
+
+    @RequestMapping("/playerShip/{shipName}/resources")
+    public Map<String, Integer> getPlayerShipResourceQuantities(@PathVariable String shipName){
+        return shipService.getPlayerShipResourceQuantities(shipName);
+    }
+
+    @PutMapping("/playerShip/{shipName}/resources/modify/{resourceName}/{quantity}")
+    public void modifyPlayerShipResource(@PathVariable Map<String, String> pathVarsMap){
+        shipService.modifyPlayerShipResource(pathVarsMap.get("shipName"), pathVarsMap.get("resourceName"), Integer.parseInt(pathVarsMap.get("quantity")));
     }
 
 

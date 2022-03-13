@@ -2,8 +2,6 @@ package com.chalmersmegagame.game.teams;
 
 import org.springframework.web.bind.annotation.*;
 
-import com.chalmersmegagame.game.users.*;
-
 @RestController
 @RequestMapping("/api/teams")
 public class TeamController {

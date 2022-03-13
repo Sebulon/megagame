@@ -38,7 +38,9 @@ public abstract class Ship implements IShip{
     @Override
     public void modifyHP(int change) {
         int newHP = HP + change;
-        if(newHP > 0){
+        if(newHP > maxHP){
+            HP = maxHP;
+        }else if(newHP > 0){
             HP = newHP;
         }else{
             HP = 0;
