@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {PlayerService} from "../player.service";
 import {ActivatedRoute, Router} from "@angular/router";
-import {UsersService} from "../users.service";
+import {UserService} from "../user.service";
 import {Ship} from "../objects/ship";
 
 @Component({
@@ -15,18 +15,14 @@ export class PlayerViewComponent implements OnInit {
   public resources: object | null = null;
 
   constructor(private playerService: PlayerService,
-              private usersService: UsersService,
+              private userService: UserService,
               private route: ActivatedRoute,
               private router: Router) {
 
-    // TODO: Make these into one function
-    if (!usersService.checkCorrectId(route) || !usersService.checkCorrectRole("player")) {
-      router.navigate(['/'])
-    }
+    let {allowed, id} = userService.checkCredentials(route, {role: 'player'});
 
-    let id = localStorage.getItem('id');
-    if (id == null) {
-      return;
+    if (!allowed) {
+      router.navigate(['/'])
     }
 
     this.playerService.getShip(id).subscribe(ship => {

@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ControllerService} from "../../controller.service";
 import {Ship} from "../../objects/ship";
 import {ActivatedRoute, Router} from "@angular/router";
-import {UsersService} from "../../users.service";
+import {UserService} from "../../user.service";
 
 @Component({
   selector: 'app-controller-ship',
@@ -16,9 +16,9 @@ export class ControllerShipComponent implements OnInit {
 
   constructor(private controllerService: ControllerService,
               private route: ActivatedRoute,
-              private usersService: UsersService,
+              private userService: UserService,
               private router: Router) {
-    if (!usersService.checkCorrectId(route) || !usersService.checkCorrectRole('controller')) {
+    if (!userService.checkCredentials(route, {role: 'controller'}).allowed) {
       router.navigate(['/'])
     }
     this.updateShipValues();

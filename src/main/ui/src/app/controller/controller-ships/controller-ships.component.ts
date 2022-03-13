@@ -3,7 +3,7 @@ import {emptyShip, Ship} from "../../objects/ship";
 import {ControllerService} from "../../controller.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Observable} from "rxjs";
-import {UsersService} from "../../users.service";
+import {UserService} from "../../user.service";
 import {FormBuilder} from "@angular/forms";
 
 @Component({
@@ -20,12 +20,12 @@ export class ControllerShipsComponent implements OnInit {
 
 
   constructor(private controllerService: ControllerService,
-              private usersService: UsersService,
+              private userService: UserService,
               private route: ActivatedRoute,
               private router: Router,
               private formBuilder: FormBuilder
   ) {
-    if (!usersService.checkCorrectId(route) || !usersService.checkCorrectRole('controller')) {
+    if (!userService.checkCredentials(route, {role: 'controller'}).allowed) {
       router.navigate(['/'])
     }
     this.ships = this.controllerService.getShips();

@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Player} from "../../objects/player";
 import {Observable} from "rxjs";
-import {UsersService} from "../../users.service";
+import {UserService} from "../../user.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {ControllerService} from "../../controller.service";
 
@@ -15,12 +15,12 @@ export class ControllerPlayersComponent implements OnInit {
   players: Observable<Player[]>;
 
   constructor(
-    private usersService: UsersService,
+    private userService: UserService,
     private router: Router,
     private route: ActivatedRoute,
     private controllerService: ControllerService
   ) {
-    if (!usersService.checkCorrectId(route) || !usersService.checkCorrectRole('controller')) {
+    if (!userService.checkCredentials(route, {role: 'controller'}).allowed) {
       router.navigate(['/']);
     }
 
