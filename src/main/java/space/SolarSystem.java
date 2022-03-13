@@ -30,9 +30,10 @@ public class SolarSystem {
 
     public void addCelestialObject(ICelestialObject object){
         if (objectList.size() <= size + 1){
+            object.setIndex(objectList.size());
             objectList.add(object);
             if (object.getIndex() == 0 && object.getType() != "Star") {
-                objectList.get(objectList.size() - 1).setIndex(objectList.size() - 1);
+                throw new RuntimeException("A solar system needs a strong gravity well");
             }
         }
         else
