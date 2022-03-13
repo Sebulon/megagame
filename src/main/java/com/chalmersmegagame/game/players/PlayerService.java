@@ -3,11 +3,11 @@ package com.chalmersmegagame.game.players;
 import com.chalmersmegagame.game.ships.Ship;
 import com.chalmersmegagame.game.ships.ShipService;
 import com.chalmersmegagame.game.users.UsersService;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Component
+@Service
 public class PlayerService {
 
     private final UsersService usersService;
