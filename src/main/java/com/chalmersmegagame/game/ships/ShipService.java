@@ -57,4 +57,9 @@ public class ShipService {
             ship.removeResource(resource, quantity);
         }
     }
+
+    public void playerShipResourceTransfer(String sendingShip, String receivingShip, String resourceName, int quantity){
+        modifyPlayerShipResource(sendingShip, resourceName, -quantity);
+        modifyPlayerShipResource(receivingShip, resourceName, quantity);
+    }
 }

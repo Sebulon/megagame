@@ -57,5 +57,10 @@ public class ShipController {
         shipService.modifyPlayerShipResource(pathVarsMap.get("shipName"), pathVarsMap.get("resourceName"), Integer.parseInt(pathVarsMap.get("quantity")));
     }
 
+    @PutMapping("/playerShip/{shipName}/resources/transfer/{resourceName}/{quantity}/{receivingShip}")
+    public void playerShipResourceTransfer(@PathVariable Map<String, String> pathVarsMap){
+        shipService.playerShipResourceTransfer(pathVarsMap.get("shipName"), pathVarsMap.get("receivingShip"), pathVarsMap.get("resourceName"), Integer.parseInt(pathVarsMap.get("quantity")));
+    }
+
 
 }
