@@ -1,0 +1,39 @@
+#controller-player-view {
+  width: 90%;
+  height: 90vh;
+  background-color: #464545;
+  padding: 5%;
+}
+
+#players {
+  font-family: Calibri, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  border: 5px solid #ddd;
+}
+
+#players td, #players th {
+  padding: 8px;
+  color: white;
+}
+
+#players tr:nth-child(even){
+  background-color: #282727;
+}
+
+#players tr:nth-child(odd){
+  background-color: #6e6e6e;
+}
+
+#players tr:hover {
+  background-color: #4b87bd;
+}
+
+#players th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4b4b4b;
+  color: white;
+  font-size: 20px;
+}
