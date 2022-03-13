@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpParams} from "@angular/common/http";
+import {HttpClient} from "@angular/common/http";
 import {Ship} from "./objects/ship";
 import {Links} from "./links";
 
@@ -12,8 +12,10 @@ export class PlayerService {
   }
 
   getShip(id: string) {
-    let queryParams = new HttpParams().append('id', id)
+    return this.http.get<Ship>(Links.playerShip(id));
+  }
 
-    return this.http.get<Ship>(Links.playerShip, {params: queryParams});
+  getResources(ship: string) {
+    return this.http.get(Links.playerShipResource(ship));
   }
 }

@@ -1,6 +1,6 @@
 package com.chalmersmegagame.game.teams;
 
-import com.chalmersmegagame.game.users.user.*;
+import com.chalmersmegagame.game.players.Player;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,33 +13,31 @@ public class Team {
     @Id
     String name;
     @OneToMany
-    private List<User> members = new ArrayList<>();
+    private List<Player> members = new ArrayList<>();
 
-    public Team(String teamName){
-        this.name = teamName;
+    public Team(String name){
+        this.name = name;
     }
 
-    public Team(){};
+    public Team() {
+    }
 
-    public List<User> getTeamMembers(){
+
+    public List<Player> getTeamMembers() {
         return members;
     }
 
-    public void addTeamMember(User user){
-        members.add(user);
+    public void addTeamMember(Player player) {
+        members.add(player);
     }
 
-    public void removeTeamMember(User user){
-        members.remove(user);
+    public void removeTeamMember(Player player) {
+        members.remove(player);
     }
 
-    public String getTeamName(){
+    public String getTeamName() {
         return name;
     }
 
-    
 
-
-
-    
 }

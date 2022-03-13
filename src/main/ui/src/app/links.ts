@@ -3,7 +3,6 @@
  */
 export class Links {
   public static ships = 'api/ships/allShips';
-  public static playerShip = 'api/ships/playerShip';
   public static postShip = 'api/ships/allShips';
   public static users = 'api/users';
 
@@ -13,5 +12,13 @@ export class Links {
 
   public static deleteShip(ship: string) {
     return `api/ships/${ship}/modify/delete`;
+  }
+
+  public static playerShip(id: string) {
+    return `api/players/${id}/current-ship`;
+  }
+
+  public static playerShipResource(ship: string) {
+    return `api/ships/playerShip/${ship}/resources`;
   }
 }
