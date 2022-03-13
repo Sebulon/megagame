@@ -1,4 +1,11 @@
-<h2>Players:</h2>
-<div *ngFor="let player of players | async">
-  <h4>{{player.id}}</h4>
+<div id="controller-player-view">
+ <table id="players">
+  <tr> <th>Players</th> </tr>
+    <tr *ngFor="let player of players | async"><td>
+        {{player.id}}
+    </td></tr>
+   <tr *ngFor="let player of players | async"><td>
+     {{player.id}}
+   </td></tr>
+ </table>
 </div>
