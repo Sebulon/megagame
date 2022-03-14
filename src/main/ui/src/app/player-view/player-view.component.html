@@ -7,10 +7,10 @@
     <div class="ship-info">
       <p>Crew size: {{ship.crewSize}}</p>
       <p>HP: {{ship.hp}} / {{ship.maxHP}}</p>
-    </div>
-    <h4>Resources:</h4>
-    <div *ngFor="let item of resources | keyvalue">
-      {{item.key}}:{{item.value}}
+      <b>Resources:</b>
+      <div *ngFor="let item of resources | keyvalue">
+        {{item.key}}:{{item.value}}
+      </div>
     </div>
   </div>
 </div>
