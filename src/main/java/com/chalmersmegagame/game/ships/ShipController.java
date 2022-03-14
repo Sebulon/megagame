@@ -55,5 +55,10 @@ public class ShipController {
         shipService.playerShipResourceTransfer(pathVarsMap.get("shipName"), pathVarsMap.get("receivingShip"), pathVarsMap.get("resourceName"), Integer.parseInt(pathVarsMap.get("quantity")));
     }
 
+    @PutMapping("/playerShip/{shipName}/resources/transfer/{receivingShip}")
+    public void playerShipResourcesTransfer(@PathVariable String shipName, @PathVariable String receivingShip, @RequestBody String resources){
+        // TODO: Actually make things happen (If can fix, should not be string, but rather some sort of object that can have x amount of resource types)
+        System.out.println(shipName + ", " + receivingShip + ", " + resources);
+    }
 
 }

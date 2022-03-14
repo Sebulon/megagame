@@ -18,17 +18,17 @@ public class PlayerShip extends Ship implements IHasResources, IHasTeam{
     @OneToOne
     private Team team;
 
-    public PlayerShip(){};
+    public PlayerShip(){}
 
     public PlayerShip(Team team, String shipName, String faction, int maxHP){
         this.team = team;
         setName(shipName);
         setFaction(faction);
 
-        addResource("Food", 0);
+        addResource("Food", 10);
         addResource("Water", 0);
-        addResource("Fuel", 0);
-        addResource("Materials", 0);
+        addResource("Fuel", 50);
+        addResource("Materials", 30);
 
         setMaxHP(maxHP);
         setHP(maxHP);
@@ -37,7 +37,7 @@ public class PlayerShip extends Ship implements IHasResources, IHasTeam{
 
     @Override
     public ArrayList<String> getResources() {
-        return new ArrayList<String>(resources.keySet());
+        return new ArrayList<>(resources.keySet());
     }
 
     @Override

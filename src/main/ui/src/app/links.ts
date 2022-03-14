@@ -21,4 +21,8 @@ export class Links {
   public static playerShipResource(ship: string) {
     return `api/ships/playerShip/${ship}/resources`;
   }
+
+  public static sendResources(from: string, to: string) {
+    return `api/ships/playerShip/${from}/resources/transfer/${to}`;
+  }
 }

@@ -3,7 +3,7 @@ import {Player} from "../../objects/player";
 import {Observable} from "rxjs";
 import {UserService} from "../../user.service";
 import {ActivatedRoute, Router} from "@angular/router";
-import {ControllerService} from "../../controller.service";
+import {PlayerService} from "../../player.service";
 
 @Component({
   selector: 'app-controller-players',
@@ -18,13 +18,13 @@ export class ControllerPlayersComponent implements OnInit {
     private userService: UserService,
     private router: Router,
     private route: ActivatedRoute,
-    private controllerService: ControllerService
+    private playerService: PlayerService
   ) {
     if (!userService.checkCredentials(route, {role: 'controller'}).allowed) {
       router.navigate(['/']);
     }
 
-    this.players = controllerService.getPlayers();
+    this.players = playerService.getPlayers();
   }
 
   ngOnInit(): void {

@@ -8,11 +8,18 @@ import {AppComponent} from './app.component';
 import {TopBarComponent} from './top-bar/top-bar.component';
 import {LogInComponent} from './log-in/log-in.component';
 import {ControllerViewComponent} from './controller/controller-view/controller-view.component';
-import {PlayerViewComponent} from './player-view/player-view.component';
+import {PlayerViewComponent, ResourceGiftDialog} from './player-view/player-view.component';
 import {ControllerShipComponent} from './controller/controller-ship/controller-ship.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {ControllerShipsComponent} from './controller/controller-ships/controller-ships.component';
 import {ControllerPlayersComponent} from './controller/controller-players/controller-players.component';
+import {MatDialogModule} from "@angular/material/dialog";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatInputModule} from "@angular/material/input";
+import {MatButtonModule} from "@angular/material/button";
+import {MatSelectModule} from "@angular/material/select";
+import {MatSliderModule} from "@angular/material/slider";
 
 @NgModule({
   declarations: [
@@ -24,6 +31,7 @@ import {ControllerPlayersComponent} from './controller/controller-players/contro
     ControllerShipComponent,
     ControllerShipsComponent,
     ControllerPlayersComponent,
+    ResourceGiftDialog
   ],
   imports: [
     BrowserModule,
@@ -31,6 +39,13 @@ import {ControllerPlayersComponent} from './controller/controller-players/contro
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
+    MatDialogModule,
+    BrowserAnimationsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    MatSelectModule,
+    MatSliderModule,
     RouterModule.forRoot([
       {path: '', component: LogInComponent},
       {path: ':id/controller-view', component: ControllerViewComponent},

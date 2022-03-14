@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {emptyShip, Ship} from "../../objects/ship";
-import {ControllerService} from "../../controller.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Observable} from "rxjs";
 import {UserService} from "../../user.service";
 import {FormBuilder} from "@angular/forms";
+import {ShipService} from "../../ship.service";
 
 @Component({
   selector: 'app-controller-ships',
@@ -19,7 +19,7 @@ export class ControllerShipsComponent implements OnInit {
   public shipConstructor = this.formBuilder.group(new emptyShip())
 
 
-  constructor(private controllerService: ControllerService,
+  constructor(private shipService: ShipService,
               private userService: UserService,
               private route: ActivatedRoute,
               private router: Router,
@@ -28,7 +28,7 @@ export class ControllerShipsComponent implements OnInit {
     if (!userService.checkCredentials(route, {role: 'controller'}).allowed) {
       router.navigate(['/'])
     }
-    this.ships = this.controllerService.getShips();
+    this.ships = this.shipService.getShips();
     this.shipConstructor.reset();
   }
 
@@ -58,7 +58,7 @@ export class ControllerShipsComponent implements OnInit {
       return;
     }
 
-    this.controllerService.addShip(newShip).subscribe(() => this.ships = this.controllerService.getShips());
+    this.shipService.addShip(newShip).subscribe(() => this.ships = this.shipService.getShips());
     this.shipConstructor.reset();
   }
 }

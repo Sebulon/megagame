@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {ControllerService} from "../../controller.service";
 import {Ship} from "../../objects/ship";
 import {ActivatedRoute, Router} from "@angular/router";
 import {UserService} from "../../user.service";
+import {ShipService} from "../../ship.service";
 
 @Component({
   selector: 'app-controller-ship',
@@ -14,7 +14,7 @@ export class ControllerShipComponent implements OnInit {
   public ship: Ship | null = null;
   public hpChange: number | null = null;
 
-  constructor(private controllerService: ControllerService,
+  constructor(private shipService: ShipService,
               private route: ActivatedRoute,
               private userService: UserService,
               private router: Router) {
@@ -33,7 +33,7 @@ export class ControllerShipComponent implements OnInit {
       return;
     }
 
-    this.controllerService.changeShipHP(this.ship.name, this.hpChange).subscribe();
+    this.shipService.changeShipHP(this.ship.name, this.hpChange).subscribe();
     this.hpChange = null;
     this.updateShipValues();
   }
@@ -41,7 +41,7 @@ export class ControllerShipComponent implements OnInit {
   public deleteShip(): void {
     if (this.ship == null) return;
 
-    this.controllerService.deleteShip(this.ship.name).subscribe(_ =>
+    this.shipService.deleteShip(this.ship.name).subscribe(_ =>
       this.router.navigate(['../'], {relativeTo: this.route})
     );
   }
@@ -51,7 +51,7 @@ export class ControllerShipComponent implements OnInit {
    * @private
    */
   private updateShipValues() {
-    this.controllerService.getShips().subscribe(
+    this.shipService.getShips().subscribe(
       ships => this.ship = ControllerShipComponent.getCurrentShip(ships, this.route.snapshot.paramMap.get('ship'))
     );
   }
