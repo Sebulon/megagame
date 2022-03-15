@@ -3,7 +3,7 @@ package space;
 
 public class Star extends CelestialBody {
 
-    public Star(int size) {
+    /*public Star(int size) {
         this.type = "Star";
         this.index = 0;
         this.size = size;
@@ -13,10 +13,10 @@ public class Star extends CelestialBody {
         this.type = "Star";
         this.index = index;
         this.size = size;
-    }
+    }*/
 
     public Star(int size, int index, String type){
-        if (type.equals("Star") || type.equals("Black Hole")){
+        if (!typeHandler.getStarTypes().contains(type)){
             throw new IllegalArgumentException("Illegal type");
         }
         this.index = index;

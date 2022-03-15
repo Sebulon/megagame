@@ -1,5 +1,6 @@
 package space;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 public abstract class CelestialBody implements ICelestialObject {
@@ -8,6 +9,7 @@ public abstract class CelestialBody implements ICelestialObject {
     protected ArrayList<Feature> features;
     protected int index;
     protected int size;
+    protected TypeHandler typeHandler = TypeHandler.getInstance();
 
     @Override
     public int getSize(){
