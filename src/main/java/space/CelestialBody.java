@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public abstract class CelestialBody implements ICelestialObject {
 
     protected String type;
-    protected ArrayList<Feature> features;
+    protected ArrayList<Feature> features = new ArrayList<>();
     protected int index;
     protected int size;
     protected TypeHandler typeHandler = TypeHandler.getInstance();
