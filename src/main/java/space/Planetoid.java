@@ -11,9 +11,12 @@ public class Planetoid extends CelestialBody implements IHasResources {
     HashMap<String, Integer> resourceQuantities;
     ArrayList<Planetoid> satellites = new ArrayList<>();
     private int satelliteWeight;
-    private int satelliteIndex = 0;
+    private boolean isSatellite;
 
     public Planetoid (int size, int index, String type){
+        if (!typeHandler.getPlanetoidTypes().contains(type)){
+            throw new IllegalArgumentException("Illegal type");
+        }
         this.size = size;
         this.index = index;
         this.type = type;
@@ -122,5 +125,13 @@ public class Planetoid extends CelestialBody implements IHasResources {
         }else{
             throw new IllegalArgumentException("This ship doesn't have the resource: " + resourceName);
         }
+    }
+
+    public boolean isSatellite() {
+        return isSatellite;
+    }
+
+    public void setSatellite(boolean satellite) {
+        this.isSatellite = satellite;
     }
 }
