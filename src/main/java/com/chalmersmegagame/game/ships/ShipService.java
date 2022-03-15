@@ -2,6 +2,7 @@ package com.chalmersmegagame.game.ships;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.chalmersmegagame.game.MainGame;
 
@@ -14,20 +15,20 @@ public class ShipService {
     @Autowired
     private MainGame game;
 
-    public List<Ship> getAllShips(){
+    public List<Ship> getAllShips() {
         return game.getShips();
     }
 
-    public Ship getShipByName(String shipName){
+    public Ship getShipByName(String shipName) {
         return getAllShips().stream().filter(t -> t.getName().equals(shipName)).findFirst().get();
     }
 
-    public PlayerShip getPlayerShipByName(String shipName){
+    public PlayerShip getPlayerShipByName(String shipName) {
         Ship ship = getShipByName(shipName);
-        if(ship instanceof PlayerShip){
+        if (ship instanceof PlayerShip) {
             PlayerShip playerShip = (PlayerShip) ship;
             return playerShip;
-        }else{
+        } else {
             throw new RuntimeException("No PlayerShip with name " + shipName + " found");
         }
     }
@@ -36,7 +37,7 @@ public class ShipService {
         game.addShip(ship);
     }
 
-    public void modifyShipHP(Ship ship, int HPmodifier){
+    public void modifyShipHP(Ship ship, int HPmodifier) {
         ship.modifyHP(HPmodifier);
     }
 
@@ -45,21 +46,25 @@ public class ShipService {
         getAllShips().remove(shipToDelete);
     }
 
-    public HashMap<String, Integer> getPlayerShipResourceQuantities(String shipName){
+    public HashMap<String, Integer> getPlayerShipResourceQuantities(String shipName) {
         return getPlayerShipByName(shipName).getResourceQuantities();
     }
 
-    public void modifyPlayerShipResource(String shipName, String resource, int quantity){
+    public void modifyPlayerShipResource(String shipName, String resource, int quantity) {
         PlayerShip ship = getPlayerShipByName(shipName);
-        if(quantity > 0){
+        if (quantity > 0) {
             ship.addResource(resource, quantity);
-        }else if(quantity < 0){
-            ship.removeResource(resource, quantity);
+        } else if (quantity < 0) {
+            ship.removeResource(resource, quantity * -1);
         }
     }
 
-    public void playerShipResourceTransfer(String sendingShip, String receivingShip, String resourceName, int quantity){
+    public void playerShipResourceTransfer(String sendingShip, String receivingShip, String resourceName, int quantity) {
         modifyPlayerShipResource(sendingShip, resourceName, -quantity);
         modifyPlayerShipResource(receivingShip, resourceName, quantity);
+    }
+
+    public void playerShipResourcesTransfer(String sendingShip, String receivingShip, Map<String, Integer> resources) {
+        resources.forEach((resource, quantity) -> playerShipResourceTransfer(sendingShip, receivingShip, resource, quantity));
     }
 }

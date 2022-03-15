@@ -57,7 +57,7 @@ public class ShipController {
 
     @PutMapping("/playerShip/{shipName}/resources/transfer/{receivingShip}")
     public void playerShipResourcesTransfer(@PathVariable String shipName, @PathVariable String receivingShip, @RequestBody Map<String, Integer> resources) {
-        System.out.println(shipName + ", " + receivingShip + ", " + resources);
+        shipService.playerShipResourcesTransfer(shipName, receivingShip, resources);
     }
 
 }

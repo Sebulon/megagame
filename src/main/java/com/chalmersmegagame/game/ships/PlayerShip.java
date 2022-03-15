@@ -11,16 +11,17 @@ import com.chalmersmegagame.game.teams.*;
 import lombok.Data;
 
 @Entity
-@Data   
-public class PlayerShip extends Ship implements IHasResources, IHasTeam{
+@Data
+public class PlayerShip extends Ship implements IHasResources, IHasTeam {
 
     private HashMap<String, Integer> resources = new HashMap<>();
     @OneToOne
     private Team team;
 
-    public PlayerShip(){}
+    public PlayerShip() {
+    }
 
-    public PlayerShip(Team team, String shipName, String faction, int maxHP){
+    public PlayerShip(Team team, String shipName, String faction, int maxHP) {
         this.team = team;
         setName(shipName);
         setFaction(faction);
@@ -54,41 +55,40 @@ public class PlayerShip extends Ship implements IHasResources, IHasTeam{
     public void addResource(String resourceName, int quantity) {
         resourceName = resourceName.toUpperCase();
 
-        if(quantity < 0){
+        if (quantity < 0) {
             throw new IllegalArgumentException("Add can not be negative");
-        }else if(resources.containsKey(resourceName)){
+        } else if (resources.containsKey(resourceName)) {
             int oldQuantity = resources.get(resourceName);
             resources.put(resourceName, oldQuantity + quantity);
-        }else{
+        } else {
             resources.put(resourceName, quantity);
         }
-        
+
     }
 
     @Override
     public void removeResource(String resourceName, int quantity) {
         resourceName = resourceName.toUpperCase();
 
-        if(quantity > 0){
+        if (quantity < 0) {
             throw new IllegalArgumentException("May not remove negative quantity, add instead");
         }
 
-        if(resources.containsKey(resourceName)){
+        if (resources.containsKey(resourceName)) {
             int oldQuantity = resources.get(resourceName);
             int newQuantity = oldQuantity - quantity;
 
-            if(newQuantity < 0){
+            if (newQuantity < 0) {
                 throw new RuntimeException("Can not remove " + quantity + " " + resourceName + ", only has " + oldQuantity);
-            }else{
+            } else {
                 resources.put(resourceName, newQuantity);
             }
-            
-        }else{
+
+        } else {
             throw new IllegalArgumentException("This ship doesn't have the resource: " + resourceName);
         }
-        
+
     }
 
 
-    
 }

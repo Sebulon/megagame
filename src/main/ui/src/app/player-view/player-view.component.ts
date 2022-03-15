@@ -19,6 +19,7 @@ export class PlayerViewComponent implements OnInit {
 
   public ship: Ship | null = null;
   public resources: object | null = null;
+  private id: string;
 
   constructor(private shipService: ShipService,
               private userService: UserService,
@@ -31,13 +32,9 @@ export class PlayerViewComponent implements OnInit {
     if (!allowed) {
       router.navigate(['/'])
     }
-
-    this.shipService.getShip(id).subscribe(ship => {
-      this.ship = ship;
-      this.shipService.getResources(ship.name).subscribe(resources => this.resources = resources);
-    });
-
+    this.id = id;
   }
+
 
   public openDialog() {
     if (!this.resources || !this.ship) {
@@ -49,9 +46,19 @@ export class PlayerViewComponent implements OnInit {
       width: '250px',
       data: dialogData
     });
+
+    dialogRef.afterClosed().subscribe(_ => this.updateValues());
   }
 
   ngOnInit(): void {
+    this.updateValues();
+  }
+
+  private updateValues() {
+    this.shipService.getShip(this.id).subscribe(ship => {
+      this.ship = ship;
+      this.shipService.getResources(ship.name).subscribe(resources => this.resources = resources);
+    });
   }
 
 }
@@ -80,7 +87,7 @@ export class ResourceGiftDialog {
       console.warn('There is no selected ship!');
       return;
     }
-    this.shipService.sendResources(this.data.ship.name, this.selectedShip, this.resourcesToGive).subscribe();
-    this.dialogRef.close();
+    this.shipService.sendResources(this.data.ship.name, this.selectedShip, this.resourcesToGive)
+      .subscribe(_ => this.dialogRef.close());
   }
 }
