@@ -21,8 +21,16 @@ public class TypeHandler {
     }
 
     private void initStarTypes(){
-        starTypes.add("Star");
+        starTypes.add("Yellow Star");
+        starTypes.add("Blue Star");
+        starTypes.add("Red Star");
+        starTypes.add("Orange Star");
+        starTypes.add("White Star");
+        starTypes.add("Brown Dwarf");
         starTypes.add("Black Hole");
+        starTypes.add("Neutron Star");
+        starTypes.add("Pulsar");
+        starTypes.add("White Dwarf");
     }
 
     private void initPlanetoidTypes(){
