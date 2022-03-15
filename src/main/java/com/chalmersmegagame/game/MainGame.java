@@ -4,20 +4,22 @@ import java.awt.*;
 import java.util.List;
 import java.util.ArrayList;
 import com.chalmersmegagame.game.ships.*;
+import com.chalmersmegagame.game.teams.Team;
 
 import org.springframework.stereotype.Component;
 
 @Component
-public class MainGame extends Canvas implements Runnable{
+public class MainGame extends Canvas{
 
     private List<Ship> ships = new ArrayList<Ship>();  
-    private Thread thread;
 
     public MainGame(){
-        ships.add(new TestShip("High Charity"));
-        ships.add(new TestShip("Unyielding Hierophant"));
-        ships.get(1).setHP(39);
-        //new ApplicationView(600, 400, "GameView", this);
+        Team team1 = new Team("TestTeam1");
+        Team team2 = new Team("TestTeam2");
+
+        ships.add(new PlayerShip(team1, "High Charity", "The Covenant",10));
+        ships.add(new PlayerShip(team2, "Unyielding Hierophant", "The Covenant",40));
+        
         System.out.println("Game is created");
     }
 
@@ -25,13 +27,6 @@ public class MainGame extends Canvas implements Runnable{
         MainGame game = new MainGame();
     }
 
-
-
-    @Override
-    public void run() {
-        // TODO Auto-generated method stub
-        
-    }
 
     public List<Ship> getShips(){
         return ships;

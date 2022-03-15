@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {emptyShip, Ship} from "../../objects/ship";
-import {ControllerService} from "../../controller.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Observable} from "rxjs";
-import {UsersService} from "../../users.service";
+import {UserService} from "../../user.service";
 import {FormBuilder} from "@angular/forms";
+import {ShipService} from "../../ship.service";
 
 @Component({
   selector: 'app-controller-ships',
@@ -13,28 +13,23 @@ import {FormBuilder} from "@angular/forms";
 })
 export class ControllerShipsComponent implements OnInit {
 
-  //TODO: If the user has the wrong role or no id, should not be able to be here
-
   public ships: Observable<Ship[]>;
   public shipConstructor = this.formBuilder.group(new emptyShip())
 
-
-  constructor(private controllerService: ControllerService,
-              private usersService: UsersService,
+  constructor(private shipService: ShipService,
+              private userService: UserService,
               private route: ActivatedRoute,
               private router: Router,
               private formBuilder: FormBuilder
   ) {
-    if (!usersService.checkCorrectId(route) || !usersService.checkCorrectRole('controller')) {
+    if (!userService.checkCredentials(route, {role: 'controller'}).allowed) {
       router.navigate(['/'])
     }
-    this.ships = this.controllerService.getShips();
+    this.ships = this.shipService.getShips();
     this.shipConstructor.reset();
   }
 
   ngOnInit(): void {
-    //TODO: Do something with state
-    //this.controllerService.getState().subscribe(state => console.log(state))
   }
 
   /**
@@ -58,7 +53,7 @@ export class ControllerShipsComponent implements OnInit {
       return;
     }
 
-    this.controllerService.addShip(newShip).subscribe(() => this.ships = this.controllerService.getShips());
+    this.shipService.addShip(newShip).subscribe(() => this.ships = this.shipService.getShips());
     this.shipConstructor.reset();
   }
 }

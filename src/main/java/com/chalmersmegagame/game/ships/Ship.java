@@ -1,13 +1,20 @@
 package com.chalmersmegagame.game.ships;
 
+import javax.persistence.*;
+
+import lombok.Data;
+
+@MappedSuperclass
+@Data
 public abstract class Ship implements IShip{
 
+    @Id
+    private String name;
     private int crewSize;
     private int HP;
     private int maxHP;
     private String faction;
-    private String name;
-
+    
     
     @Override
     public int getCrewSize() {
@@ -38,7 +45,9 @@ public abstract class Ship implements IShip{
     @Override
     public void modifyHP(int change) {
         int newHP = HP + change;
-        if(newHP > 0){
+        if(newHP > maxHP){
+            HP = maxHP;
+        }else if(newHP > 0){
             HP = newHP;
         }else{
             HP = 0;

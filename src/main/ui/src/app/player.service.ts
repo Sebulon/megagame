@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpParams} from "@angular/common/http";
-import {Ship} from "./objects/ship";
+import {HttpClient} from "@angular/common/http";
 import {Links} from "./links";
+import {Player} from "./objects/player";
 
 @Injectable({
   providedIn: 'root'
@@ -11,9 +11,11 @@ export class PlayerService {
   constructor(private http: HttpClient) {
   }
 
-  getShip(id: string) {
-    let queryParams = new HttpParams().append('id', id)
-
-    return this.http.get<Ship>(Links.playerShip, {params: queryParams});
+  /**
+   * Get all players that the backend knows of.
+   */
+  getPlayers() {
+    return this.http.get<Player[]>(Links.users + '/player');
   }
+
 }

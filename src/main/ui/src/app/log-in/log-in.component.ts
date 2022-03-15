@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {UsersService} from "../users.service";
+import {UserService} from "../user.service";
 import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
@@ -10,7 +10,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 export class LogInComponent implements OnInit {
 
   constructor(
-    private usersService: UsersService,
+    private userService: UserService,
     private route: ActivatedRoute,
     private router: Router) {
   }
@@ -19,20 +19,20 @@ export class LogInComponent implements OnInit {
   }
 
   submitPlayerID(id: string): void {
-    this.usersService.getUsers().subscribe(data => this.gotoNextScreen(id, data));
+    this.userService.getUsers().subscribe(data => this.gotoNextScreen(id, data));
   }
 
   gotoNextScreen(id: string, data: { id: string, role: string }[]): void {
     let user = this.getData(id, data);
     if (user == null) {
-      //TODO: Id input is wrong, should give feedback to user
+      // TODO: Id input is wrong, should give feedback to user
       console.log("id is not in system!");
       return;
     }
 
     // Saves data for future usage
-    localStorage.setItem("id", user.id)
-    localStorage.setItem("role", user.role)
+    this.userService.setId(user.id);
+    this.userService.setRole(user.role);
 
     // Routes to a new page (a standard view page for the role)
     this.router.navigate([user.id, user.role + '-view'])

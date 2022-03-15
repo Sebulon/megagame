@@ -1,5 +1,5 @@
 <div id="player-view">
-  <div *ngIf="ship$ | async; let ship" class="ship">
+  <div *ngIf="ship != null" class="ship">
     <div class="ship-name">
       <h2>{{ship.name}}</h2>
       <h3>{{ship.faction}}</h3>
@@ -7,6 +7,13 @@
     <div class="ship-info">
       <p>Crew size: {{ship.crewSize}}</p>
       <p>HP: {{ship.hp}} / {{ship.maxHP}}</p>
+      <b>Resources:</b>
+      <div *ngFor="let item of resources | keyvalue">
+        {{item.key}}:{{item.value}}
+      </div>
+    </div>
+    <div>
+      <button (click)="openDialog()">Give Resources</button>
     </div>
   </div>
 </div>

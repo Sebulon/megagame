@@ -1,13 +1,15 @@
 package com.chalmersmegagame.game.teams;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import com.chalmersmegagame.game.users.*;
 
 @RestController
 @RequestMapping("/api/teams")
 public class TeamController {
-    
+    @Autowired
+    TeamService teamService;
+
+
     @PostMapping()
     public void addTeam(@RequestBody Team team){
         //temporary sanity check

@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ControllerService} from "../../controller.service";
-import {UsersService} from "../../users.service";
+import {UserService} from "../../user.service";
 import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
@@ -10,19 +9,16 @@ import {ActivatedRoute, Router} from "@angular/router";
 })
 export class ControllerViewComponent implements OnInit {
 
-  constructor(private controllerService: ControllerService,
-              private usersService: UsersService,
+  constructor(private userService: UserService,
               private route: ActivatedRoute,
               private router: Router) {
 
-    if (!usersService.checkCorrectId(route) || !usersService.checkCorrectRole('controller')) {
+    if (!userService.checkCredentials(route, {role: 'controller'}).allowed) {
       router.navigate(['/'])
     }
 
   }
 
   ngOnInit(): void {
-    //TODO: Do something with state
-    //this.controllerService.getState().subscribe(state => console.log(state))
   }
 }

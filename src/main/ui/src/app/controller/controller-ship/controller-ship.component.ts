@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {ControllerService} from "../../controller.service";
 import {Ship} from "../../objects/ship";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
+import {UserService} from "../../user.service";
+import {ShipService} from "../../ship.service";
 
 @Component({
   selector: 'app-controller-ship',
@@ -11,9 +12,46 @@ import {ActivatedRoute} from "@angular/router";
 export class ControllerShipComponent implements OnInit {
 
   public ship: Ship | null = null;
+  public hpChange: number | null = null;
 
-  constructor(private controllerService: ControllerService, private route: ActivatedRoute) {
-    controllerService.getShips().subscribe(
+  constructor(private shipService: ShipService,
+              private route: ActivatedRoute,
+              private userService: UserService,
+              private router: Router) {
+    if (!userService.checkCredentials(route, {role: 'controller'}).allowed) {
+      router.navigate(['/'])
+    }
+    this.updateShipValues();
+  }
+
+  public changeHP(): void {
+
+    if (this.ship == null) return;
+
+    if (this.hpChange == null) {
+      console.error("New hp cannot be null!");
+      return;
+    }
+
+    this.shipService.changeShipHP(this.ship.name, this.hpChange).subscribe();
+    this.hpChange = null;
+    this.updateShipValues();
+  }
+
+  public deleteShip(): void {
+    if (this.ship == null) return;
+
+    this.shipService.deleteShip(this.ship.name).subscribe(_ =>
+      this.router.navigate(['../'], {relativeTo: this.route})
+    );
+  }
+
+  /**
+   * Call this when in need of updating the values.
+   * @private
+   */
+  private updateShipValues() {
+    this.shipService.getShips().subscribe(
       ships => this.ship = ControllerShipComponent.getCurrentShip(ships, this.route.snapshot.paramMap.get('ship'))
     );
   }
@@ -30,6 +68,7 @@ export class ControllerShipComponent implements OnInit {
     }
     return null;
   }
+
 
   ngOnInit(): void {
   }
