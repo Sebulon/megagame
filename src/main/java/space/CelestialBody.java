@@ -7,7 +7,6 @@ public abstract class CelestialBody implements ICelestialObject {
 
     protected String type;
     protected ArrayList<Feature> features = new ArrayList<>();
-    protected int index;
     protected int size;
     protected TypeHandler typeHandler = TypeHandler.getInstance();
 
@@ -27,11 +26,6 @@ public abstract class CelestialBody implements ICelestialObject {
     }
 
     @Override
-    public int getIndex() {
-        return this.index;
-    }
-
-    @Override
     public void setType(String type) {
         this.type = type;
     }
@@ -39,11 +33,6 @@ public abstract class CelestialBody implements ICelestialObject {
     @Override
     public void addFeature(Feature feature) {
         this.features.add(feature);
-    }
-
-    @Override
-    public void setIndex(int index) {
-        this.index = index;
     }
 
     @Override
