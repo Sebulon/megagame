@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map; 
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/ships")
@@ -14,12 +14,12 @@ public class ShipController {
     ShipService shipService;
 
     @RequestMapping("/getShip/name/{shipName}")
-    public Ship getShip(@PathVariable String shipName){
+    public Ship getShip(@PathVariable String shipName) {
         return shipService.getShipByName(shipName);
     }
 
     @RequestMapping("/allShips")
-    public List<Ship> getAllShips(){
+    public List<Ship> getAllShips() {
         return shipService.getAllShips();
     }
 
@@ -30,7 +30,7 @@ public class ShipController {
     }
 
     @PutMapping("/{shipName}/modify/HP/{modifier}")
-    public void modifyShipHP(@PathVariable String shipName, @PathVariable int modifier){
+    public void modifyShipHP(@PathVariable String shipName, @PathVariable int modifier) {
         Ship ship = shipService.getShipByName(shipName);
         shipService.modifyShipHP(ship, modifier);
     }
@@ -41,23 +41,22 @@ public class ShipController {
     }
 
     @RequestMapping("/playerShip/{shipName}/resources")
-    public Map<String, Integer> getPlayerShipResourceQuantities(@PathVariable String shipName){
+    public Map<String, Integer> getPlayerShipResourceQuantities(@PathVariable String shipName) {
         return shipService.getPlayerShipResourceQuantities(shipName);
     }
 
     @PutMapping("/playerShip/{shipName}/resources/modify/{resourceName}/{quantity}")
-    public void modifyPlayerShipResource(@PathVariable Map<String, String> pathVarsMap){
+    public void modifyPlayerShipResource(@PathVariable Map<String, String> pathVarsMap) {
         shipService.modifyPlayerShipResource(pathVarsMap.get("shipName"), pathVarsMap.get("resourceName"), Integer.parseInt(pathVarsMap.get("quantity")));
     }
 
     @PutMapping("/playerShip/{shipName}/resources/transfer/{resourceName}/{quantity}/{receivingShip}")
-    public void playerShipResourceTransfer(@PathVariable Map<String, String> pathVarsMap){
+    public void playerShipResourceTransfer(@PathVariable Map<String, String> pathVarsMap) {
         shipService.playerShipResourceTransfer(pathVarsMap.get("shipName"), pathVarsMap.get("receivingShip"), pathVarsMap.get("resourceName"), Integer.parseInt(pathVarsMap.get("quantity")));
     }
 
     @PutMapping("/playerShip/{shipName}/resources/transfer/{receivingShip}")
-    public void playerShipResourcesTransfer(@PathVariable String shipName, @PathVariable String receivingShip, @RequestBody String resources){
-        // TODO: Actually make things happen (If can fix, should not be string, but rather some sort of object that can have x amount of resource types)
+    public void playerShipResourcesTransfer(@PathVariable String shipName, @PathVariable String receivingShip, @RequestBody Map<String, Integer> resources) {
         System.out.println(shipName + ", " + receivingShip + ", " + resources);
     }
 

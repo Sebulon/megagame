@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Ship} from "./objects/ship";
 import {Links} from "./links";
-import {HttpClient, HttpParams} from "@angular/common/http";
+import {HttpClient} from "@angular/common/http";
 import {catchError, retry} from "rxjs/operators";
 import {handleError} from "./errorHandler";
 
@@ -62,13 +62,18 @@ export class ShipService {
     );
   }
 
+  /**
+   * Says to backend to send resources from one ship to another.
+   * @param from
+   * @param to
+   * @param resources
+   */
   sendResources(from: string, to: string, resources: Map<string, number>) {
     const convMap = {} as any;
     resources.forEach((value, key) => {
       convMap[key] = value;
     });
-    let httpRequest = {params: new HttpParams().appendAll(convMap)};
-    return this.http.put(Links.sendResources(from, to), httpRequest).pipe(
+    return this.http.put(Links.sendResources(from, to), convMap).pipe(
       retry(3),
       catchError(handleError)
     );
