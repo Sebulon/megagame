@@ -13,7 +13,7 @@ public class TypeHandler {
 
     public static TypeHandler getInstance() {
         if (TypeHandler.getInstance() == null){
-            return new TypeHandler();
+           instance = new TypeHandler();
         }
         return instance;
     }
