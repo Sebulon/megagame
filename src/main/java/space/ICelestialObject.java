@@ -10,13 +10,9 @@ public interface ICelestialObject {
 
     public ArrayList<Feature> getFeatures();
 
-    public int getIndex();
-
     public void setType(String type);
 
     public void setSize(int size);
 
     public void addFeature(Feature feature);
-
-    public void setIndex(int index);
 }
