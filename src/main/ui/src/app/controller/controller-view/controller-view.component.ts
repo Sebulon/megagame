@@ -20,7 +20,5 @@ export class ControllerViewComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    //TODO: Do something with state
-    //this.controllerService.getState().subscribe(state => console.log(state))
   }
 }

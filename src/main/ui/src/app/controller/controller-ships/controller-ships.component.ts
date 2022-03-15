@@ -13,11 +13,8 @@ import {ShipService} from "../../ship.service";
 })
 export class ControllerShipsComponent implements OnInit {
 
-  //TODO: If the user has the wrong role or no id, should not be able to be here
-
   public ships: Observable<Ship[]>;
   public shipConstructor = this.formBuilder.group(new emptyShip())
-
 
   constructor(private shipService: ShipService,
               private userService: UserService,
@@ -33,8 +30,6 @@ export class ControllerShipsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    //TODO: Do something with state
-    //this.controllerService.getState().subscribe(state => console.log(state))
   }
 
   /**
