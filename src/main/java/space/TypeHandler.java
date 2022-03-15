@@ -34,7 +34,8 @@ public class TypeHandler {
     }
 
     private void initPlanetoidTypes(){
-
+        planetoidTypes.add("Habitable Planet");
+        
     }
 
     public ArrayList<String> getStarTypes() {
