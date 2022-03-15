@@ -19,6 +19,7 @@ public class Planetoid extends CelestialBody implements IHasResources {
         this.type = type;
     }
 
+    /*
     public Planetoid (int size, String type){
         this.size = size;
         this.index = 0;
@@ -69,7 +70,7 @@ public class Planetoid extends CelestialBody implements IHasResources {
         this.index= index;
         this.satellites = satellites;
         satelliteWeight += satellites.stream().mapToInt(Planetoid :: getSize).sum();
-    }
+    }*/
 
     public ArrayList<Planetoid> getSatellites() {
         return satellites;
