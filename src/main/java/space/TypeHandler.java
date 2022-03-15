@@ -9,6 +9,8 @@ public class TypeHandler {
 
     private TypeHandler(){
         instance = this;
+        this.initPlanetoidTypes();
+        this.initStarTypes();
     }
 
     public static TypeHandler getInstance() {
