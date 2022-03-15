@@ -1,14 +1,13 @@
 package com.chalmersmegagame.game.ships;
 
+import javax.persistence.Entity;
+
+@Entity
 public class TestShip extends Ship {
 
     /* these variables are here but unused solely for automatic JSON parsing with Spring Boot
     not entierly sure if still actually needed*/
-    private int crewSize;
-    private int HP;
-    private int maxHP;
-    private String faction;
-    private String name;
+    
 
 
     public TestShip(){

@@ -14,24 +14,29 @@ public class ShipController {
     ShipService shipService;
 
     @RequestMapping("/getShip/name/{shipName}")
-    public Ship getShip(@PathVariable String shipName) {
-        return shipService.getShipByName(shipName);
+    public Ship getShip(@PathVariable String shipName){
+        return shipService.getTestShipByName(shipName);
     }
 
     @RequestMapping("/allShips")
-    public List<Ship> getAllShips() {
-        return shipService.getAllShips();
+    public List<? extends Ship> getAllShips(){
+        return shipService.getAllTestShips();
     }
 
 
     @PostMapping("/allShips")
     public void createShip(@RequestBody TestShip ship) {
-        shipService.addShip(ship);
+        shipService.addTestShip(ship);
+    }
+
+    @PostMapping("/playerShips")
+    public void createPlayerShip(@RequestBody PlayerShip ship){
+        shipService.addPlayerShip(ship);
     }
 
     @PutMapping("/{shipName}/modify/HP/{modifier}")
-    public void modifyShipHP(@PathVariable String shipName, @PathVariable int modifier) {
-        Ship ship = shipService.getShipByName(shipName);
+    public void modifyShipHP(@PathVariable String shipName, @PathVariable int modifier){
+        Ship ship = shipService.getTestShipByName(shipName);
         shipService.modifyShipHP(ship, modifier);
     }
 

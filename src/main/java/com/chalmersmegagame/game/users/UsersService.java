@@ -2,9 +2,10 @@ package com.chalmersmegagame.game.users;
 
 import com.chalmersmegagame.game.players.Player;
 import com.chalmersmegagame.game.roles.UserRole;
+import com.chalmersmegagame.game.teams.Team;
 import com.chalmersmegagame.game.users.repository.UsersRepository;
 import com.chalmersmegagame.game.users.user.User;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +13,7 @@ import java.util.List;
 /**
  * The class other classes are supposed to talk to when backend need to access users.
  */
-@Component
+@Service
 public class UsersService {
 
     private final UsersRepository usersRepository;
@@ -36,7 +37,7 @@ public class UsersService {
     public List<Player> createPlayers() {
         List<User> players = getUsersBasedOnRole(UserRole.PLAYER);
         List<Player> returnList = new ArrayList<>();
-        players.forEach(p -> returnList.add(new Player(p.getId())));
+        players.forEach(p -> returnList.add(new Player(p.getId(), new Team("testTeam"))));
         return returnList;
     }
 }

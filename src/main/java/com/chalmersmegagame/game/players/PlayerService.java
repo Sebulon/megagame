@@ -2,6 +2,7 @@ package com.chalmersmegagame.game.players;
 
 import com.chalmersmegagame.game.ships.Ship;
 import com.chalmersmegagame.game.ships.ShipService;
+import com.chalmersmegagame.game.ships.TestShip;
 import com.chalmersmegagame.game.users.UsersService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +24,7 @@ public class PlayerService {
     private List<Player> players;
 
     //Runs after startup is complete
-    @EventListener(ApplicationReadyEvent.class)
+    //@EventListener(ApplicationReadyEvent.class)
     private void setup(){
         players = usersService.createPlayers();
         populatePlayersWithRandomShips();
@@ -42,7 +43,7 @@ public class PlayerService {
     }
 
     private Ship randomShip() {
-        List<Ship> ships = shipService.getAllShips();
+        List<TestShip> ships = shipService.getAllTestShips();
         return ships.get((int) Math.floor(Math.random() * ships.size()));
     }
 }

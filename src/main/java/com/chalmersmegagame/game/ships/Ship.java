@@ -2,13 +2,14 @@ package com.chalmersmegagame.game.ships;
 
 import javax.persistence.*;
 
-import lombok.Data;
+import org.hibernate.annotations.GenericGenerator;
 
 @MappedSuperclass
-@Data
 public abstract class Ship implements IShip{
 
     @Id
+    //@GeneratedValue(generator = "uuid")
+    //@GenericGenerator(name = "uuid", strategy = "uuid2")
     private String name;
     private int crewSize;
     private int HP;
