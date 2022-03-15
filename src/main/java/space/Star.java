@@ -3,6 +3,7 @@ package space;
 
 public class Star extends CelestialBody {
 
+    private String stellarClass;
     /*public Star(int size) {
         this.type = "Star";
         this.index = 0;
@@ -24,4 +25,11 @@ public class Star extends CelestialBody {
         this.type = type;
     }
 
+    public String getStellarClass() {
+        return this.stellarClass;
+    }
+
+    public void setStellarClass(String stellarClass) {
+        this.stellarClass = stellarClass;
+    }
 }
