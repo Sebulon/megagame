@@ -70,6 +70,7 @@ export class PlayerViewComponent implements OnInit {
 @Component({
   selector: 'resource-gift-dialog',
   templateUrl: './resource-gift-dialog.html',
+  styleUrls: ['./player-view.component.css']
 })
 export class ResourceGiftDialog {
   public ships: Ship[] | null = null;
