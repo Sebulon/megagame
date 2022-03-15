@@ -21,7 +21,8 @@ public class TypeHandler {
     }
 
     private void initStarTypes(){
-
+        starTypes.add("Star");
+        starTypes.add("Black Hole");
     }
 
     private void initPlanetoidTypes(){
