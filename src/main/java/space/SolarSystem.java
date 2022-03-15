@@ -23,17 +23,9 @@ public class SolarSystem {
         this.objectList = objectList;
     }
 
-    public void sortOrder(){
-        objectList.sort((Comparator.comparingInt(ICelestialObject::getIndex)));
-    }
-
     public void addCelestialObject(ICelestialObject object){
         if (objectList.size() <= size + 1){
-            object.setIndex(objectList.size());
             objectList.add(object);
-            if (object.getIndex() == 0 && object.getType() != "Star") {
-                throw new RuntimeException("A solar system needs a strong gravity well");
-            }
         }
         else
         {
