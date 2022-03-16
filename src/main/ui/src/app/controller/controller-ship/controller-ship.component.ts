@@ -118,5 +118,6 @@ export class ResourceChangeDialog {
 
   onSubmit() {
     this.shipService.changeResources(this.data.ship.name, this.resourcesToChange);
+    this.dialogRef.close();
   }
 }
