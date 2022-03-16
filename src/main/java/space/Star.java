@@ -1,7 +1,7 @@
 package space;
 
 
-public class Star extends CelestialBody {
+public class Star extends CelestialBody implements IGravityWell {
 
     public Star(int size, String type){
         if (!typeHandler.getStarTypes().contains(type)){
