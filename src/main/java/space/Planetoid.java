@@ -21,33 +21,12 @@ public class Planetoid extends CelestialBody implements IHasResources {
         this.type = type;
     }
 
-    /*
-    public Planetoid (int size, String type){
-        this.size = size;
-        this.index = 0;
-        this.type = type;
-    }
-
     public Planetoid (int size, String type, Planetoid satellite){
         if (satellite.size >= this.size){
             throw new IllegalArgumentException("Satellite is too large");
         }
         this.size = size;
         this.type = type;
-        this.index = 0;
-        this.satellites.add(satellite);
-        this.satelliteWeight += satellite.size;
-    }
-
-    public Planetoid (int size, int index, String type, Planetoid satellite){
-        if (satellite.size >= this.size){
-            throw new IllegalArgumentException("Satellite is too large");
-        }
-        this.size = size;
-        this.type = type;
-        this.index = index;
-        satellite.index = satelliteIndex;
-        satelliteIndex++;
         this.satellites.add(satellite);
         this.satelliteWeight += satellite.size;
     }
@@ -58,21 +37,9 @@ public class Planetoid extends CelestialBody implements IHasResources {
         }
         this.size = size;
         this.type = type;
-        this.index = 0;
         this.satellites = satellites;
         satelliteWeight += satellites.stream().mapToInt(Planetoid :: getSize).sum();
     }
-
-    public Planetoid (int size, int index, String type, ArrayList<Planetoid> satellites){
-        if (satellites.stream().mapToInt(Planetoid :: getSize).sum() >= satelliteWeight){
-            throw new IllegalArgumentException("The total size of the satellites is too large");
-        }
-        this.size = size;
-        this.type = type;
-        this.index= index;
-        this.satellites = satellites;
-        satelliteWeight += satellites.stream().mapToInt(Planetoid :: getSize).sum();
-    }*/
 
     public ArrayList<Planetoid> getSatellites() {
         return satellites;
