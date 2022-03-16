@@ -27,7 +27,6 @@ public class TypeHandler {
         starTypes.add("Orange Star");
         starTypes.add("White Star");
         starTypes.add("Brown Dwarf");
-        starTypes.add("Black Hole");
         starTypes.add("Neutron Star");
         starTypes.add("Pulsar");
         starTypes.add("White Dwarf");
