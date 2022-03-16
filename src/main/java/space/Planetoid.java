@@ -27,6 +27,7 @@ public class Planetoid extends CelestialBody implements IHasResources {
         }
         this.size = size;
         this.type = type;
+        satellite.setSatellite(true);
         this.satellites.add(satellite);
         this.satelliteWeight += satellite.size;
     }
@@ -45,7 +46,7 @@ public class Planetoid extends CelestialBody implements IHasResources {
         return satellites;
     }
 
-    public void addSatellites(Planetoid satellite) {
+    public void addSatellite(Planetoid satellite) {
         if (satellite.size >= this.size) {
             throw new IllegalArgumentException("Satellite is too large");
         }
