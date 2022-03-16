@@ -78,4 +78,9 @@ export class ShipService {
       catchError(handleError)
     );
   }
+
+  //TODO this method
+  changeResources(to: string, resources: Map<string, number>) {
+
+  }
 }

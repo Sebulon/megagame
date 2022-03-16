@@ -1,0 +1,21 @@
+<div id="change-resources-popup">
+  <h1 mat-dialog-title>Change resources:</h1>
+  <div mat-dialog-content>
+    <h2>Resources:</h2>
+    <div *ngFor="let resource of data.resources | keyvalue">
+      <div>
+        <label><b>{{resource.key}}</b></label>
+        <br>
+        <label>Amount: {{resourcesToChange.get(resource.key) ?? 0}}</label>
+      </div>
+      <mat-slider thumbLabel="true"
+                  [value]="0"
+                  [min]="-resource.value"
+                  [max]="50"
+                  step="1"
+                  (change)="resourcesToChange.set(resource.key, $event.value ?? 0)">
+      </mat-slider>
+    </div>
+    <button (click)="onSubmit()" id="popup-button" class="standard-button">Change</button>
+  </div>
+</div>

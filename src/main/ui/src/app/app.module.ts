@@ -9,7 +9,7 @@ import {TopBarComponent} from './top-bar/top-bar.component';
 import {LogInComponent} from './log-in/log-in.component';
 import {ControllerViewComponent} from './controller/controller-view/controller-view.component';
 import {PlayerViewComponent, ResourceGiftDialog} from './player-view/player-view.component';
-import {ControllerShipComponent} from './controller/controller-ship/controller-ship.component';
+import {ControllerShipComponent, ResourceChangeDialog} from './controller/controller-ship/controller-ship.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {ControllerShipsComponent} from './controller/controller-ships/controller-ships.component';
 import {ControllerPlayersComponent} from './controller/controller-players/controller-players.component';
@@ -31,7 +31,8 @@ import {MatSliderModule} from "@angular/material/slider";
     ControllerShipComponent,
     ControllerShipsComponent,
     ControllerPlayersComponent,
-    ResourceGiftDialog
+    ResourceGiftDialog,
+    ResourceChangeDialog
   ],
   imports: [
     BrowserModule,

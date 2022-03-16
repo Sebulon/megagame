@@ -17,6 +17,7 @@
       <input type="number" id="hp" [(ngModel)]="hpChange" [ngModelOptions]="{standalone: true}">
       <input type="submit" value="Change">
     </form>
-    <button type="submit" (click)="deleteShip()" id="delete-ship-button">Delete ship</button>
+      <button (click)="openDialog()" class="controller-ship-button">Change Resources</button>
+    <button type="submit" (click)="deleteShip()" class="controller-ship-button">Delete ship</button>
   </div>
 </div>

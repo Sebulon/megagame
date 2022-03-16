@@ -6,7 +6,7 @@
 
 #delete-ship {
   color: white;
-  margin: 20px;
+  margin: 10px;
   font-size: 30px;
 }
 
@@ -14,7 +14,7 @@
   margin: 5px;
 }
 
-input, #delete-ship-button {
+input, .controller-ship-button {
   border-radius: 5px;
   background-color: white;
   border-style: hidden;
@@ -24,8 +24,20 @@ input, #delete-ship-button {
   text-align: center;
 }
 
-input:hover, #delete-ship-button:hover {
+input:hover, .controller-ship-button:hover {
   background-color: #d3d3d3;
+}
+
+.controller-ship-button {
+  margin: 10px;
+}
+
+#change-resources-popup {
+  text-align: center;
+}
+
+#popup-button {
+  width: 100%;
 }
 
 

@@ -5,25 +5,6 @@
   margin: 0;
 }
 
-.give-resources {
-  border-radius: 5px;
-  background-color: #949494;
-  border-style: hidden;
-  color: white;
-  font-size: 40px;
-  text-align: center;
-  margin-top: 5%;
-  padding: 20px;
-}
-
-.give-resources:hover {
-  background-color: #858585;
-}
-
-.give-resources:active {
-  background-color: #c0c0c0;
-}
-
 .mat-dialog-container {
   text-align: center;
 }
