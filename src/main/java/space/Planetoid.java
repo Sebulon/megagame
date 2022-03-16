@@ -11,7 +11,6 @@ public class Planetoid extends CelestialBody implements IHasResources {
     HashMap<String, Integer> resourceQuantities;
     ArrayList<Planetoid> satellites = new ArrayList<>();
     private int satelliteWeight;
-    private boolean isSatellite;
 
     public Planetoid (int size, String type){
         if (!typeHandler.getPlanetoidTypes().contains(type)){
@@ -27,7 +26,6 @@ public class Planetoid extends CelestialBody implements IHasResources {
         }
         this.size = size;
         this.type = type;
-        satellite.setSatellite(true);
         this.satellites.add(satellite);
         this.satelliteWeight += satellite.size;
     }
@@ -53,7 +51,6 @@ public class Planetoid extends CelestialBody implements IHasResources {
         if (satelliteWeight + satellite.size >= size){
             throw new IllegalArgumentException("Satellite is either too large or the orbits are full");
         }
-        satellite.setSatellite(true);
         this.satellites.add(satellite);
         satelliteWeight += satellite.size;
     }
@@ -95,11 +92,4 @@ public class Planetoid extends CelestialBody implements IHasResources {
         }
     }
 
-    public boolean isSatellite() {
-        return isSatellite;
-    }
-
-    public void setSatellite(boolean satellite) {
-        this.isSatellite = satellite;
-    }
 }
