@@ -16,7 +16,7 @@ public class SolarSystem {
         if (objectList.size() > size + 1){
             throw new IllegalArgumentException("The specified solar system is too large");
         }
-        if (!objectList.get(0).getType().equals("Star") || !objectList.get(0).getType().equals("Black Hole")){
+        if (!(objectList.get(0) )){
             throw new IllegalArgumentException("The solar system needs a strong gravity well");
         }
         this.size = size;
