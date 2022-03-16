@@ -7,6 +7,10 @@
     <div class="ship-info">
       <p>Crew size: {{ship.crewSize}}</p>
       <p>HP: {{ship.hp}} / {{ship.maxHP}}</p>
+      <b>Resources:</b>
+      <div *ngFor="let item of resources | keyvalue">
+        {{item.key}}:{{item.value}}
+      </div>
     </div>
     <form (submit)="changeHP()" id="delete-ship">
       <label for="hp">HP Change</label>

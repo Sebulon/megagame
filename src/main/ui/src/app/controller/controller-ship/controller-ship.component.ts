@@ -13,6 +13,7 @@ export class ControllerShipComponent implements OnInit {
 
   public ship: Ship | null = null;
   public hpChange: number | null = null;
+  public resources: object | null = null;
 
   constructor(private shipService: ShipService,
               private route: ActivatedRoute,
@@ -52,8 +53,11 @@ export class ControllerShipComponent implements OnInit {
    */
   private updateShipValues() {
     this.shipService.getShips().subscribe(
-      ships => this.ship = ControllerShipComponent.getCurrentShip(ships, this.route.snapshot.paramMap.get('ship'))
-    );
+      ships => {
+        this.ship = ControllerShipComponent.getCurrentShip(ships, this.route.snapshot.paramMap.get('ship'))
+        if(this.ship != null)
+          this.shipService.getResources(this.ship.name).subscribe(resources => this.resources = resources);
+      });
   }
 
   private static getCurrentShip(ships: Ship[], wantedShip: string | null) {
