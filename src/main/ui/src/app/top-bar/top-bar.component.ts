@@ -20,24 +20,52 @@ export class TopBarComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  // TODO: more modular?
-  updateRoute(url: string) {
-    console.log(url);
-    if (url.includes('controller-view')) {
-      let id = url.split('/')[1];
-      let prefix = id + '/controller-view';
-      this.routes = [
-        {name: 'Overview', link: prefix},
-        {name: 'Ships', link: prefix + '/ships'},
-        {name: 'Players', link: prefix + '/players'}
-      ];
-    } else if (url.includes('player-view')) {
-      let id = url.split('/')[1];
-      let prefix = id + '/player-view';
-      this.routes = [{name: 'Overview', link: prefix}];
-    } else {
+  private updateRoute(url: string) {
+    let splitURL = url.split('/').slice(1);
+    if (splitURL.length < 3) {
       this.routes = [];
+      return;
+    }
+
+    let prefix = `${splitURL[0]}/${splitURL[1]}`
+    if (splitURL[1] == 'controller-view') {
+      this.routes = this.getControllerRoutes(prefix, splitURL[splitURL.length - 1]);
+    } else if (splitURL[1] == 'player-view') {
+      this.routes = this.getPlayerRoutes(prefix, splitURL[splitURL.length - 1]);
+    } else {
+      throw new Error('Has no routing options for this route');
     }
   }
 
+  /**
+   * All top-bar links for controller are created here
+   * @param prefix
+   * @param lastDirectory
+   * @private
+   */
+  private getControllerRoutes(prefix: string, lastDirectory: string) {
+    let controllerRoutes = [
+      {name: 'Overview', link: prefix},
+      {name: 'Ships', link: prefix + '/ships'},
+      {name: 'Players', link: prefix + '/players'}
+    ];
+    return this.getRoutes(controllerRoutes, lastDirectory);
+  }
+
+  /**
+   * All top-bar links for player are created here
+   * @param prefix
+   * @param lastDirectory
+   * @private
+   */
+  private getPlayerRoutes(prefix: string, lastDirectory: string) {
+    let playerRoutes = [
+      {name: 'Overview', link: prefix},
+    ];
+    return this.getRoutes(playerRoutes, lastDirectory);
+  }
+
+  private getRoutes(routes: { name: string; link: string }[], lastDirectory: string) {
+    return routes.filter(r => r.link.substring(r.link.length - lastDirectory.length) != lastDirectory);
+  }
 }
