@@ -26,13 +26,7 @@ export class PlayerViewComponent implements OnInit {
               private route: ActivatedRoute,
               private router: Router,
               private dialog: MatDialog) {
-
-    let {allowed, id} = userService.checkCredentials(route, {role: 'player'});
-
-    if (!allowed) {
-      router.navigate(['/'])
-    }
-    this.id = id;
+    this.id = userService.getId(route)!!;
   }
 
 

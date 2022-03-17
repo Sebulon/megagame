@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {emptyShip, Ship} from "../../objects/ship";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Observable} from "rxjs";
-import {UserService} from "../../user.service";
 import {FormBuilder} from "@angular/forms";
 import {ShipService} from "../../ship.service";
 
@@ -17,14 +16,10 @@ export class ControllerShipsComponent implements OnInit {
   public shipConstructor = this.formBuilder.group(new emptyShip())
 
   constructor(private shipService: ShipService,
-              private userService: UserService,
               private route: ActivatedRoute,
               private router: Router,
               private formBuilder: FormBuilder
   ) {
-    if (!userService.checkCredentials(route, {role: 'controller'}).allowed) {
-      router.navigate(['/'])
-    }
     this.ships = this.shipService.getShips();
     this.shipConstructor.reset();
   }

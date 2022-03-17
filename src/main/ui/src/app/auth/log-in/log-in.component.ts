@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {UserService} from "../user.service";
+import {UserService} from "../../user.service";
 import {ActivatedRoute, Router} from "@angular/router";
+import {AuthService} from "../auth.service";
 
 @Component({
   selector: 'app-log-in',
@@ -11,6 +12,7 @@ export class LogInComponent implements OnInit {
 
   constructor(
     private userService: UserService,
+    private authService: AuthService,
     private route: ActivatedRoute,
     private router: Router) {
   }
@@ -31,8 +33,8 @@ export class LogInComponent implements OnInit {
     }
 
     // Saves data for future usage
-    this.userService.setId(user.id);
-    this.userService.setRole(user.role);
+    this.authService.setId(user.id);
+    this.authService.setRole(user.role);
 
     // Routes to a new page (a standard view page for the role)
     this.router.navigate([user.id, user.role + '-view'])

@@ -1,7 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {Ship} from "../../objects/ship";
 import {ActivatedRoute, Router} from "@angular/router";
-import {UserService} from "../../user.service";
 import {ShipService} from "../../ship.service";
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material/dialog";
 import {DialogData} from "../../player/player-view/player-view.component";
@@ -19,12 +18,8 @@ export class ControllerShipComponent implements OnInit {
 
   constructor(private shipService: ShipService,
               private route: ActivatedRoute,
-              private userService: UserService,
               private router: Router,
               private dialog: MatDialog) {
-    if (!userService.checkCredentials(route, {role: 'controller'}).allowed) {
-      router.navigate(['/'])
-    }
     this.updateShipValues();
   }
 
@@ -58,7 +53,7 @@ export class ControllerShipComponent implements OnInit {
     this.shipService.getShips().subscribe(
       ships => {
         this.ship = ControllerShipComponent.getCurrentShip(ships, this.route.snapshot.paramMap.get('ship'))
-        if(this.ship != null)
+        if (this.ship != null)
           this.shipService.getResources(this.ship.name).subscribe(resources => this.resources = resources);
       });
   }
