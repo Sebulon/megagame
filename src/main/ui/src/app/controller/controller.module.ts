@@ -8,6 +8,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatSliderModule} from "@angular/material/slider";
 import {MatDialogModule} from "@angular/material/dialog";
 import {ControllerViewComponent} from "./controller-view/controller-view.component";
+import {DragDropModule} from "@angular/cdk/drag-drop";
 
 @NgModule({
   imports: [
@@ -16,7 +17,8 @@ import {ControllerViewComponent} from "./controller-view/controller-view.compone
     ReactiveFormsModule,
     MatSliderModule,
     MatDialogModule,
-    FormsModule
+    FormsModule,
+    DragDropModule
   ],
   declarations: [
     ControllerViewComponent,

@@ -4,20 +4,23 @@
   background-color: #464545;
 }
 
-#tables {
+#lists {
   display: flex;
   width: 90%;
   padding: 5%;
 }
 
-table {
+.list-container {
+  width: 50%
+}
+
+.list {
   font-family: Calibri, sans-serif;
   border-collapse: collapse;
-  width: 50%;
   border: 5px solid #ddd;
 }
 
-td, th {
+.list-data {
   padding: 8px;
   height: 20px;
   color: white;
@@ -31,7 +34,7 @@ tr:nth-child(odd) {
   background-color: #6e6e6e;
 }
 
-tr:hover {
+.list-data:hover {
   background-color: #4b87bd;
 }
 
