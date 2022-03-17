@@ -1,35 +1,41 @@
-#controller-player-view {
-  width: 90%;
-  height: 90vh;
+#controller-player-full {
+  width: 100%;
+  height: 100vh;
   background-color: #464545;
+}
+
+#tables {
+  display: flex;
+  width: 90%;
   padding: 5%;
 }
 
-#players {
+table {
   font-family: Calibri, sans-serif;
   border-collapse: collapse;
-  width: 100%;
+  width: 50%;
   border: 5px solid #ddd;
 }
 
-#players td, #players th {
+td, th {
   padding: 8px;
+  height: 20px;
   color: white;
 }
 
-#players tr:nth-child(even){
+tr:nth-child(even) {
   background-color: #282727;
 }
 
-#players tr:nth-child(odd){
+tr:nth-child(odd) {
   background-color: #6e6e6e;
 }
 
-#players tr:hover {
+tr:hover {
   background-color: #4b87bd;
 }
 
-#players th {
+th {
   padding-top: 12px;
   padding-bottom: 12px;
   text-align: left;

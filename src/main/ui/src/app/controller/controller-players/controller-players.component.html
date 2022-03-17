@@ -1,8 +1,24 @@
-<div id="controller-player-view">
- <table id="players">
-  <tr> <th>Players</th> </tr>
-    <tr *ngFor="let player of players | async"><td>
-        {{player.id}}
-    </td></tr>
- </table>
+<div id="controller-player-full">
+  <div *ngIf="players && teams" id="tables">
+    <table id="players">
+      <tr>
+        <th>Players</th>
+      </tr>
+      <tr *ngFor="let index of getIndexes()">
+        <td>
+          {{players.length > index ? players[index].id : ""}}
+        </td>
+      </tr>
+    </table>
+    <table id="teams">
+      <tr>
+        <th>Teams</th>
+      </tr>
+      <tr *ngFor="let index of getIndexes()">
+        <td>
+          {{teams.length > index ? teams[index].name : ""}}
+        </td>
+      </tr>
+    </table>
+  </div>
 </div>
