@@ -6,10 +6,12 @@ import {BrowserModule} from "@angular/platform-browser";
 import {TopBarComponent} from "./top-bar/top-bar.component";
 import {HttpClientModule} from "@angular/common/http";
 import {AuthModule} from "./auth/auth.module";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 @NgModule({
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
     AuthModule

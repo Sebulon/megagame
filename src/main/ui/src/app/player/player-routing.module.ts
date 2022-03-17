@@ -1,9 +1,12 @@
 import {RouterModule, Routes} from "@angular/router";
-import {PlayerViewComponent} from "./player-view/player-view.component";
+import {PlayerShipComponent} from "./player-ship/player-ship.component";
 import {NgModule} from "@angular/core";
+import {PlayerWelcomeComponent} from "./player-welcome/player-welcome.component";
 
 const playerRoutes: Routes = [
-  {path: '', component: PlayerViewComponent}
+  {path: '', redirectTo: 'welcome'},
+  {path: 'welcome', component: PlayerWelcomeComponent},
+  {path: 'ship', component: PlayerShipComponent}
 ];
 
 @NgModule({

@@ -60,7 +60,7 @@ export class TopBarComponent implements OnInit {
    */
   private getPlayerRoutes(prefix: string, lastDirectory: string) {
     let playerRoutes = [
-      {name: 'Overview', link: prefix},
+      {name: 'Welcome', link: prefix + '/welcome'},
     ];
     return this.getRoutes(playerRoutes, lastDirectory);
   }

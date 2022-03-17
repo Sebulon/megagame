@@ -12,10 +12,10 @@ export interface DialogData {
 
 @Component({
   selector: 'app-player-view',
-  templateUrl: './player-view.component.html',
-  styleUrls: ['./player-view.component.css']
+  templateUrl: './player-ship.component.html',
+  styleUrls: ['./player-ship.component.css']
 })
-export class PlayerViewComponent implements OnInit {
+export class PlayerShipComponent implements OnInit {
 
   public ship: Ship | null = null;
   public resources: object | null = null;
@@ -64,7 +64,7 @@ export class PlayerViewComponent implements OnInit {
 @Component({
   selector: 'resource-gift-dialog',
   templateUrl: './resource-gift-dialog.html',
-  styleUrls: ['./player-view.component.css']
+  styleUrls: ['./player-ship.component.css']
 })
 export class ResourceGiftDialog {
   public ships: Ship[] | null = null;

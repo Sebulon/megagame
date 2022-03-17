@@ -3,7 +3,7 @@ import {Ship} from "../../objects/ship";
 import {ActivatedRoute, Router} from "@angular/router";
 import {ShipService} from "../../ship.service";
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material/dialog";
-import {DialogData} from "../../player/player-view/player-view.component";
+import {DialogData} from "../../player/player-ship/player-ship.component";
 
 @Component({
   selector: 'app-controller-ship',
