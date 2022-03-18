@@ -1,3 +1,30 @@
 #logo {
   margin-left: 2vw;
 }
+
+#nav-bar {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  width: Calc(100vw - 150px);
+  margin-right: 2vw;
+}
+
+.nav-button {
+  background-color: #4b87bd;
+  color: white;
+  border-style: hidden;
+  text-align: center;
+  padding: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  height: 10vh;
+}
+
+.nav-button:hover {
+  background-color: #315b7e;
+}
+
+.nav-button:active {
+  background-color: #59a4e5;
+}
