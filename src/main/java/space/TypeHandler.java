@@ -34,7 +34,14 @@ public class TypeHandler {
 
     private void initPlanetoidTypes(){
         planetoidTypes.add("Habitable Planet");
-
+        planetoidTypes.add("Apocalyptic Planet");
+        planetoidTypes.add("Toxic Planet");
+        planetoidTypes.add("Frozen Planet");
+        planetoidTypes.add("Molten Planet");
+        planetoidTypes.add("Barren Planet");
+        planetoidTypes.add("Gas Giant");
+        planetoidTypes.add("Broken Planet");
+        planetoidTypes.add("Asteroid");
     }
 
     public ArrayList<String> getStarTypes() {
