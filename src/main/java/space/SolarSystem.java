@@ -31,4 +31,8 @@ public class SolarSystem {
             throw new IllegalArgumentException("Solar system is full");
         }
     }
+
+    public ArrayList <ICelestialObject> getCelestialObjects(){
+        return objectList;
+    }
 }
