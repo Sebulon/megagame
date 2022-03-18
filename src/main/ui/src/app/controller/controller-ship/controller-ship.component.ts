@@ -1,8 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {Ship} from "../../objects/ship";
 import {ActivatedRoute, Router} from "@angular/router";
-import {UserService} from "../../user.service";
 import {ShipService} from "../../ship.service";
+import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material/dialog";
+import {DialogData} from "../../player/player-ship/player-ship.component";
 
 @Component({
   selector: 'app-controller-ship',
@@ -13,14 +14,12 @@ export class ControllerShipComponent implements OnInit {
 
   public ship: Ship | null = null;
   public hpChange: number | null = null;
+  public resources: object | null = null;
 
   constructor(private shipService: ShipService,
               private route: ActivatedRoute,
-              private userService: UserService,
-              private router: Router) {
-    if (!userService.checkCredentials(route, {role: 'controller'}).allowed) {
-      router.navigate(['/'])
-    }
+              private router: Router,
+              private dialog: MatDialog) {
     this.updateShipValues();
   }
 
@@ -52,8 +51,11 @@ export class ControllerShipComponent implements OnInit {
    */
   private updateShipValues() {
     this.shipService.getShips().subscribe(
-      ships => this.ship = ControllerShipComponent.getCurrentShip(ships, this.route.snapshot.paramMap.get('ship'))
-    );
+      ships => {
+        this.ship = ControllerShipComponent.getCurrentShip(ships, this.route.snapshot.paramMap.get('ship'))
+        if (this.ship != null)
+          this.shipService.getResources(this.ship.name).subscribe(resources => this.resources = resources);
+      });
   }
 
   private static getCurrentShip(ships: Ship[], wantedShip: string | null) {
@@ -69,9 +71,48 @@ export class ControllerShipComponent implements OnInit {
     return null;
   }
 
+  public openDialog() {
+    if (!this.resources || !this.ship) {
+      console.error("Cannot find resources or ship!");
+      return;
+    }
+    let dialogData: DialogData = {resources: this.resources, ship: this.ship};
+    const dialogRef = this.dialog.open(ResourceChangeDialog, {
+      width: '250px',
+      data: dialogData
+    });
 
-  ngOnInit(): void {
+    dialogRef.afterClosed().subscribe(_ => this.updateValues());
+  }
+
+  private updateValues() {
+    this.shipService.getResources(this.ship!!.name).subscribe(resources => this.resources = resources);
   }
 
 
+  ngOnInit(): void {
+  }
+}
+
+/**
+ * Class for dialog box when controller changes resources of a ship
+ */
+@Component({
+  selector: 'resource-change.dialog',
+  templateUrl: './resource-change-dialog.html',
+  styleUrls: ['./controller-ship.component.css']
+})
+export class ResourceChangeDialog {
+  public ship: Ship | null = null;
+  public resourcesToChange = new Map<string, number>();
+
+  constructor(private dialogRef: MatDialogRef<ResourceChangeDialog>,
+              private shipService: ShipService,
+              @Inject(MAT_DIALOG_DATA) public data: DialogData) {
+  }
+
+  onSubmit() {
+    this.shipService.changeResources(this.data.ship.name, this.resourcesToChange);
+    this.dialogRef.close();
+  }
 }

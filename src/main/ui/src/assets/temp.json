@@ -1,10 +1,26 @@
 [
   {
-    "role": "controller",
-    "id": "test"
+    "role": "Captain",
+    "description": "The captain's job is to vote on the next move of the fleet and to make sure that their ship is capable of coming along. He is also representing the ship on the flagships council where they determine which ship gets what \n\nCaptain’s council: At the end of a turn, captains gather to vote on if and where to jump during the transition to the next turn."
   },
   {
-    "role": "player",
-    "id": "test2"
+    "role": "UN-representative",
+    "description": "UN-meeting: The UN-representatives of the fleet gather to discuss and vote on relevant issues and topics."
+  },
+  {
+    "role": "Resource officer",
+    "description": "Responsible for producing enough resources to trade and use what the ship needs. This is done through the use of shuttles.\n\nNegotiation game: They walk around and talk to people to gather/distribute resources."
+  },
+  {
+    "role": "Doctor",
+    "description": "Responsible for the health of the crew, the flagship will likely only be able to help with rations but they might have to barter with other ships and lie about inventory to get ahead."
+  },
+  {
+    "role": "Engineer",
+    "description": "Repair: Goes around and repairs ships with resources. \nOptimize: Can improve the resource collection.\nHow to make this fun and not instant."
+  },
+  {
+    "role": "Scientist",
+    "description": "Puzzle game: Maybe similar to Wordle or something like that. A puzzle which is possible to do on your own but easier if you have a friend. Idea is to encourage scientists to help each other."
   }
 ]

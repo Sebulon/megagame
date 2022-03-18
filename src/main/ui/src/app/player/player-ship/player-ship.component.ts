@@ -1,9 +1,9 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
-import {UserService} from "../user.service";
-import {Ship} from "../objects/ship";
+import {UserService} from "../../user.service";
+import {Ship} from "../../objects/ship";
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material/dialog";
-import {ShipService} from "../ship.service";
+import {ShipService} from "../../ship.service";
 
 export interface DialogData {
   resources: object,
@@ -12,10 +12,10 @@ export interface DialogData {
 
 @Component({
   selector: 'app-player-view',
-  templateUrl: './player-view.component.html',
-  styleUrls: ['./player-view.component.css']
+  templateUrl: './player-ship.component.html',
+  styleUrls: ['./player-ship.component.css']
 })
-export class PlayerViewComponent implements OnInit {
+export class PlayerShipComponent implements OnInit {
 
   public ship: Ship | null = null;
   public resources: object | null = null;
@@ -26,13 +26,7 @@ export class PlayerViewComponent implements OnInit {
               private route: ActivatedRoute,
               private router: Router,
               private dialog: MatDialog) {
-
-    let {allowed, id} = userService.checkCredentials(route, {role: 'player'});
-
-    if (!allowed) {
-      router.navigate(['/'])
-    }
-    this.id = id;
+    this.id = userService.getId(route)!!;
   }
 
 
@@ -70,6 +64,7 @@ export class PlayerViewComponent implements OnInit {
 @Component({
   selector: 'resource-gift-dialog',
   templateUrl: './resource-gift-dialog.html',
+  styleUrls: ['./player-ship.component.css']
 })
 export class ResourceGiftDialog {
   public ships: Ship[] | null = null;

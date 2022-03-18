@@ -1,0 +1,9 @@
+
+<div *ngIf="backstory" [innerHTML]="backstory"></div>
+
+<div *ngIf="role">
+  <h2>{{role.role}}</h2>
+  <p>{{role.description}}</p>
+</div>
+
+<a [routerLink]="'../ship'">Go to Ship</a>

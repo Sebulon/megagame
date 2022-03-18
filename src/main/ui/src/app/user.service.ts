@@ -16,26 +16,20 @@ export class UserService {
     return this.http.get<{ id: string, role: string }[]>(Links.users);
   }
 
-  checkCredentials(route: ActivatedRoute, userRole: UserRole): { allowed: boolean, id: string } {
-    let id = route.snapshot.paramMap.get('id') ?? "";
-
-    let expectedId = localStorage.getItem('id');
-    let expectedRole = localStorage.getItem('role');
-
-    let allowed = (id != "" &&
-      expectedId != null &&
-      expectedRole != null &&
-      id == expectedId &&
-      userRole.role == expectedRole);
-
-    return {allowed, id};
+  getId(route: ActivatedRoute) {
+    return route.snapshot.paramMap.get('id');
   }
 
-  setId(id: string) {
-    localStorage.setItem('id', id);
-  }
-
-  setRole(role: string) {
-    localStorage.setItem('role', role);
+  getRole(): UserRole | null {
+    let tmp = localStorage.getItem('role');
+    if (!tmp) return null;
+    switch (tmp) {
+      case 'controller':
+        return {role: 'controller'};
+      case 'player':
+        return {role: 'player'};
+      default:
+        throw new Error("Saved role is not a user role!");
+    }
   }
 }
