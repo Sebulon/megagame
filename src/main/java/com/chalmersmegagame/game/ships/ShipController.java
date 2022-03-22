@@ -18,9 +18,15 @@ public class ShipController {
         return shipService.getTestShipByName(shipName);
     }
 
+    @RequestMapping("/getPlayerShip/name/{shipName}")
+    public Ship getPlayerShip(@PathVariable String shipName){
+        return shipService.getPlayerShipByName(shipName);
+    }
+    
+
     @RequestMapping("/allShips")
     public List<? extends Ship> getAllShips(){
-        return shipService.getAllTestShips();
+        return shipService.getAllShips();
     }
 
 

@@ -2,6 +2,7 @@ package com.chalmersmegagame.game.ships;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 import javax.persistence.*;
 
@@ -14,7 +15,9 @@ import lombok.Data;
 @Data
 public class PlayerShip extends Ship implements IHasResources, IHasTeam {
 
-    private HashMap<String, Integer> resources = new HashMap<>();
+
+    @ElementCollection
+    private Map<String, Integer> resources = new HashMap<>();
     @OneToOne
     private Team team;
 
@@ -38,11 +41,14 @@ public class PlayerShip extends Ship implements IHasResources, IHasTeam {
 
     @Override
     public ArrayList<String> getResources() {
-        return new ArrayList<>(resources.keySet());
+        if(resources == null){
+            return null;
+        }
+        return new ArrayList<String>(resources.keySet());
     }
 
     @Override
-    public HashMap<String, Integer> getResourceQuantities() {
+    public Map<String, Integer> getResourceQuantities() {
         return resources;
     }
 

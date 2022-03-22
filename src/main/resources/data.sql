@@ -19,7 +19,7 @@ INSERT INTO player VALUES
   (3, 'testTeam2'),
   (4, 'testTeam2');
 
-INSERT INTO player_ship VALUES
-  ('PlayerShip1', 100, 10, 'PlayerFaction1', 100, null, 'testTeam1'),
-  ('PlayerShip2', 200, 8, 'PlayerFaction2', 180, null, 'testTeam2');
+--INSERT INTO player_ship VALUES
+--  ('PlayerShip1', 100, 10, 'PlayerFaction1', 100, null, 'testTeam1'),
+--  ('PlayerShip2', 200, 8, 'PlayerFaction2', 180, null, 'testTeam2');
 

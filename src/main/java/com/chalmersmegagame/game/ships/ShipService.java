@@ -1,5 +1,6 @@
 package com.chalmersmegagame.game.ships;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,6 +20,18 @@ public class ShipService {
         return testShipRepository.findAll();
     }
 
+    public List<PlayerShip> getAllPlayerShips(){
+        return playerShipRepository.findAll();
+    }
+
+    public List<Ship> getAllShips(){
+        List<Ship> shipList = new ArrayList<>();
+        shipList.addAll(getAllPlayerShips());
+        shipList.addAll(getAllTestShips());
+
+        return shipList;
+    }
+
     public Ship getTestShipByName(String shipName){
         //Should probably handle NoSuchElementException thrown by .get() on Optional<TestShip>
         return testShipRepository.findById(shipName).get();
@@ -27,7 +40,6 @@ public class ShipService {
     public PlayerShip getPlayerShipByName(String shipName){
         return playerShipRepository.findById(shipName).get();
     }
-
 
     public void addTestShip(TestShip ship) {
         testShipRepository.save(ship);
@@ -46,7 +58,7 @@ public class ShipService {
         getAllTestShips().remove(shipToDelete);
     }
 
-    public HashMap<String, Integer> getPlayerShipResourceQuantities(String shipName) {
+    public Map<String, Integer> getPlayerShipResourceQuantities(String shipName){
         return getPlayerShipByName(shipName).getResourceQuantities();
     }
 
