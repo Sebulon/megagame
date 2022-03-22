@@ -26,11 +26,11 @@
   color: white;
 }
 
-tr:nth-child(even) {
+.list-data:nth-child(even) {
   background-color: #282727;
 }
 
-tr:nth-child(odd) {
+.list-data:nth-child(odd) {
   background-color: #6e6e6e;
 }
 
@@ -45,4 +45,8 @@ th {
   background-color: #4b4b4b;
   color: white;
   font-size: 20px;
+}
+
+h2 {
+  color: white;
 }

@@ -17,14 +17,14 @@ app-top-bar {
   height: 10vh;
   background-color: #4b87bd;
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
   align-items: center;
 }
 
 app-top-bar h1 {
   color: white;
   margin: 0;
+  font-size: 32px;
+  width: 150px;
 }
 
 body {
