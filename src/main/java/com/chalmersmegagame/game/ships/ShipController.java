@@ -40,35 +40,35 @@ public class ShipController {
         shipService.addPlayerShip(ship);
     }
 
+
     @PutMapping("/{shipName}/modify/HP/{modifier}")
     public void modifyShipHP(@PathVariable String shipName, @PathVariable int modifier){
-        Ship ship = shipService.getTestShipByName(shipName);
+        Ship ship = shipService.getPlayerShipByName(shipName);
         shipService.modifyShipHP(ship, modifier);
     }
 
+    //delete
     @DeleteMapping("/{shipName}/modify/delete")
     public void deleteShip(@PathVariable String shipName) {
         shipService.deleteShip(shipName);
     }
 
+    //get resource quantities
     @RequestMapping("/playerShip/{shipName}/resources")
     public Map<String, Integer> getPlayerShipResourceQuantities(@PathVariable String shipName) {
         return shipService.getPlayerShipResourceQuantities(shipName);
     }
 
+    //modify resource
     @PutMapping("/playerShip/{shipName}/resources/modify/{resourceName}/{quantity}")
     public void modifyPlayerShipResource(@PathVariable Map<String, String> pathVarsMap) {
         shipService.modifyPlayerShipResource(pathVarsMap.get("shipName"), pathVarsMap.get("resourceName"), Integer.parseInt(pathVarsMap.get("quantity")));
     }
 
+    //Transfer resource
     @PutMapping("/playerShip/{shipName}/resources/transfer/{resourceName}/{quantity}/{receivingShip}")
     public void playerShipResourceTransfer(@PathVariable Map<String, String> pathVarsMap) {
         shipService.playerShipResourceTransfer(pathVarsMap.get("shipName"), pathVarsMap.get("receivingShip"), pathVarsMap.get("resourceName"), Integer.parseInt(pathVarsMap.get("quantity")));
-    }
-
-    @PutMapping("/playerShip/{shipName}/resources/transfer/{receivingShip}")
-    public void playerShipResourcesTransfer(@PathVariable String shipName, @PathVariable String receivingShip, @RequestBody Map<String, Integer> resources) {
-        shipService.playerShipResourcesTransfer(shipName, receivingShip, resources);
     }
 
 }

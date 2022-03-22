@@ -14,6 +14,10 @@ public class TeamService {
         return teamRepository.findAll();
     }
 
+    public Team getTeamByName(String name){
+        return teamRepository.findById(name).get();
+    }
+
     public void addTeam(Team team){
         teamRepository.save(team);
     }

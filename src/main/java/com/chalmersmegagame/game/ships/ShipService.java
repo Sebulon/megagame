@@ -1,11 +1,12 @@
 package com.chalmersmegagame.game.ships;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -15,6 +16,17 @@ public class ShipService {
     private TestShipRepository testShipRepository;
     @Autowired
     private PlayerShipRepository playerShipRepository;
+
+
+    private <T extends Ship> JpaRepository<T, String>  getRepoByContains(Ship ship){
+        if(testShipRepository.existsById(ship.getName())){
+            return (JpaRepository<T, String>) testShipRepository;
+        }else if(playerShipRepository.existsById(ship.getName())){
+            return (JpaRepository<T, String>) playerShipRepository;
+        }else{
+            throw new NoSuchElementException("No repo containing that ship found");
+        }
+    }
 
     public List<TestShip> getAllTestShips(){
         return testShipRepository.findAll();
@@ -51,11 +63,14 @@ public class ShipService {
 
     public void modifyShipHP(Ship ship, int HPmodifier) {
         ship.modifyHP(HPmodifier);
+        getRepoByContains(ship).save(ship);
+        
     }
 
+    //delete
+    //TODO: make it delete regardless of ship type
     public void deleteShip(String shipName) {
-        Ship shipToDelete = getTestShipByName(shipName);
-        getAllTestShips().remove(shipToDelete);
+        playerShipRepository.deleteById(shipName);
     }
 
     public Map<String, Integer> getPlayerShipResourceQuantities(String shipName){
