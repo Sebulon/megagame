@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public abstract class Technology {
     private boolean researched;
-    private ArrayList <Technology> required, requiredFor;
+    private ArrayList <Technology> requirements;
     private String description;
 
     public boolean isResearched() {
@@ -15,12 +15,12 @@ public abstract class Technology {
         this.researched = researched;
     }
 
-    public ArrayList<Technology> getRequired() {
-        return required;
+    public ArrayList<Technology> getRequirements() {
+        return requirements;
     }
 
-    public ArrayList<Technology> getRequiredFor() {
-        return requiredFor;
+    public void addRequirement(Technology requirement) {
+        this.requirements.add(requirement);
     }
 
     public String getDescription() {
