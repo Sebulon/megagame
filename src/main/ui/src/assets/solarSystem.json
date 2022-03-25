@@ -1,0 +1,22 @@
+[
+  {
+    "type": "Yellow Star",
+    "size": 10,
+    "features": [
+      {
+        "name": "Hot",
+        "description": "It's a star, what do you think?"
+      }
+    ]
+  },
+  {
+    "type": "Apocalyptic Planet",
+    "size": 1,
+    "features": [
+      {
+        "name": "Hot/Cold",
+        "description": "This planet is very close to the sun, but do not have an atmosphere, so the temperature difference could be up to 500 degrees"
+      }
+    ]
+  }
+]
