@@ -1,6 +1,9 @@
 /* TODO: Choose a good enough material prebuilt, or create one */
 @import "../node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css";
 
+html {
+  background-color: #282727;
+}
 
 a {
   cursor: pointer;

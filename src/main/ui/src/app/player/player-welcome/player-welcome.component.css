@@ -1,0 +1,12 @@
+#info {
+  position: absolute;
+  width: 90%;
+  background-color: #6e6e6e;
+  color: white;
+  top: 15vh;
+  left: 3%;
+  border-radius: 5px;
+  padding: 2%;
+  font-size: 20px;
+  margin-bottom: 5vh;
+}
