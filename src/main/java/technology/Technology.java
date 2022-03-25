@@ -12,7 +12,7 @@ public abstract class Technology {
             researchable = false;
         }
 
-        if (requirements.isEmpty()){
+        if (requirements.isEmpty() && researched == false){
             researchable = true;
         }
 
