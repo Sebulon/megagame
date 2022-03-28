@@ -1,0 +1,11 @@
+<div *ngIf="activeGalaxy">
+  <div *ngFor="let body of activeGalaxy">
+    <h2>{{body.type}}</h2>
+    <h5>{{body.size}}</h5>
+    <p *ngFor="let feature of body.features">
+      <strong>{{feature.name}}</strong>
+      <br>
+      {{feature.description}}
+    </p>
+  </div>
+</div>

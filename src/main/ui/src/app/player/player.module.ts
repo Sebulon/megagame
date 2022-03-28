@@ -8,6 +8,7 @@ import {CommonModule} from "@angular/common";
 import {MatSliderModule} from "@angular/material/slider";
 import {FormsModule} from "@angular/forms";
 import {PlayerWelcomeComponent} from "./player-welcome/player-welcome.component";
+import { SolarSystemComponent } from './solar-system/solar-system.component';
 
 @NgModule({
   imports: [
@@ -22,7 +23,8 @@ import {PlayerWelcomeComponent} from "./player-welcome/player-welcome.component"
   declarations: [
     PlayerShipComponent,
     PlayerWelcomeComponent,
-    ResourceGiftDialog
+    ResourceGiftDialog,
+    SolarSystemComponent
   ]
 })
 export class PlayerModule {
