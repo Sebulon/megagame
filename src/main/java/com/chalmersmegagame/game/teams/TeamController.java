@@ -18,8 +18,10 @@ public class TeamController {
 
     @PostMapping()
     public void addTeam(@RequestBody Team team) {
+        //TODO: do something with data
         //temporary sanity check
-        System.out.println(team.getTeamName() + " created");
+        System.out.println(team.getName() + " created");
+        team.getMembers().forEach(player -> System.out.println(player.getId()));
     }
 
     //Must determine how to use repositories to assign users to teams

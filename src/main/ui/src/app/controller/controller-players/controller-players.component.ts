@@ -27,7 +27,7 @@ export class ControllerPlayersComponent implements OnInit {
   }
 
   private updateValues() {
-    this.teamService.getTeams().subscribe(teams => this.teams = teams);
+    this.teamService.getTeams().subscribe(data => this.teams = data);
     this.playerService.getPlayers().subscribe(players => {
       this.players = players;
       this.activePlayers = players;
@@ -48,7 +48,7 @@ export class ControllerPlayersComponent implements OnInit {
     if (event.previousContainer === event.container) {
     } else {
       if (event.container.id.includes('0')) {
-        this.change(this.selectedTeam!!.teamMembers[event.previousIndex]);
+        this.change(this.selectedTeam!!.members[event.previousIndex]);
       } else {
         this.change(this.players!![event.previousIndex]);
       }
@@ -60,11 +60,11 @@ export class ControllerPlayersComponent implements OnInit {
     if (this.activePlayers == null || this.selectedTeam == null) return;
 
     if (this.activePlayers.includes(player)) {
-      this.selectedTeam.teamMembers.push(player);
+      this.selectedTeam.members.push(player);
       this.activePlayers = this.activePlayers.filter(p => p != player);
     } else {
       this.activePlayers.push(player);
-      this.selectedTeam.teamMembers = this.selectedTeam.teamMembers.filter(p => p != player);
+      this.selectedTeam.members = this.selectedTeam.members.filter(p => p != player);
     }
   }
 
@@ -73,7 +73,7 @@ export class ControllerPlayersComponent implements OnInit {
     this.activePlayers = [];
     for (let i = 0; i < this.players!!.length; i++) {
       let contains = false;
-      for (let p of selectedTeam.teamMembers) {
+      for (let p of selectedTeam.members) {
         if (p.id == this.players!![i].id) {
           contains = true;
           break;
@@ -91,9 +91,8 @@ export class ControllerPlayersComponent implements OnInit {
       if (classNames.includes(okClick)) return;
     }
 
-    //TODO: Give data to backend
-    console.log('Players in team ' + this.selectedTeam + ':')
-    this.selectedTeam!!.teamMembers.forEach(p => console.log(p));
+
+    this.teamService.changeTeam(this.selectedTeam!!).subscribe();
 
 
     this.updateValues();

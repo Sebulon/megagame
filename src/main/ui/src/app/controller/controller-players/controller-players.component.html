@@ -23,13 +23,13 @@
            class="list"
            (cdkDropListDropped)="drop($event)">
         <div *ngIf="selectedTeam">
-          <div class="list-data">{{selectedTeam.teamName}}</div>
-          <div class="list-data" *ngFor="let player of selectedTeam.teamMembers" cdkDrag
+          <div class="list-data">{{selectedTeam.name}}</div>
+          <div class="list-data" *ngFor="let player of selectedTeam.members" cdkDrag
                (click)="change(player)">{{player.id}}</div>
         </div>
         <div *ngIf="!selectedTeam">
           <div *ngFor="let team of teams" class="list-data" (click)="getPlayers(team)">
-            {{team.teamName}}
+            {{team.name}}
           </div>
         </div>
       </div>

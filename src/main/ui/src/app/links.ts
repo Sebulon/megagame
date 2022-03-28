@@ -6,6 +6,7 @@ export class Links {
   public static postShip = 'api/ships/allShips';
   public static teams = 'api/teams/all';
   public static getPlayers = 'api/players/all';
+  public static addTeam = 'api/teams';
 
   public static changeShipHP(ship: string, hpChange: number) {
     return `api/ships/${ship}/modify/HP/${hpChange}`;
