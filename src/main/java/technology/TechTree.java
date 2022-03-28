@@ -1,6 +1,5 @@
 package technology;
 
-import java.util.ArrayList;
 import java.util.Set;
 
 public class TechTree {
