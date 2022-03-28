@@ -33,5 +33,9 @@ public class MainGame extends Canvas{
 
     }
 
+    public List<Ship> getShips(){
+        return shipService.getAllShips();
+    }
+
 
 }

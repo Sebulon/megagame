@@ -28,6 +28,7 @@ public class ShipService {
         }
     }
 
+
     public List<TestShip> getAllTestShips(){
         return testShipRepository.findAll();
     }
@@ -44,13 +45,24 @@ public class ShipService {
         return shipList;
     }
 
-    public Ship getTestShipByName(String shipName){
+    public TestShip getTestShipByName(String shipName){
         //Should probably handle NoSuchElementException thrown by .get() on Optional<TestShip>
         return testShipRepository.findById(shipName).get();
     }
 
     public PlayerShip getPlayerShipByName(String shipName){
         return playerShipRepository.findById(shipName).get();
+    }
+
+    public <T extends Ship> T getShipByName(String shipName){
+        try{
+            return (T) getTestShipByName(shipName);
+        }catch(Exception e){}
+        try{
+            return (T) getPlayerShipByName(shipName);
+        }catch(Exception e){}
+
+        return null;
     }
 
     public void addTestShip(TestShip ship) {
@@ -68,9 +80,8 @@ public class ShipService {
     }
 
     //delete
-    //TODO: make it delete regardless of ship type
-    public void deleteShip(String shipName) {
-        playerShipRepository.deleteById(shipName);
+    public <T extends Ship> void deleteShip(String shipName) {
+        getRepoByContains(getShipByName(shipName)).delete(getShipByName(shipName));
     }
 
     public Map<String, Integer> getPlayerShipResourceQuantities(String shipName){
@@ -84,6 +95,7 @@ public class ShipService {
         } else if (quantity < 0) {
             ship.removeResource(resource, quantity * -1);
         }
+        playerShipRepository.save(ship);
     }
 
     public void playerShipResourceTransfer(String sendingShip, String receivingShip, String resourceName, int quantity) {

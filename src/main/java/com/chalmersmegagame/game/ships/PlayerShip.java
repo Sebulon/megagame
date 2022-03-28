@@ -65,7 +65,8 @@ public class PlayerShip extends Ship implements IHasResources, IHasTeam {
             throw new IllegalArgumentException("Add can not be negative");
         } else if (resources.containsKey(resourceName)) {
             int oldQuantity = resources.get(resourceName);
-            resources.put(resourceName, oldQuantity + quantity);
+            int newQuantity = oldQuantity + quantity;
+            resources.put(resourceName, newQuantity);
         } else {
             resources.put(resourceName, quantity);
         }
