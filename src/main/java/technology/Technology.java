@@ -56,4 +56,8 @@ public abstract class Technology {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public void activate(){
+
+    }
 }
