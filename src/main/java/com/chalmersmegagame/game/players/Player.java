@@ -9,21 +9,19 @@ import com.chalmersmegagame.game.teams.Team;
  * Class representing a player and at what ship it is on.
  */
 
- @Entity
+@Entity
 public class Player {
 
     @Id
-    public final String id;
-
-    @ManyToOne
-    public final Team team;
+    private String id;
     
     @Transient
     private Ship boardedShip;
 
-    public Player(String id, Team team) {
+    public Player(){};
+
+    public Player(String id){
         this.id = id;
-        this.team = team;
     }
 
     public Ship getBoardedShip() {
@@ -32,6 +30,10 @@ public class Player {
 
     public void setBoardedShip(Ship boardedShip) {
         this.boardedShip = boardedShip;
+    }
+
+    public String getId(){
+        return id;
     }
 
 }

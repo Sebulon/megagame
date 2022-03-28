@@ -37,7 +37,7 @@ public class UsersService {
     public List<Player> createPlayers() {
         List<User> players = getUsersBasedOnRole(UserRole.PLAYER);
         List<Player> returnList = new ArrayList<>();
-        players.forEach(p -> returnList.add(new Player(p.getId(), new Team("testTeam"))));
+        players.forEach(p -> returnList.add(new Player(p.getId())));
         return returnList;
     }
 }

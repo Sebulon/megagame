@@ -3,6 +3,7 @@ package com.chalmersmegagame.game.players;
 import com.chalmersmegagame.game.ships.Ship;
 import com.chalmersmegagame.game.ships.ShipService;
 import com.chalmersmegagame.game.ships.TestShip;
+import com.chalmersmegagame.game.teams.Team;
 import com.chalmersmegagame.game.users.UsersService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,30 +21,21 @@ public class PlayerService {
     private UsersService usersService;
     @Autowired
     private ShipService shipService;
+    @Autowired
+    private PlayerRepository playerRepository;
 
     private List<Player> players;
 
-    //Runs after startup is complete
-    //@EventListener(ApplicationReadyEvent.class)
-    private void setup(){
-        players = usersService.createPlayers();
-        populatePlayersWithRandomShips();
-    }
 
     public Player getPlayer(String id) {
         return players.stream()
-                .filter(player -> player.id.equals(id))
+                .filter(player -> player.getId().equals(id))
                 .findFirst()
                 .orElse(null);
     }
 
-    // TODO: Remove these methods when previous todo is done
-    private void populatePlayersWithRandomShips() {
-        players.forEach(player -> player.setBoardedShip(randomShip()));
+    public void addPlayer(Player player){
+        playerRepository.save(player);
     }
 
-    private Ship randomShip() {
-        List<TestShip> ships = shipService.getAllTestShips();
-        return ships.get((int) Math.floor(Math.random() * ships.size()));
-    }
 }
