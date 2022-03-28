@@ -1,5 +1,7 @@
 package com.chalmersmegagame.game.users.controller;
 
+import com.chalmersmegagame.game.players.Player;
+import com.chalmersmegagame.game.players.PlayerService;
 import com.chalmersmegagame.game.roles.UserRole;
 import com.chalmersmegagame.game.users.UsersService;
 import com.chalmersmegagame.game.users.user.User;
@@ -17,18 +19,22 @@ public class UserController {
     @Autowired
     private UsersService usersService;
 
-    @GetMapping("/users")
-    public ResponseEntity<?> getUsers() {
-        return ResponseEntity.ok(usersService.getAllUsers());
-    }
+    @Autowired
+    private PlayerService playerService;
 
-    @GetMapping("/users/{role}")
-    public ResponseEntity<?> getUsersBasedOnRole(@PathVariable String role) {
-        UserRole currentRole = UserRole.findRole(role);
-        if (currentRole == null) {
-            return ResponseEntity.badRequest().body("The role " + "'" + role + "' does not exist");
+    @GetMapping("/users/{id}")
+    public ResponseEntity<?> getUser(@PathVariable String id) {
+
+        //TODO: Probably should do something about how we store players and users
+        User user = usersService.getUser(id);
+        if (user != null) {
+            return ResponseEntity.ok(user.getRole());
         }
-        return ResponseEntity.ok(usersService.getUsersBasedOnRole(currentRole));
+        Player player = playerService.getPlayer(id);
+        if (player != null) {
+            return ResponseEntity.ok("player");
+        }
+        return ResponseEntity.ok("");
     }
 
     @PostMapping("/user")

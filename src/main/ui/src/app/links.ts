@@ -4,7 +4,8 @@
 export class Links {
   public static ships = 'api/ships/allShips';
   public static postShip = 'api/ships/allShips';
-  public static users = 'api/users';
+  public static teams = 'api/teams/all';
+  public static getPlayers = 'api/players/all';
 
   public static changeShipHP(ship: string, hpChange: number) {
     return `api/ships/${ship}/modify/HP/${hpChange}`;
@@ -24,5 +25,9 @@ export class Links {
 
   public static sendResources(from: string, to: string) {
     return `api/ships/playerShip/${from}/resources/transfer/${to}`;
+  }
+
+  public static getUser(id: string) {
+    return `api/users/${id}`;
   }
 }

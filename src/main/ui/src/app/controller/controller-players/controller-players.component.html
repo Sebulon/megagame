@@ -1,31 +1,35 @@
 <div id="controller-player-full" (click)="click($event)">
-  <div *ngIf="players && teams" id="lists">
+  <div *ngIf="activePlayers && teams" id="lists">
     <div id="players" class="list-container">
       <h2>Players:</h2>
       <div cdkDropList
            #playersList="cdkDropList"
-           [cdkDropListData]="players"
+           [cdkDropListData]="activePlayers"
            [cdkDropListConnectedTo]="[teamsList]"
            class="list"
            (cdkDropListDropped)="drop($event)">
-        <div class="list-data" *ngFor="let player of players" cdkDrag [cdkDragDisabled]="selectedTeam == null" (click)="change(player)">{{player}}</div>
+        <div class="list-data" *ngFor="let player of activePlayers" cdkDrag [cdkDragDisabled]="selectedTeam == null"
+             (click)="change(player)">
+          {{player.id}}
+        </div>
       </div>
     </div>
     <div id="team" class="list-container">
       <h2>Teams:</h2>
       <div cdkDropList
            #teamsList="cdkDropList"
-           [cdkDropListData]="players"
+           [cdkDropListData]="activePlayers"
            [cdkDropListConnectedTo]="[playersList]"
            class="list"
            (cdkDropListDropped)="drop($event)">
         <div *ngIf="selectedTeam">
-          <div class="list-data">{{selectedTeam}}</div>
-          <div class="list-data" *ngFor="let player of selectedTeamPlayers" cdkDrag (click)="change(player)">{{player}}</div>
+          <div class="list-data">{{selectedTeam.teamName}}</div>
+          <div class="list-data" *ngFor="let player of selectedTeam.teamMembers" cdkDrag
+               (click)="change(player)">{{player.id}}</div>
         </div>
         <div *ngIf="!selectedTeam">
           <div *ngFor="let team of teams" class="list-data" (click)="getPlayers(team)">
-            {{team}}
+            {{team.teamName}}
           </div>
         </div>
       </div>

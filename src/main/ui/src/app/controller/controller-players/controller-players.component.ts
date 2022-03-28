@@ -3,6 +3,8 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {PlayerService} from "../../player.service";
 import {TeamService} from "../team.service";
 import {CdkDragDrop} from '@angular/cdk/drag-drop';
+import {Team} from "../../objects/team";
+import {Player} from "../../objects/player";
 
 @Component({
   selector: 'app-controller-players',
@@ -11,10 +13,10 @@ import {CdkDragDrop} from '@angular/cdk/drag-drop';
 })
 export class ControllerPlayersComponent implements OnInit {
 
-  players: string[] | null = null;
-  teams: string[] | null = null;
-  selectedTeam: string | null = null;
-  selectedTeamPlayers: string[] | null = null;
+  players: Player[] | null = null;
+  activePlayers: Player[] | null = null;
+  teams: Team[] | null = null;
+  selectedTeam: Team | null = null;
 
   constructor(
     private router: Router,
@@ -25,8 +27,11 @@ export class ControllerPlayersComponent implements OnInit {
   }
 
   private updateValues() {
-    this.playerService.getPlayers().subscribe(players => this.players = players.map(p => p.id));
-    this.teamService.getTeams().subscribe(teams => this.teams = teams.map(t => t.name));
+    this.teamService.getTeams().subscribe(teams => this.teams = teams);
+    this.playerService.getPlayers().subscribe(players => {
+      this.players = players;
+      this.activePlayers = players;
+    });
   }
 
   ngOnInit(): void {
@@ -39,31 +44,43 @@ export class ControllerPlayersComponent implements OnInit {
     return Array(rows).fill(0).map((x, i) => i);
   }
 
-  drop(event: CdkDragDrop<string[]>) {
+  drop(event: CdkDragDrop<Player[]>) {
     if (event.previousContainer === event.container) {
     } else {
       if (event.container.id.includes('0')) {
-        this.change(this.selectedTeamPlayers!![event.previousIndex]);
+        this.change(this.selectedTeam!!.teamMembers[event.previousIndex]);
       } else {
         this.change(this.players!![event.previousIndex]);
       }
     }
   }
 
-  change(player: string) {
-    if (this.selectedTeamPlayers == null) return;
-    if (this.players!!.includes(player)) {
-      this.selectedTeamPlayers.push(player);
-      this.players = this.players!!.filter(p => p != player);
+  change(player: Player) {
+
+    if (this.activePlayers == null || this.selectedTeam == null) return;
+
+    if (this.activePlayers.includes(player)) {
+      this.selectedTeam.teamMembers.push(player);
+      this.activePlayers = this.activePlayers.filter(p => p != player);
     } else {
-      this.players!!.push(player);
-      this.selectedTeamPlayers = this.selectedTeamPlayers.filter(p => p != player);
+      this.activePlayers.push(player);
+      this.selectedTeam.teamMembers = this.selectedTeam.teamMembers.filter(p => p != player);
     }
   }
 
-  getPlayers(selectedTeam: string) {
+  getPlayers(selectedTeam: Team) {
     this.selectedTeam = selectedTeam;
-    this.selectedTeamPlayers = [];
+    this.activePlayers = [];
+    for (let i = 0; i < this.players!!.length; i++) {
+      let contains = false;
+      for (let p of selectedTeam.teamMembers) {
+        if (p.id == this.players!![i].id) {
+          contains = true;
+          break;
+        }
+      }
+      if (!contains) this.activePlayers.push(this.players!![i]);
+    }
   }
 
   click(event: MouseEvent) {
@@ -76,11 +93,10 @@ export class ControllerPlayersComponent implements OnInit {
 
     //TODO: Give data to backend
     console.log('Players in team ' + this.selectedTeam + ':')
-    this.selectedTeamPlayers!!.forEach(p => console.log(p));
+    this.selectedTeam!!.teamMembers.forEach(p => console.log(p));
 
 
     this.updateValues();
     this.selectedTeam = null;
-    this.selectedTeamPlayers = null;
   }
 }

@@ -16,7 +16,7 @@ export class PlayerService {
    * Get all players that the backend knows of.
    */
   getPlayers() {
-    return this.http.get<Player[]>(Links.users + '/player');
+    return this.http.get<Player[]>(Links.getPlayers);
   }
 
   getRole(id: string) {

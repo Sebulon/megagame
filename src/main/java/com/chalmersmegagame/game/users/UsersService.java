@@ -2,7 +2,6 @@ package com.chalmersmegagame.game.users;
 
 import com.chalmersmegagame.game.players.Player;
 import com.chalmersmegagame.game.roles.UserRole;
-import com.chalmersmegagame.game.teams.Team;
 import com.chalmersmegagame.game.users.repository.UsersRepository;
 import com.chalmersmegagame.game.users.user.User;
 import org.springframework.stereotype.Service;
@@ -39,5 +38,9 @@ public class UsersService {
         List<Player> returnList = new ArrayList<>();
         players.forEach(p -> returnList.add(new Player(p.getId())));
         return returnList;
+    }
+
+    public User getUser(String id) {
+        return usersRepository.findById(id).orElse(null);
     }
 }

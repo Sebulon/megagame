@@ -21,30 +21,21 @@ export class LogInComponent implements OnInit {
   }
 
   submitPlayerID(id: string): void {
-    this.userService.getUsers().subscribe(data => this.gotoNextScreen(id, data));
+    this.userService.getUser(id).subscribe(role => this.gotoNextScreen(id, role));
   }
 
-  gotoNextScreen(id: string, data: { id: string, role: string }[]): void {
-    let user = this.getData(id, data);
-    if (user == null) {
+  gotoNextScreen(id: string, role: string) {
+    if (role == "") {
       // TODO: Id input is wrong, should give feedback to user
-      console.log("id is not in system!");
+      console.error("id is not in system!");
       return;
     }
 
     // Saves data for future usage
-    this.authService.setId(user.id);
-    this.authService.setRole(user.role);
+    this.authService.setId(id);
+    this.authService.setRole(role);
 
     // Routes to a new page (a standard view page for the role)
-    this.router.navigate([user.id, user.role + '-view'])
+    this.router.navigate([id, role + '-view'])
   }
-
-  getData(id: string, data: { id: string, role: string }[]): { id: string, role: string } | null {
-    for (let d of data) {
-      if (d.id === id) return d;
-    }
-    return null;
-  }
-
 }

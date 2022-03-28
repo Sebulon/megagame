@@ -3,9 +3,12 @@ package com.chalmersmegagame.game.players;
 import com.chalmersmegagame.game.ships.Ship;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/players")
@@ -16,6 +19,13 @@ public class PlayerController {
 
     @RequestMapping("/{id}/current-ship")
     public Ship getPlayerBoardedShip(@PathVariable("id") String id) {
-        return playerService.getPlayer(id).getBoardedShip();
+        Player p = playerService.getPlayer(id);
+        if (p == null) return null;
+        return p.getBoardedShip();
+    }
+
+    @RequestMapping("/all")
+    public ResponseEntity<?> getPlayers() {
+        return ResponseEntity.ok(playerService.getPlayers());
     }
 }

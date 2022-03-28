@@ -1,14 +1,8 @@
 package com.chalmersmegagame.game.players;
 
-import com.chalmersmegagame.game.ships.Ship;
 import com.chalmersmegagame.game.ships.ShipService;
-import com.chalmersmegagame.game.ships.TestShip;
-import com.chalmersmegagame.game.teams.Team;
 import com.chalmersmegagame.game.users.UsersService;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.event.ApplicationReadyEvent;
-import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -28,10 +22,11 @@ public class PlayerService {
 
 
     public Player getPlayer(String id) {
-        return players.stream()
-                .filter(player -> player.getId().equals(id))
-                .findFirst()
-                .orElse(null);
+        return playerRepository.findById(id).orElse(null);
+    }
+
+    public List<Player> getPlayers() {
+        return playerRepository.findAll();
     }
 
     public void addPlayer(Player player){
