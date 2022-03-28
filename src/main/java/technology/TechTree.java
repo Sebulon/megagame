@@ -1,22 +1,19 @@
 package technology;
 
 import java.util.ArrayList;
+import java.util.Set;
 
 public class TechTree {
-    private ArrayList<Technology> technologies;
-    private ArrayList<Technology> researched;
-    private ArrayList<Technology> available;
+    private Set<Technology> technologies;
+    private Set<Technology> researched;
+    private Set<Technology> available;
 
     public TechTree(){
-        technologies = new ArrayList<>();
-        researched = new ArrayList<>();
-        available = new ArrayList<>();
+
     }
 
-    public TechTree(ArrayList<Technology> technologies){
+    public TechTree(Set<Technology> technologies){
         this.technologies = technologies;
-        researched = new ArrayList<>();
-        available = new ArrayList<>();
     }
 
     public void update (){
