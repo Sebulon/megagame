@@ -26,6 +26,7 @@ public class TechTree {
             if (technology.isResearched()){
                 if (!researched.contains(technology)){
                     researched.add(technology);
+                    technology.activate();
                 }
             }
 
