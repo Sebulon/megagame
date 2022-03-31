@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
 
+import com.chalmersmegagame.game.teams.TeamService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
@@ -16,6 +18,8 @@ public class ShipService {
     private TestShipRepository testShipRepository;
     @Autowired
     private PlayerShipRepository playerShipRepository;
+    @Autowired
+    private TeamService teamService;
 
 
     private <T extends Ship> JpaRepository<T, String>  getRepoByContains(Ship ship){
@@ -52,6 +56,10 @@ public class ShipService {
 
     public PlayerShip getPlayerShipByName(String shipName){
         return playerShipRepository.findById(shipName).get();
+    }
+
+    public PlayerShip getPlayerShipByTeamName(String teamName){
+        return playerShipRepository.findByTeam(teamService.getTeamByName(teamName));
     }
 
     public <T extends Ship> T getShipByName(String shipName){

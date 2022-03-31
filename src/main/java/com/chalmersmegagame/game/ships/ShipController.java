@@ -19,8 +19,13 @@ public class ShipController {
     }
 
     @RequestMapping("/getPlayerShip/name/{shipName}")
-    public Ship getPlayerShip(@PathVariable String shipName){
+    public PlayerShip getPlayerShipByName(@PathVariable String shipName){
         return shipService.getPlayerShipByName(shipName);
+    }
+
+    @RequestMapping("/getPlayerShip/team/{teamName}")
+    public PlayerShip getPlayerShipByTeam(@PathVariable String teamName){
+        return shipService.getPlayerShipByTeamName(teamName);
     }
     
 
@@ -41,6 +46,7 @@ public class ShipController {
     }
 
 
+    //modify hp
     @PutMapping("/{shipName}/modify/HP/{modifier}")
     public void modifyShipHP(@PathVariable String shipName, @PathVariable int modifier){
         Ship ship = shipService.getPlayerShipByName(shipName);
