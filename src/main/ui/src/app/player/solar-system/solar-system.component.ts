@@ -8,6 +8,7 @@ import {CelestialObject, GalaxyService} from "../galaxy.service";
 })
 export class SolarSystemComponent implements OnInit {
 
+  imgPath = "../../../assets/img/space"
   activeGalaxy: CelestialObject[] | null = null
 
   constructor(private galaxyService: GalaxyService) {
