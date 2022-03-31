@@ -23,4 +23,15 @@ export class TeamService {
       catchError(handleError)
     );
   }
+
+  createTeam(newTeam: Team) {
+    return this.changeTeam(newTeam);
+  }
+
+  deleteTeam(teamName: string) {
+    return this.http.delete(Links.deleteTeam(teamName)).pipe(
+      retry(3),
+      catchError(handleError)
+    )
+  }
 }

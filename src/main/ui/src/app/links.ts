@@ -31,4 +31,8 @@ export class Links {
   public static getUser(id: string) {
     return `api/users/${id}`;
   }
+
+  public static deleteTeam(teamName: string) {
+    return `api/teams/delete/${teamName}`;
+  }
 }

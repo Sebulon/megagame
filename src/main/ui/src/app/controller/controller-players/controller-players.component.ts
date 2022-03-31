@@ -98,4 +98,25 @@ export class ControllerPlayersComponent implements OnInit {
     this.updateValues();
     this.selectedTeam = null;
   }
+
+  createNewTeam(value: string) {
+    for (let team of this.teams!!) {
+      if (team.name == value) {
+        console.error("Team name " + value + " is already in use")
+        return
+      }
+    }
+
+    let tempTeam: Team = {name: value, members: []}
+    this.teamService.createTeam(tempTeam).subscribe()
+    this.updateValues()
+  }
+
+  deleteActiveTeam() {
+    if (!this.selectedTeam) {
+      return
+    }
+
+    this.teamService.deleteTeam(this.selectedTeam.name).subscribe();
+  }
 }

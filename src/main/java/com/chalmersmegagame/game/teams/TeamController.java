@@ -24,6 +24,12 @@ public class TeamController {
         team.getMembers().forEach(player -> System.out.println(player.getId()));
     }
 
+    @DeleteMapping("/delete/{teamName}")
+    public void deleteTeam(@PathVariable String teamName) {
+        //TODO: Add delete thing for teams
+        System.out.println("Deleting team " + teamName);
+    }
+
     //Must determine how to use repositories to assign users to teams
 
 }

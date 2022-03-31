@@ -36,3 +36,14 @@
     </div>
   </div>
 </div>
+
+<!-- TODO: could probably make this better as well -->
+<div id="team-manager">
+  <div *ngIf="!selectedTeam">
+    <input type="text" placeholder="Team name" #newTeamName>
+    <button (click)="createNewTeam(newTeamName.value); newTeamName.value = ''">Create Team</button>
+  </div>
+  <div *ngIf="selectedTeam">
+    <button class="delete" (click)="deleteActiveTeam()">Delete selected team</button>
+  </div>
+</div>

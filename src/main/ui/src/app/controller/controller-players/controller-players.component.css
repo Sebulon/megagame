@@ -44,3 +44,27 @@ th {
 h2 {
   color: white;
 }
+
+
+/*TODO: Do all under this in a better way*/
+#team-manager {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#team-manager input {
+  width: 200px;
+  height: 30px;
+}
+
+#team-manager button {
+  width: 150px;
+  height: 30px;
+  margin-left: 10px;
+}
+
+.delete {
+  background-color: red;
+  color: white;
+}
