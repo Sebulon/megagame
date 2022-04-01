@@ -21,6 +21,8 @@ public class PlayerController {
     public Ship getPlayerBoardedShip(@PathVariable("id") String id) {
         Player p = playerService.getPlayer(id);
         if (p == null) return null;
+
+        //TODO: Boarded ship is always null
         return p.getBoardedShip();
     }
 

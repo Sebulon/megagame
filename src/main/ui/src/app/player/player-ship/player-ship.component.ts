@@ -50,6 +50,10 @@ export class PlayerShipComponent implements OnInit {
 
   private updateValues() {
     this.shipService.getShip(this.id).subscribe(ship => {
+      if (ship == null) {
+        console.error("Could not find boarded ship");
+        return;
+      }
       this.ship = ship;
       this.shipService.getResources(ship.name).subscribe(resources => this.resources = resources);
     });
