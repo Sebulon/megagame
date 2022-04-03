@@ -10,12 +10,10 @@ import com.chalmersmegagame.game.teams.Team;
 import com.chalmersmegagame.game.teams.TeamService;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.event.ApplicationReadyEvent;
-import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 
 @Component
-public class MainGame extends Canvas{
+public class MainGame{
     @Autowired
     private ShipService shipService;
     @Autowired
@@ -25,8 +23,7 @@ public class MainGame extends Canvas{
 
     public MainGame(){}
 
-    @EventListener(ApplicationReadyEvent.class)
-    private void setup(){
+    public void setup(){
         Player p1 = new Player("player1");
         Player p2 = new Player("player2");
         Player p3 = new Player("player3");
@@ -55,6 +52,5 @@ public class MainGame extends Canvas{
     public List<Ship> getShips(){
         return shipService.getAllShips();
     }
-
 
 }
