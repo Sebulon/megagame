@@ -5,10 +5,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import com.chalmersmegagame.game.players.Player;
+
 @RestController
 @RequestMapping("/api/teams")
-
-//TODO: skapa teams och ändra vilket team en spelare är i
 public class TeamController {
     @Autowired
     TeamService teamService;
@@ -18,22 +18,23 @@ public class TeamController {
         return teamService.getAllTeams();
     }
 
+    @RequestMapping("getByPlayer")
+    public Team getTeamByPlayer(@RequestBody Player player){
+        return teamService.getTeamByPlayer(player);
+    }
+
     @PostMapping()
     public void addTeam(@RequestBody Team team) {
-        //TODO: do something with data
-        //temporary sanity check
-        System.out.println(team.getName() + " created");
-        team.getMembers().forEach(player -> System.out.println(player.getId()));
+        teamService.addTeam(team);
     }
 
-    @DeleteMapping("/delete/{teamName}")
-    public void deleteTeam(@PathVariable String teamName) {
-        //TODO: Add delete thing for teams
-        System.out.println("Deleting team " + teamName);
+    @PutMapping("/assignPlayer")
+    public void assignPlayerToTeam(@RequestParam String playerId, @RequestParam String teamName){
+        teamService.addTeamMember(playerId, teamName);
     }
 
-
-
-    //Must determine how to use repositories to assign users to teams
-
+    @DeleteMapping()
+    public void deleteTeam(@RequestBody Team team) {
+        teamService.removeTeam(team);
+    }
 }

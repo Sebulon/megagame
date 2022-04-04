@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
 
+import com.chalmersmegagame.game.teams.Team;
 import com.chalmersmegagame.game.teams.TeamService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,8 +59,12 @@ public class ShipService {
         return playerShipRepository.findById(shipName).get();
     }
 
+    public PlayerShip getPlayerShipByTeam(Team team){
+        return playerShipRepository.findByTeam(team);
+    }
+
     public PlayerShip getPlayerShipByTeamName(String teamName){
-        return playerShipRepository.findByTeam(teamService.getTeamByName(teamName));
+        return getPlayerShipByTeam(teamService.getTeamByName(teamName));
     }
 
     public <T extends Ship> T getShipByName(String shipName){
@@ -113,5 +118,10 @@ public class ShipService {
 
     public void playerShipResourcesTransfer(String sendingShip, String receivingShip, Map<String, Integer> resources) {
         resources.forEach((resource, quantity) -> playerShipResourceTransfer(sendingShip, receivingShip, resource, quantity));
+    }
+
+    public void removeTeamFromShip(PlayerShip ship){
+        ship.setTeam(null);
+        playerShipRepository.save(ship);
     }
 }
