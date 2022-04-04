@@ -3,7 +3,6 @@ package com.chalmersmegagame.game.players;
 import javax.persistence.*;
 
 import com.chalmersmegagame.game.ships.Ship;
-import com.chalmersmegagame.game.teams.Team;
 
 /**
  * Class representing a player and at what ship it is on.

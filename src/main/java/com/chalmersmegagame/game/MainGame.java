@@ -1,6 +1,5 @@
 package com.chalmersmegagame.game;
 
-import java.awt.*;
 import java.util.List;
 
 import com.chalmersmegagame.game.players.Player;
