@@ -7,6 +7,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/teams")
+
+//TODO: skapa teams och ändra vilket team en spelare är i
 public class TeamController {
     @Autowired
     TeamService teamService;
@@ -29,6 +31,8 @@ public class TeamController {
         //TODO: Add delete thing for teams
         System.out.println("Deleting team " + teamName);
     }
+
+
 
     //Must determine how to use repositories to assign users to teams
 

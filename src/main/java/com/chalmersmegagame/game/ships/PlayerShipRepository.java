@@ -1,7 +1,5 @@
 package com.chalmersmegagame.game.ships;
 
-import java.util.List;
-
 import com.chalmersmegagame.game.teams.Team;
 
 import org.springframework.data.jpa.repository.JpaRepository;

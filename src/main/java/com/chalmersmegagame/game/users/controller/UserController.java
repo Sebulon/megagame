@@ -2,7 +2,6 @@ package com.chalmersmegagame.game.users.controller;
 
 import com.chalmersmegagame.game.players.Player;
 import com.chalmersmegagame.game.players.PlayerService;
-import com.chalmersmegagame.game.roles.UserRole;
 import com.chalmersmegagame.game.users.UsersService;
 import com.chalmersmegagame.game.users.user.User;
 import org.springframework.beans.factory.annotation.Autowired;

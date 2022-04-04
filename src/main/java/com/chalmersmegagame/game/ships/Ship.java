@@ -2,8 +2,6 @@ package com.chalmersmegagame.game.ships;
 
 import javax.persistence.*;
 
-import org.hibernate.annotations.GenericGenerator;
-
 @MappedSuperclass
 public abstract class Ship implements IShip{
 
