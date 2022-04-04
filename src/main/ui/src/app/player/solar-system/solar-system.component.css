@@ -1,0 +1,54 @@
+#spaceBackground {
+  width: 100%;
+  top: 10vh;
+  bottom: 0;
+  position: absolute;
+  background-size: cover;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.celestialBody {
+  color: white;
+}
+
+.celestialBody img {
+  max-height: 100%;
+  max-width: 100%;
+  width: auto;
+  height: auto;
+  display: block;
+}
+
+.information {
+  background-color: rgba(0,0,0,.7);
+  padding: 10px;
+  border-radius: 20px;
+}
+
+h1 {
+  margin: 0;
+}
+
+h2 {
+  margin: 0;
+}
+
+p {
+  margin: 3px;
+}
+
+@media screen and (max-width: 500px) {
+  #spaceBackground {
+    flex-direction: column;
+    height: fit-content;
+  }
+  .celestialBody {
+    width: 90% !important;
+    padding-top: 30px;
+  }
+}
+
+
