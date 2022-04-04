@@ -4,3 +4,5 @@ megagame.iml
 /src/main/ui/node_modules/
 /users.iml
 /.vscode/
+megabased.mv.db
+megabased.trace.db
