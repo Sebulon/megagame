@@ -1,7 +1,7 @@
 #info {
   position: absolute;
   width: 90%;
-  background-color: #6e6e6e;
+  background-color: var(--grey);
   color: white;
   top: 15vh;
   left: 3%;
