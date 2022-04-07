@@ -21,24 +21,15 @@
 }
 
 .list-data:nth-child(even) {
-  background-color: #282727;
+  background-color: var(--background);
 }
 
 .list-data:nth-child(odd) {
-  background-color: #6e6e6e;
+  background-color: var(--grey);
 }
 
 .list-data:hover {
   background-color: #4b87bd;
-}
-
-th {
-  padding-top: 12px;
-  padding-bottom: 12px;
-  text-align: left;
-  background-color: #4b4b4b;
-  color: white;
-  font-size: 20px;
 }
 
 h2 {

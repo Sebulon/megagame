@@ -23,7 +23,7 @@
 .controller-link {
   position: relative;
   display: inline-block;
-  background-color: #5e5e5e;
+  background-color: var(--grey);
   text-align: center;
   margin-bottom: 1vh;
   font-size: 6vh;
@@ -41,7 +41,7 @@ a:active {
 }
 
 #form-section {
-  background-color: #5e5e5e;
+  background-color: var(--grey);
   padding: 3vh;
   color: white;
   border-radius: 5px;

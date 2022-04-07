@@ -53,9 +53,10 @@ public class TeamService {
         addTeamMember(playerService.getPlayer(playerId), getTeamByName(teamName));
     }
 
-    public void removeTeamMember(Player player, Team team){
-        team.removeTeamMember(player);
-        teamRepository.save(team);
+    public void removeTeamMember(String playerId, String teamName) {
+        Team current = getTeamByName(teamName);
+        current.removeTeamMember(playerService.getPlayer(playerId));
+        teamRepository.save(current);
     }
 
     
@@ -71,5 +72,5 @@ public class TeamService {
 
 
 
-    
+
 }
