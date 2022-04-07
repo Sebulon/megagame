@@ -18,8 +18,13 @@ public class TeamController {
         return teamService.getAllTeams();
     }
 
+    @GetMapping("/get/{teamName}")
+    public Team getTeam(@PathVariable String teamName) {
+        return teamService.getTeamByName(teamName);
+    }
+
     @RequestMapping("getByPlayer")
-    public Team getTeamByPlayer(@RequestBody Player player){
+    public Team getTeamByPlayer(@RequestBody Player player) {
         return teamService.getTeamByPlayer(player);
     }
 
@@ -29,8 +34,13 @@ public class TeamController {
     }
 
     @PutMapping("/assignPlayer")
-    public void assignPlayerToTeam(@RequestParam String playerId, @RequestParam String teamName){
+    public void assignPlayerToTeam(@RequestParam String playerId, @RequestParam String teamName) {
         teamService.addTeamMember(playerId, teamName);
+    }
+
+    @PutMapping("/removePlayer")
+    public void removePlayerFromTeam(@RequestParam String playerId, @RequestParam String teamName) {
+        teamService.removeTeamMember(playerId, teamName);
     }
 
     @DeleteMapping()
