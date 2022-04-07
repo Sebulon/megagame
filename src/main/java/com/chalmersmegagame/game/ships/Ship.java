@@ -2,33 +2,18 @@ package com.chalmersmegagame.game.ships;
 
 import javax.persistence.*;
 
+import lombok.Data;
+
 @MappedSuperclass
+@Data
 public abstract class Ship implements IShip{
 
     @Id
-    //@GeneratedValue(generator = "uuid")
-    //@GenericGenerator(name = "uuid", strategy = "uuid2")
     private String name;
     private int crewSize;
     private int HP;
     private int maxHP;
     private String faction;
-    
-    
-    @Override
-    public int getCrewSize() {
-        return crewSize;
-    }
-
-    @Override
-    public int getHP() {
-        return HP;
-    }
-
-    @Override
-    public String getFaction() {
-        return faction;
-    }
 
     @Override
     public void modifyCrewSize(int change) {
@@ -78,11 +63,6 @@ public abstract class Ship implements IShip{
     }
 
     @Override
-    public String getName() {
-        return name;
-    }
-
-    @Override
     public void setName(String name) {
         if(name.length() == 0){
             throw new IllegalArgumentException("Names cannot be empty");
@@ -90,11 +70,6 @@ public abstract class Ship implements IShip{
             this.name = name;
         }
         
-    }
-
-    @Override
-    public int getMaxHP() {
-        return maxHP;
     }
 
     @Override

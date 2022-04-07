@@ -1,4 +1,4 @@
-package space;
+package com.chalmersmegagame.game.space;
 
 import java.util.ArrayList;
 

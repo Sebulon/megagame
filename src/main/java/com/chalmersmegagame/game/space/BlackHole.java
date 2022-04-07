@@ -1,4 +1,4 @@
-package space;
+package com.chalmersmegagame.game.space;
 
 public class BlackHole extends CelestialBody implements ICelestialObject{
 

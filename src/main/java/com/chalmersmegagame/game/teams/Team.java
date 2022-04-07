@@ -1,6 +1,7 @@
 package com.chalmersmegagame.game.teams;
 
 import com.chalmersmegagame.game.players.Player;
+
 import lombok.Data;
 
 import java.util.ArrayList;
@@ -8,12 +9,12 @@ import java.util.List;
 
 import javax.persistence.*;
 
-@Entity
 @Data
+@Entity
 public class Team {
 
     @Id
-    String name;
+    private String name;
     @OneToMany
     private List<Player> members = new ArrayList<>();
 

@@ -1,4 +1,4 @@
-package technology;
+package com.chalmersmegagame.game.technology;
 
 import java.util.ArrayList;
 

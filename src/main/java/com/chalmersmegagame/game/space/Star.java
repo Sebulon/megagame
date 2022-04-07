@@ -1,6 +1,8 @@
-package space;
+package com.chalmersmegagame.game.space;
 
+import javax.persistence.Entity;
 
+@Entity
 public class Star extends CelestialBody implements IGravityWell {
 
     public Star(int size, String type){

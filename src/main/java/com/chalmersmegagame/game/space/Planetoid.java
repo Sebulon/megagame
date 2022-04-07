@@ -1,18 +1,22 @@
-package space;
+package com.chalmersmegagame.game.space;
 
 import com.chalmersmegagame.game.game_resources.IHasResources;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import javax.persistence.Entity;
+
+@Entity
 public class Planetoid extends CelestialBody implements IHasResources {
 
     private HashMap<String, Integer> resources = new HashMap<>();
-    HashMap<String, Integer> resourceQuantities;
-    ArrayList<Planetoid> satellites = new ArrayList<>();
+    private HashMap<String, Integer> resourceQuantities;
+    private ArrayList<Planetoid> satellites = new ArrayList<>();
     private int satelliteWeight;
 
     public Planetoid (int size, String type){
+
         if (!typeHandler.getPlanetoidTypes().contains(type)){
             throw new IllegalArgumentException("Illegal type");
         }

@@ -1,12 +1,21 @@
-package space;
+package com.chalmersmegagame.game.space;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.*;
+
+@Entity 
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public abstract class CelestialBody implements ICelestialObject {
 
+    @Id
+    private String name;
     protected String type;
-    protected ArrayList<Feature> features = new ArrayList<>();
+    @ManyToMany
+    protected List<Feature> features = new ArrayList<>();
     protected int size;
+    @Transient
     protected TypeHandler typeHandler = TypeHandler.getInstance();
 
     @Override
@@ -20,7 +29,7 @@ public abstract class CelestialBody implements ICelestialObject {
     }
 
     @Override
-    public ArrayList<Feature> getFeatures() {
+    public List<Feature> getFeatures() {
         return this.features;
     }
 

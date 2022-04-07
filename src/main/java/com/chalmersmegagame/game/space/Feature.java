@@ -1,7 +1,13 @@
-package space;
+package com.chalmersmegagame.game.space;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Feature {
-    private String description, name;
+    @Id
+    private String name;
+    private String description;
 
     public Feature (String description, String name){
         this.description = description;

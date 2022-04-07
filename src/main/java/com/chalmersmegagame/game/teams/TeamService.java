@@ -1,6 +1,5 @@
 package com.chalmersmegagame.game.teams;
 
-import java.util.Arrays;
 import java.util.List;
 
 import com.chalmersmegagame.game.players.Player;
@@ -48,7 +47,7 @@ public class TeamService {
         }
         team.addTeamMember(player);
         teamRepository.save(team);
-    }
+    } 
 
     public void addTeamMember(String playerId, String teamName){
         addTeamMember(playerService.getPlayer(playerId), getTeamByName(teamName));
@@ -59,12 +58,14 @@ public class TeamService {
         teamRepository.save(team);
     }
 
+    
     public void removeTeam(Team team){
+        teamRepository.findById(team.getName());
         PlayerShip teamShip = shipService.getPlayerShipByTeam(team);
         if(teamShip != null){
             shipService.removeTeamFromShip(teamShip);
         }
-
+ 
         teamRepository.delete(team);
     }
 

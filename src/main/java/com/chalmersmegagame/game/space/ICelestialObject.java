@@ -1,6 +1,7 @@
-package space;
+package com.chalmersmegagame.game.space;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public interface ICelestialObject {
 
@@ -8,7 +9,7 @@ public interface ICelestialObject {
 
     public int getSize();
 
-    public ArrayList<Feature> getFeatures();
+    public List<Feature> getFeatures();
 
     public void setType(String type);
 

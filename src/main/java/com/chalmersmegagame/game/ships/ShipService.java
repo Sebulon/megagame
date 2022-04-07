@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
 
+import javax.transaction.Transactional;
+
 import com.chalmersmegagame.game.teams.Team;
 import com.chalmersmegagame.game.teams.TeamService;
 
@@ -86,10 +88,9 @@ public class ShipService {
         playerShipRepository.save(ship);
     }
 
+    @Transactional
     public void modifyShipHP(Ship ship, int HPmodifier) {
         ship.modifyHP(HPmodifier);
-        getRepoByContains(ship).save(ship);
-        
     }
 
     //delete
@@ -101,6 +102,7 @@ public class ShipService {
         return getPlayerShipByName(shipName).getResourceQuantities();
     }
 
+    @Transactional
     public void modifyPlayerShipResource(String shipName, String resource, int quantity) {
         PlayerShip ship = getPlayerShipByName(shipName);
         if (quantity > 0) {
@@ -108,7 +110,7 @@ public class ShipService {
         } else if (quantity < 0) {
             ship.removeResource(resource, quantity * -1);
         }
-        playerShipRepository.save(ship);
+        //playerShipRepository.save(ship);
     }
 
     public void playerShipResourceTransfer(String sendingShip, String receivingShip, String resourceName, int quantity) {
@@ -120,8 +122,8 @@ public class ShipService {
         resources.forEach((resource, quantity) -> playerShipResourceTransfer(sendingShip, receivingShip, resource, quantity));
     }
 
+    @Transactional
     public void removeTeamFromShip(PlayerShip ship){
         ship.setTeam(null);
-        playerShipRepository.save(ship);
     }
 }
