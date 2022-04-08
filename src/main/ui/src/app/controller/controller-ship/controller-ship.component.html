@@ -1,4 +1,4 @@
-<div *ngIf="ship" class="ship">
+<div *ngIf="ship$ | async; let ship" class="ship">
   <div class="ship-name">
     <h2>{{ship.name}}</h2>
     <h3>{{ship.faction}}</h3>
@@ -7,8 +7,8 @@
     <p>Crew size: {{ship.crewSize}}</p>
     <p>HP: {{ship.hp}} / {{ship.maxHP}}</p>
     <b>Resources:</b>
-    <div *ngFor="let item of resources | keyvalue">
-      {{item.key}}:{{item.value}}
+    <div *ngFor="let resource of ship.resourceQuantities | keyvalue">
+      {{resource.key}}:{{resource.value}}
     </div>
   </div>
   <form (submit)="changeHP()" id="delete-ship">
@@ -16,7 +16,7 @@
     <input type="number" id="hp" [(ngModel)]="hpChange" [ngModelOptions]="{standalone: true}">
     <input type="submit" value="Change">
   </form>
-    <button (click)="openDialog()" class="controller-ship-button">Change Resources</button>
+  <button (click)="openDialog()" class="controller-ship-button">Change Resources</button>
   <button type="submit" (click)="deleteShip()" class="controller-ship-button">Delete ship</button>
 </div>
 
