@@ -3,7 +3,7 @@ import {Ship} from "../../objects/ship";
 import {ActivatedRoute, Router} from "@angular/router";
 import {ShipService} from "../../ship.service";
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material/dialog";
-import {DialogData} from "../../player/player-ship/player-ship.component";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-controller-ship',
@@ -12,83 +12,46 @@ import {DialogData} from "../../player/player-ship/player-ship.component";
 })
 export class ControllerShipComponent implements OnInit {
 
-  public ship: Ship | null = null;
+  public ship$: Observable<Ship>;
   public hpChange: number | null = null;
-  public resources: object | null = null;
+  private readonly shipName: string;
 
   constructor(private shipService: ShipService,
               private route: ActivatedRoute,
               private router: Router,
               private dialog: MatDialog) {
-    this.updateShipValues();
+    this.shipName = this.route.snapshot.paramMap.get('ship')!!;
+    this.ship$ = shipService.getShip(this.shipName);
   }
 
   public changeHP(): void {
-
-    if (this.ship == null) return;
 
     if (this.hpChange == null) {
       console.error("New hp cannot be null!");
       return;
     }
 
-    this.shipService.changeShipHP(this.ship.name, this.hpChange).subscribe();
+    this.shipService.changeShipHP(this.shipName, this.hpChange).subscribe();
     this.hpChange = null;
-    this.updateShipValues();
   }
 
   public deleteShip(): void {
-    if (this.ship == null) return;
-
-    this.shipService.deleteShip(this.ship.name).subscribe(_ =>
+    this.shipService.deleteShip(this.shipName).subscribe(_ =>
       this.router.navigate(['../'], {relativeTo: this.route})
     );
   }
 
-  /**
-   * Call this when in need of updating the values.
-   * @private
-   */
-  private updateShipValues() {
-    this.shipService.getShips().subscribe(
-      ships => {
-        this.ship = ControllerShipComponent.getCurrentShip(ships, this.route.snapshot.paramMap.get('ship'))
-        if (this.ship != null)
-          this.shipService.getResources(this.ship.name).subscribe(resources => this.resources = resources);
-      });
-  }
-
-  private static getCurrentShip(ships: Ship[], wantedShip: string | null) {
-    if (wantedShip == null) {
-      return null;
-    }
-
-    for (let ship of ships) {
-      if (ship.name == wantedShip) {
-        return ship;
-      }
-    }
-    return null;
-  }
-
   public openDialog() {
-    if (!this.resources || !this.ship) {
-      console.error("Cannot find resources or ship!");
-      return;
-    }
-    let dialogData: DialogData = {resources: this.resources, ship: this.ship};
-    const dialogRef = this.dialog.open(ResourceChangeDialog, {
-      width: '250px',
-      data: dialogData
+    this.ship$.subscribe(ship => {
+      let dialogData: DialogData = {resources: ship.resourceQuantities, ship: this.shipName};
+      const dialogRef = this.dialog.open(ResourceChangeDialog, {
+        width: '250px',
+        data: dialogData
+      });
+
+      dialogRef.afterClosed().subscribe(_ => location.reload());
     });
-
-    dialogRef.afterClosed().subscribe(_ => this.updateValues());
   }
-
-  private updateValues() {
-    this.shipService.getResources(this.ship!!.name).subscribe(resources => this.resources = resources);
-  }
-
 
   ngOnInit(): void {
   }
@@ -112,7 +75,12 @@ export class ResourceChangeDialog {
   }
 
   onSubmit() {
-    this.shipService.changeResources(this.data.ship.name, this.resourcesToChange);
+    this.shipService.changeResources(this.data.ship, this.resourcesToChange).subscribe();
     this.dialogRef.close();
   }
+}
+
+interface DialogData {
+  resources: Map<string, number>,
+  ship: string
 }

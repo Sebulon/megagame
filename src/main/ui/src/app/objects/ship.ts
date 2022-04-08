@@ -7,6 +7,7 @@ export interface Ship {
   faction: string;
   name: string;
   hp: number;
+  resourceQuantities: Map<string, number>;
 }
 
 /**
@@ -18,4 +19,5 @@ export class emptyShip implements Ship {
   hp = 0;
   maxHP = 0;
   name = '';
+  resourceQuantities = new Map<string, number>();
 }

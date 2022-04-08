@@ -11,7 +11,7 @@ export class Links {
 
   // SHIPS
   public static ships = 'api/ships/allShips';
-  public static postShip = 'api/ships/allShips';
+  public static postShip = 'api/ships/playerShips';
 
   public static changeShipHP(ship: string, hpChange: number) {
     return `api/ships/${ship}/modify/HP/${hpChange}`;
@@ -25,12 +25,20 @@ export class Links {
     return `api/players/${id}/current-ship`;
   }
 
+  public static getShip(name: string) {
+    return `api/ships/getPlayerShip/name/${name}`;
+  }
+
   public static playerShipResource(ship: string) {
     return `api/ships/playerShip/${ship}/resources`;
   }
 
   public static sendResources(from: string, to: string) {
     return `api/ships/playerShip/${from}/resources/transfer/${to}`;
+  }
+
+  public static changeResources(name: string) {
+    return `api/ships/playerShip/${name}/resources/modify`;
   }
 
 

@@ -65,10 +65,13 @@ public class ShipController {
         return shipService.getPlayerShipResourceQuantities(shipName);
     }
 
-    //modify resource
-    @PutMapping("/playerShip/{shipName}/resources/modify/{resourceName}/{quantity}")
-    public void modifyPlayerShipResource(@PathVariable Map<String, String> pathVarsMap) {
-        shipService.modifyPlayerShipResource(pathVarsMap.get("shipName"), pathVarsMap.get("resourceName"), Integer.parseInt(pathVarsMap.get("quantity")));
+    //modify resources
+    @PutMapping("/playerShip/{shipName}/resources/modify")
+    public void modifyPlayerShipResources(@PathVariable String shipName, @RequestBody Map<String, Integer> resources) {
+        for (String resource : resources.keySet()) {
+            System.out.println(resource + ", " + resources.get(resource));
+            shipService.modifyPlayerShipResource(shipName, resource, resources.get(resource));
+        }
     }
 
     //Transfer resource

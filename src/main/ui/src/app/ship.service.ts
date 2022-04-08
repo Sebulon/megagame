@@ -16,12 +16,16 @@ export class ShipService {
   constructor(private http: HttpClient) {
   }
 
-  getShip(id: string) {
+  getPlayerShip(id: string) {
     return this.http.get<Ship>(Links.playerShip(id));
   }
 
+  getShip(name: string) {
+    return this.http.get<Ship>(Links.getShip(name));
+  }
+
   getResources(ship: string) {
-    return this.http.get(Links.playerShipResource(ship));
+    return this.http.get<Map<string, number>>(Links.playerShipResource(ship));
   }
 
   getShips() {
@@ -69,18 +73,24 @@ export class ShipService {
    * @param resources
    */
   sendResources(from: string, to: string, resources: Map<string, number>) {
-    const convMap = {} as any;
-    resources.forEach((value, key) => {
-      convMap[key] = value;
-    });
-    return this.http.put(Links.sendResources(from, to), convMap).pipe(
+    return this.http.put(Links.sendResources(from, to), this.convertMap(resources)).pipe(
       retry(3),
       catchError(handleError)
     );
   }
 
-  //TODO this method
-  changeResources(to: string, resources: Map<string, number>) {
+  changeResources(ship: string, resources: Map<string, number>) {
+    return this.http.put(Links.changeResources(ship), this.convertMap(resources)).pipe(
+      retry(3),
+      catchError(handleError)
+    );
+  }
 
+  private convertMap(map: Map<any, any>) {
+    const convMap = {} as any;
+    map.forEach((value, key) => {
+      convMap[key] = value;
+    });
+    return convMap;
   }
 }
