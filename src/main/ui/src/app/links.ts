@@ -9,6 +9,10 @@ export class Links {
     return `api/users/${id}`;
   }
 
+  public static getPlayer(id: string) {
+    return `api/players/${id}`;
+  }
+
   // SHIPS
   public static ships = 'api/ships/allShips';
   public static postShip = 'api/ships/playerShips';

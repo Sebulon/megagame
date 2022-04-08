@@ -1,7 +1,6 @@
 package com.chalmersmegagame.game.players;
 
 import com.chalmersmegagame.game.ships.Ship;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,5 +26,10 @@ public class PlayerController {
     @RequestMapping("/all")
     public ResponseEntity<?> getPlayers() {
         return ResponseEntity.ok(playerService.getPlayers());
+    }
+
+    @RequestMapping("/{id}")
+    public Player getPlayer(@PathVariable String id) {
+        return playerService.getPlayer(id);
     }
 }
