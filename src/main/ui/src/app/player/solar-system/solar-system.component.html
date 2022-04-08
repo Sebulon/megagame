@@ -1,6 +1,6 @@
 <div *ngIf="activeGalaxy" id="spaceBackground" [ngStyle]="{'background-image': 'url('+imgPath+'/SpaceBackground.png)'}">
   <div *ngFor="let body of activeGalaxy" class="celestialBody" [ngStyle]="{'width': 'Calc('+body.size+'% + 100%/('+activeGalaxy.length+' + 2))'}">
-    <img src="{{imgPath}}/CelestialBody.png">
+    <img alt="Planet" src="{{imgPath}}/CelestialBody.png">
     <div class="information">
       <h1>{{body.type}}</h1>
       <h2>Size: {{body.size}}</h2>

@@ -8,5 +8,32 @@
   border-radius: 5px;
   padding: 2%;
   font-size: 20px;
-  margin-bottom: 5vh;
 }
+
+#role-img {
+  float: right;
+  background-color: white;
+  right: 0;
+  bottom: 0;
+  border-radius: 50%;
+  width: 300px;
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#role-img img {
+  width: auto;
+  height: auto;
+  max-width: 240px;
+  max-height: 240px;
+}
+
+@media screen and (max-width: 500px) {
+  #role-img {
+    width: Calc(100%);
+  }
+
+}
+

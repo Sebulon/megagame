@@ -2,11 +2,12 @@
 <div id="info">
   <div *ngIf="backstory" [innerHTML]="backstory"></div>
 
+  <div id="role-img"><img alt="Role Icon" src="../../../assets/img/icons/UN-representative.png"> </div>
   <div *ngIf="role">
     <h2>Role: {{role.role}}</h2>
     <p>{{role.description}}</p>
   </div>
-
   <button [routerLink]="'../ship'" class="standard-button">Go to Ship</button>
+
 </div>
 
