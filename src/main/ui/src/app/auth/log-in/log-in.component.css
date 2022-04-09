@@ -1,7 +1,7 @@
 #log-in-body {
   width: 100vw;
   height: 90vh;
-  background-color: #24a5bd;
+  background-image: linear-gradient(to bottom, #4b87bd, #0cddff);
 }
 
 #login {
@@ -11,44 +11,56 @@
   left: 40vw;
   top: 30vh;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 #player-id-label{
   color:white;
-  font-size: 2.5vw;
+  font-weight: bold;
+  font-size: 5rem;
   font-family: Calibri, sans-serif;
 }
 
 #player-id {
-  color: var(--grey);
+  color: var(--background);
   width: 90%;
   text-align: center;
   height: 20%;
-  border-radius: 20px;
-  border-width: 0;
+  border-radius: 10px;
+  border-width: 4px;
+  border-color: #949494;
+  border-style: solid;
   margin: 5%;
-  font-size: 2vw;
+  font-size: 2rem;
   outline: none;
+  transition: 0.3s;
 }
 
-.submit-player-id {
+#player-id:focus {
+  border-color: var(--background);
+}
+
+#submit-player-id {
   cursor: pointer;
   width: 60%;
   height: 20%;
-  border-radius: 20px;
+  border-radius: 10px;
   border-width: 0;
-  font-size: 2vw;
+  font-size: 2rem;
   font-family: Calibri, sans-serif;
   color: white;
-  background-color: #3e5b79;
+  background-color: var(--background);
 }
 
-.submit-player-id:hover {
-  background-color: #496881;
-}
-
-.submit-player-id:active {
+/*  #3e5b79 #578bb0*/
+#submit-player-id:hover {
   background-color: #263646;
+}
+
+#submit-player-id:active {
+  background-color: #227fdc;
 }
 
 
@@ -58,7 +70,7 @@
     width: 90vw;
     height: 50vh;
     left: 5vw;
-    top: 5vh;
+    top: 15vh;
   }
 
   #player-id-label{
@@ -67,14 +79,14 @@
 
   #player-id {
     width: 90%;
-    height: 15vh;
-    font-size: 9vh;
+    height: 10vh;
+    font-size: 5vh;
   }
 
-  .submit-player-id {
+  #submit-player-id {
     width: 80%;
-    height: 40%;
-    font-size: 8vh;
+    height: 20%;
+    font-size: 5vh;
   }
 
 }

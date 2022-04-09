@@ -13,11 +13,7 @@ html {
 a {
   cursor: pointer;
   text-decoration: none;
-  font-family: Calibri, sans-serif;
-}
-
-a:hover {
-  opacity: 0.8;
+  font-family: Helvetica, sans-serif;
 }
 
 app-top-bar {

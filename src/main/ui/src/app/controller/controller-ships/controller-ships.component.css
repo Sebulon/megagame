@@ -46,6 +46,7 @@ a:active {
   color: white;
   border-radius: 5px;
   margin-top: 2vh;
+  resize: none;
 }
 
 #create-ship {
@@ -59,10 +60,15 @@ input {
   margin-bottom: 8px;
   margin-top: 2px;
   display: inline-block;
-  border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
   font-size: 2vh;
+  outline: none;
+  border: none;
+}
+
+input:focus {
+  border: 2px solid var(--background);
 }
 
 input[type=submit] {
