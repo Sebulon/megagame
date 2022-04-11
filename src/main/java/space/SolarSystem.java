@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class SolarSystem {
     private int size;
     private ArrayList<ICelestialObject> objectList = new ArrayList<>();
+    private ArrayList<SolarSystem> connections = new ArrayList<>();
 
     public SolarSystem (int size, IGravityWell gravityWell){
         this.size = size;
@@ -32,7 +33,15 @@ public class SolarSystem {
         }
     }
 
+    public void addConnection(SolarSystem solarSystem){
+        connections.add(solarSystem);
+    }
+
     public ArrayList <ICelestialObject> getCelestialObjects(){
         return objectList;
+    }
+
+    public ArrayList<SolarSystem> getConnections() {
+        return connections;
     }
 }
