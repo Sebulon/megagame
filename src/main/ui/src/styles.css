@@ -4,6 +4,7 @@
 :root {
   --background: #282727;
   --grey: #6e6e6e;
+  --top-bar-color: #4b87bd;
 }
 
 html {
@@ -19,7 +20,7 @@ a {
 app-top-bar {
   width: 100%;
   height: 10vh;
-  background-color: #4b87bd;
+  background-color: var(--top-bar-color);
   display: flex;
   align-items: center;
 }
@@ -93,3 +94,4 @@ div.ship-info {
 .standard-button:active {
   background-color: #c0c0c0;
 }
+
