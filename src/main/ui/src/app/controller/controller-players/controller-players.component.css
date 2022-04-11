@@ -18,6 +18,7 @@
   padding: 8px;
   height: 20px;
   color: white;
+  cursor: pointer;
 }
 
 .list-data:nth-child(even) {
@@ -53,6 +54,7 @@ h2 {
   width: 150px;
   height: 30px;
   margin-left: 10px;
+  cursor: pointer;
 }
 
 .delete {
