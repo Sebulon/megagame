@@ -32,21 +32,13 @@ export class ControllerShipsComponent implements OnInit {
    * Also updates the list of all ships.
    */
   onSubmit(): void {
-    let newShip = this.shipConstructor.value as Ship;
 
-    let containsNull = false
-
-    Object.values(newShip).forEach(value => {
-      if (value == null) {
-        containsNull = true
-        return;
-      }
-    })
-
-    if (containsNull) {
+    if (this.shipConstructor.invalid) {
       console.warn("All data fields are not filled!");
       return;
     }
+
+    let newShip = this.shipConstructor.value as Ship;
 
     this.shipService.addShip(newShip).subscribe(() => this.ships = this.shipService.getShips());
     this.shipConstructor.reset();
