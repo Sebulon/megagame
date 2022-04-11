@@ -20,18 +20,6 @@
   color: white;
 }
 
-.controller-link {
-  position: relative;
-  display: inline-block;
-  background-color: var(--grey);
-  text-align: center;
-  margin-bottom: 1vh;
-  font-size: 6vh;
-  border-radius: 10px;
-  white-space: pre-wrap;
-  padding: 1vw;
-}
-
 a {
   color: white;
 }

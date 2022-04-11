@@ -95,3 +95,19 @@ div.ship-info {
   background-color: #c0c0c0;
 }
 
+.controller-link {
+  position: relative;
+  text-align: center;
+  margin: 2vh;
+  padding: 20px 50px;
+  font-size: 4rem;
+  border-radius: 5px;
+  border: 4px solid white;
+  transition: 0.3s;
+}
+
+.controller-link:hover {
+  background-color: white;
+  color: var(--background);
+}
+
