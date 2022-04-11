@@ -15,7 +15,11 @@ export class UserService {
     return route.snapshot.paramMap.get('id');
   }
 
-  getUser(id: string) {
-    return this.http.get(Links.getUser(id), {responseType: 'text'});
+  getController(id: string) {
+    return this.http.get(Links.getController(id), {responseType: "text"});
+  }
+
+  getPlayer(id: string) {
+    return this.http.get(Links.getPlayer(id), {responseType: "text"});
   }
 }

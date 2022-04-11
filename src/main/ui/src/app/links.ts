@@ -59,4 +59,8 @@ export class Links {
   public static deleteTeam(teamName: string) {
     return `api/teams/delete/${teamName}`;
   }
+
+  static getController(id: string) {
+    return `api/controller/${id}`;
+  }
 }
