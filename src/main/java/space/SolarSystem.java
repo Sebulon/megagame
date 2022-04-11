@@ -35,6 +35,7 @@ public class SolarSystem {
 
     public void addConnection(SolarSystem solarSystem){
         connections.add(solarSystem);
+        solarSystem.addConnection(this);
     }
 
     public ArrayList <ICelestialObject> getCelestialObjects(){
