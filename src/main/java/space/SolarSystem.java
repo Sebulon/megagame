@@ -1,11 +1,12 @@
 package space;
 
 import java.util.ArrayList;
+import java.util.Set;
 
 public class SolarSystem {
     private int size;
     private ArrayList<ICelestialObject> objectList = new ArrayList<>();
-    private ArrayList<SolarSystem> connections = new ArrayList<>();
+    private Set<SolarSystem> connections;
 
     public SolarSystem (int size, IGravityWell gravityWell){
         this.size = size;
@@ -42,7 +43,7 @@ public class SolarSystem {
         return objectList;
     }
 
-    public ArrayList<SolarSystem> getConnections() {
+    public Set<SolarSystem> getConnections() {
         return connections;
     }
 }
