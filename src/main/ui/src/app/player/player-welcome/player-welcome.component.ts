@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {PlayerService} from "../../player.service";
-import {Role} from "../../objects/role";
-import {UserService} from "../../user.service";
 import {ActivatedRoute} from "@angular/router";
+import {Player} from "../../objects/player";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-player-welcome',
@@ -11,16 +11,19 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class PlayerWelcomeComponent implements OnInit {
 
-  role: Role | null = null;
-  backstory: string | null = null;
+  player$: Observable<Player>;
 
   constructor(private playerService: PlayerService,
-              private userService: UserService,
               private route: ActivatedRoute) {
-    playerService.getRole(userService.getId(route)!!).subscribe(role => this.role = role[Math.floor(Math.random() * role.length)]);
-    playerService.getBackstory().subscribe(story => this.backstory = story);
+    this.player$ = playerService.getPlayer(route.snapshot.paramMap.get('id')!!);
   }
 
   ngOnInit(): void {
+  }
+
+  formatText(text: string) {
+    return text.replace(/\.[s]*/g, ". ")
+      .replace(/\*\*/g, "<b>")
+      .replace(/<b>([^|]*)<b>/g, "<b>$1</b>")
   }
 }

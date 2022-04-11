@@ -8,3 +8,4 @@ CREATE TABLE user (
 INSERT INTO user (id, role) VALUES
   ('test', 'controller'),
   ('test2', 'player');
+

@@ -22,7 +22,7 @@
 
 .controller-link {
   position: relative;
-  background-color: #5e5e5e;
+  background-color: var(--grey);
   text-align: center;
   margin: 2vh;
   width: 80vw;

@@ -2,16 +2,19 @@ package com.chalmersmegagame.game.teams;
 
 import com.chalmersmegagame.game.players.Player;
 
+import lombok.Data;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.*;
 
+@Data
 @Entity
 public class Team {
 
     @Id
-    String name;
+    private String name;
     @OneToMany
     private List<Player> members = new ArrayList<>();
 
@@ -22,11 +25,6 @@ public class Team {
     public Team() {
     }
 
-
-    public List<Player> getTeamMembers() {
-        return members;
-    }
-
     public void addTeamMember(Player player) {
         members.add(player);
     }
@@ -35,9 +33,6 @@ public class Team {
         members.remove(player);
     }
 
-    public String getTeamName() {
-        return name;
-    }
 
 
 }

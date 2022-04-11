@@ -1,12 +1,12 @@
 package com.chalmersmegagame.game.game_resources;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Map;
 
 public interface IHasResources {
     public ArrayList<String> getResources();
 
-    public HashMap<String, Integer> getResourceQuantities();
+    public Map<String, Integer> getResourceQuantities();
 
     public void addResource(String resourceName, int quantity);
 
