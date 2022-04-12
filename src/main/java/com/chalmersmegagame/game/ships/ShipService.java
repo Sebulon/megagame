@@ -126,4 +126,8 @@ public class ShipService {
     public void removeTeamFromShip(PlayerShip ship){
         ship.setTeam(null);
     }
+
+    public PlayerShip getPlayerShipByPlayer(String id) {
+        return getPlayerShipByTeam(teamService.getTeamByPlayer(id));
+    }
 }

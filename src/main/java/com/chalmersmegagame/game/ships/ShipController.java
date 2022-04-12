@@ -27,7 +27,11 @@ public class ShipController {
     public PlayerShip getPlayerShipByTeam(@PathVariable String teamName){
         return shipService.getPlayerShipByTeamName(teamName);
     }
-    
+
+    @RequestMapping("/getPlayerShip/player/{id}")
+    public PlayerShip getPlayerShipByPlayer(@PathVariable String id) {
+        return shipService.getPlayerShipByPlayer(id);
+    }
 
     @RequestMapping("/allShips")
     public List<? extends Ship> getAllShips(){

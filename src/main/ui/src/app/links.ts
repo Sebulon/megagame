@@ -10,7 +10,7 @@ export class Links {
     }
 
     public static ship(playerId: string) {
-      return `api/players/${playerId}/current-ship`;
+      return `api/ships/getPlayerShip/player/${playerId}`;
     }
   }
 

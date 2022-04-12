@@ -31,6 +31,10 @@ public class TeamService {
         return teamRepository.findByMembers(player);
     }
 
+    public Team getTeamByPlayer(String id) {
+        return getTeamByPlayer(playerService.getPlayer(id));
+    }
+
     public void addTeam(Team team){
         teamRepository.save(team);
     }
