@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {UserService} from "../../user.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {AuthService} from "../auth.service";
+import {PlayerService} from "../../player.service";
+import {ControllerService} from "../../controller.service";
 
 @Component({
   selector: 'app-log-in',
@@ -11,8 +12,9 @@ import {AuthService} from "../auth.service";
 export class LogInComponent implements OnInit {
 
   constructor(
-    private userService: UserService,
     private authService: AuthService,
+    private playerService: PlayerService,
+    private controllerService: ControllerService,
     private route: ActivatedRoute,
     private router: Router) {
   }
@@ -21,7 +23,7 @@ export class LogInComponent implements OnInit {
   }
 
   submitID(id: string): void {
-    this.userService.getController(id).subscribe(data => {
+    this.controllerService.getController(id).subscribe(data => {
       if (data == null || data == "") {
         this.gotoNextScreenPlayer(id);
         return;
@@ -31,8 +33,8 @@ export class LogInComponent implements OnInit {
   }
 
   private gotoNextScreenPlayer(id: string) {
-    this.userService.getPlayer(id).subscribe(data => {
-      if (data == null || data == "") {
+    this.playerService.getPlayer(id).subscribe(data => {
+      if (data == null) {
         LogInComponent.wrongId(id);
         return;
       }

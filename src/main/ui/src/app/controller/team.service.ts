@@ -14,34 +14,30 @@ export class TeamService {
   }
 
   getTeams() {
-    return this.http.get<Team[]>(Links.allTeams)
+    return this.http.get<Team[]>(Links.teams.all)
   }
 
-  changeTeam(newTeam: Team) {
-    return this.http.post(Links.teams, newTeam).pipe(
+  createTeam(newTeam: Team) {
+    return this.http.post(Links.teams.post, newTeam).pipe(
       retry(3),
       catchError(handleError)
     );
   }
 
-  createTeam(newTeam: Team) {
-    return this.changeTeam(newTeam);
-  }
-
   deleteTeam(team: Team) {
-    return this.http.delete(Links.teams, {body: team}).pipe(
+    return this.http.delete(Links.teams.delete, {body: team}).pipe(
       retry(3),
       catchError(handleError)
     )
   }
 
   getTeam(name: string) {
-    return this.http.get<Team>(Links.team(name));
+    return this.http.get<Team>(Links.teams.get(name));
   }
 
   addPlayerToTeam(teamName: string, playerId: string) {
     let params = new HttpParams().append('playerId', playerId).append('teamName', teamName);
-    return this.http.put(Links.assignPlayer, undefined, {params: params}).pipe(
+    return this.http.put(Links.teams.assignPlayer, undefined, {params: params}).pipe(
       retry(3),
       catchError(handleError)
     )
@@ -49,7 +45,7 @@ export class TeamService {
 
   removePlayerFromTeam(teamName: string, playerId: string) {
     let params = new HttpParams().append('playerId', playerId).append('teamName', teamName);
-    return this.http.put(Links.removePlayer, undefined, {params: params}).pipe(
+    return this.http.put(Links.teams.removePlayer, undefined, {params: params}).pipe(
       retry(3),
       catchError(handleError)
     )

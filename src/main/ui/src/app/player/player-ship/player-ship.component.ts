@@ -1,9 +1,9 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
-import {UserService} from "../../user.service";
 import {Ship} from "../../objects/ship";
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material/dialog";
 import {ShipService} from "../../ship.service";
+import {PlayerService} from "../../player.service";
 
 export interface DialogData {
   resources: object,
@@ -22,11 +22,11 @@ export class PlayerShipComponent implements OnInit {
   private id: string;
 
   constructor(private shipService: ShipService,
-              private userService: UserService,
+              private playerService: PlayerService,
               private route: ActivatedRoute,
               private router: Router,
               private dialog: MatDialog) {
-    this.id = userService.getId(route)!!;
+    this.id = route.snapshot.paramMap.get("id")!!;
   }
 
 
@@ -49,7 +49,7 @@ export class PlayerShipComponent implements OnInit {
   }
 
   private updateValues() {
-    this.shipService.getPlayerShip(this.id).subscribe(ship => {
+    this.playerService.getPlayerShip(this.id).subscribe(ship => {
       if (ship == null) {
         console.error("Could not find boarded ship");
         return;
