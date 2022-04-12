@@ -1,7 +1,10 @@
 /**
  * Template for how the ship data is stored
  */
+import {Team} from "./team";
+
 export interface Ship {
+  team?: Team;
   crewSize: number;
   maxHP: number;
   faction: string;
