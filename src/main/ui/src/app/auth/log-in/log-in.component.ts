@@ -20,6 +20,20 @@ export class LogInComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    // Sets up enter as a valid button to submit pin code
+    const input = document.getElementById("player-id");
+    if (input != null) {
+      input.addEventListener("keyup", function (event) {
+        if (event.keyCode === 13){
+          event.preventDefault();
+          const button = document.getElementById("submit-player-id");
+          if (button != null){
+            button.click();
+          }
+        }
+      });
+    }
   }
 
   submitID(id: string): void {
