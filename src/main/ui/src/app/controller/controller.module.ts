@@ -9,6 +9,7 @@ import {MatSliderModule} from "@angular/material/slider";
 import {MatDialogModule} from "@angular/material/dialog";
 import {ControllerViewComponent} from "./controller-view/controller-view.component";
 import {DragDropModule} from "@angular/cdk/drag-drop";
+import {TeamsComponent} from './teams/teams.component';
 
 @NgModule({
   imports: [
@@ -25,7 +26,8 @@ import {DragDropModule} from "@angular/cdk/drag-drop";
     ControllerShipComponent,
     ControllerShipsComponent,
     ControllerPlayersComponent,
-    ResourceChangeDialog
+    ResourceChangeDialog,
+    TeamsComponent
   ]
 })
 export class ControllerModule {

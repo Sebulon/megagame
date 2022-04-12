@@ -4,12 +4,14 @@ import {ControllerShipComponent} from "./controller-ship/controller-ship.compone
 import {ControllerPlayersComponent} from "./controller-players/controller-players.component";
 import {NgModule} from "@angular/core";
 import {ControllerViewComponent} from "./controller-view/controller-view.component";
+import {TeamsComponent} from "./teams/teams.component";
 
 const controllerRoutes: Routes = [
   {path: '', component: ControllerViewComponent},
   {path: 'ships', component: ControllerShipsComponent},
   {path: 'ships/:ship', component: ControllerShipComponent},
-  {path: 'players', component: ControllerPlayersComponent}
+  {path: 'players', component: ControllerPlayersComponent},
+  {path: 'teams', component: TeamsComponent}
 ];
 
 @NgModule({
