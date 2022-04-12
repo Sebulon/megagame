@@ -25,10 +25,6 @@ a {
   color: white;
 }
 
-a:active {
-  color: white;
-}
-
 @media screen and (max-width: 500px) {
   .controller-link {
     background-color: #333232;

@@ -14,7 +14,6 @@ html {
 a {
   cursor: pointer;
   text-decoration: none;
-  font-family: Helvetica, sans-serif;
 }
 
 app-top-bar {
@@ -34,7 +33,7 @@ app-top-bar h1 {
 
 body {
   margin: 0;
-  font-family: Calibri, sans-serif;
+  font-family: Helvetica, sans-serif;
 }
 
 div.ship {
@@ -112,3 +111,12 @@ div.ship-info {
   color: var(--background);
 }
 
+.controller-link:active {
+  opacity: 0.5;
+}
+
+@media screen and (max-width: 500px) {
+  .controller-link {
+    font-size: 3rem;
+  }
+}

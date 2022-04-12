@@ -1,8 +1,13 @@
 <div id="controller-ships-body">
   <div id="headline">Ships: </div>
-    <a  *ngFor="let ship of ships | async" [routerLink]="ship.name" class="controller-link">
-      {{ship.name}}
-    </a>
+  <table>
+    <tr>
+      <th>Name</th><th>Faction</th><th>CrewSize</th>
+    </tr>
+    <tr *ngFor="let ship of ships | async" [routerLink]="ship.name" class="ship-entries">
+      <td>{{ship.name}}</td> <td>{{ship.faction}}</td> <td>{{ship.crewSize}}</td>
+    </tr>
+  </table>
 
   <div id="form-section">
     <div id="create-ship">Create Ship: </div>
