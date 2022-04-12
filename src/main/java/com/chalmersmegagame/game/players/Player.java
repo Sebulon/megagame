@@ -7,7 +7,7 @@ import com.chalmersmegagame.game.ships.Ship;
 import lombok.Data;
 
 /**
- * Class representing a player and at what ship it is on.
+ * Class representing a player
  */
 
 @Entity
@@ -17,11 +17,11 @@ public class Player {
     @Id
     private String id;
 
-    @Transient
-    private Ship boardedShip;
+    private String name;
 
     // TODO: Should not only be captain
-    private Role role = Role.Captain;
+    @Enumerated(EnumType.STRING)
+    private Role role; 
 
     public Player() {
     }
@@ -30,11 +30,21 @@ public class Player {
         this.id = id;
     }
 
+    public Player(String id, String name, Role role){
+        this.id = id;
+        this.name = name;
+        this.role = role;
+    }
+
     public String getDescription() {
         return role.getDescription();
     }
 
     public String getMiniGameDescription() {
         return role.getMiniGameDescription();
+    }
+
+    public Role getRole(){
+        return role;
     }
 }

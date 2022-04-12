@@ -14,15 +14,6 @@ public class PlayerController {
     @Autowired
     private PlayerService playerService;
 
-    @RequestMapping("/{id}/current-ship")
-    public Ship getPlayerBoardedShip(@PathVariable("id") String id) {
-        Player p = playerService.getPlayer(id);
-        if (p == null) return null;
-
-        //TODO: Boarded ship is always null
-        return p.getBoardedShip();
-    }
-
     @RequestMapping("/all")
     public ResponseEntity<?> getPlayers() {
         return ResponseEntity.ok(playerService.getPlayers());

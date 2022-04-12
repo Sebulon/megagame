@@ -2,13 +2,14 @@ package com.chalmersmegagame.game.main_game;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.sql.Statement;
-
 
 import javax.persistence.*;
 import javax.transaction.Transactional;
 
 import com.chalmersmegagame.game.players.*;
+import com.chalmersmegagame.game.roles.Role;
 import com.chalmersmegagame.game.ships.*;
 import com.chalmersmegagame.game.space.SolarSystem;
 import com.chalmersmegagame.game.teams.*;
@@ -37,10 +38,10 @@ public class GameService {
     public void setup(){
         gameRepository.save(new MainGame());
 
-        Player p1 = new Player("player1");
-        Player p2 = new Player("player2");
-        Player p3 = new Player("player3");
-        Player p4 = new Player("player4");
+        Player p1 = new Player("player1", "Katja", Role.Captain);
+        Player p2 = new Player("player2", "Kaj", Role.Scientist);
+        Player p3 = new Player("player3", "Benta", Role.Captain);
+        Player p4 = new Player("player4", "Bent", Role.Scientist);
         playerService.addPlayer(p1);
         playerService.addPlayer(p2);
         playerService.addPlayer(p3);
@@ -86,12 +87,20 @@ public class GameService {
         return game().getCurrentSystem();
     }
 
+    private Connection getDBConn(){
+        try{
+            return DriverManager.getConnection("jdbc:h2:file:./src/main/resources/megabased", "sa", "password");
+        }catch(SQLException e){
+            e.printStackTrace();
+            throw new RuntimeException("Could not connect to database");
+        }
+        
+    }
+
     @Transactional
     public void backupDB(String name){
-        String databaseURL = "jdbc:h2:file:./src/main/resources/megabased";
         try{
-            Connection conn = DriverManager.getConnection(databaseURL, "sa", "password");
-            Statement s = conn.createStatement();
+            Statement s = getDBConn().createStatement();
             s.execute("SCRIPT TO 'file:./src/main/resources/saves/" + name + ".sql'");
         }catch(Exception e){
             e.printStackTrace();
@@ -107,11 +116,9 @@ public class GameService {
 
 
     public void restoreDB(String name){
-        String databaseURL = "jdbc:h2:file:./src/main/resources/megabased";
         try{
-            Connection conn = DriverManager.getConnection(databaseURL, "sa", "password");
-            Statement s = conn.createStatement();
-            s.execute("DROP ALL OBJECTS DELETE FILES");
+            dropDB();
+            Statement s = getDBConn().createStatement();
             s.execute("RUNSCRIPT FROM 'file:./src/main/resources/saves/" + name + ".sql'");
         }catch(Exception e){
             e.printStackTrace();
@@ -119,23 +126,15 @@ public class GameService {
         
     }
 
-    /*
-    public void restoreDB(String fileName){
-        fileName = fileName + ".zip";
-        System.out.println(fileName);
-        String filePath = new File("src/main/resources/saves/" + fileName).getAbsolutePath();
-        System.out.println(filePath);
-        String dicPath = new File("src/main/resources").getAbsolutePath();
-
+    protected void dropDB(){
         try{
-            new Restore().execute(filePath, dicPath, null);
-        }catch(Exception e){
-            System.out.println("fuck");
+            Statement s = getDBConn().createStatement();
+            s.execute("DROP ALL OBJECTS DELETE FILES");
+        }catch(SQLException e){
             e.printStackTrace();
         }
         
     }
-    */
 
     
 }
