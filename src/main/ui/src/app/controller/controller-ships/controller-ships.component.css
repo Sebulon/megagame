@@ -20,18 +20,6 @@
   color: white;
 }
 
-.controller-link {
-  position: relative;
-  display: inline-block;
-  background-color: var(--grey);
-  text-align: center;
-  margin-bottom: 1vh;
-  font-size: 6vh;
-  border-radius: 10px;
-  white-space: pre-wrap;
-  padding: 1vw;
-}
-
 a {
   color: white;
 }
@@ -46,6 +34,7 @@ a:active {
   color: white;
   border-radius: 5px;
   margin-top: 2vh;
+  resize: none;
 }
 
 #create-ship {
@@ -59,10 +48,16 @@ input {
   margin-bottom: 8px;
   margin-top: 2px;
   display: inline-block;
-  border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
   font-size: 2vh;
+  outline: none;
+  border: none;
+}
+
+input:focus {
+  border-bottom: 4px solid var(--background);
+  margin-bottom: 4px;
 }
 
 input[type=submit] {

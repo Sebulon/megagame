@@ -1,10 +1,8 @@
 <div id="controller-ships-body">
   <div id="headline">Ships: </div>
-  <div *ngFor="let ship of ships | async" class="controller-link">
-      <a [routerLink]="ship.name">
-        {{ship.name}}
-      </a>
-  </div>
+    <a  *ngFor="let ship of ships | async" [routerLink]="ship.name" class="controller-link">
+      {{ship.name}}
+    </a>
 
   <div id="form-section">
     <div id="create-ship">Create Ship: </div>
@@ -13,35 +11,35 @@
         <label for="name">
           Name
         </label>
-        <input id="name" type="text" formControlName="name" autocomplete="off" required="true">
+        <input id="name" type="text" formControlName="name" autocomplete="off" required="true" placeholder="Example Name">
       </div>
 
       <div class="form-part">
         <label for="faction">
           Faction
         </label>
-        <input id="faction" type="text" formControlName="faction" autocomplete="off" required="true">
+        <input id="faction" type="text" formControlName="faction" autocomplete="off" required="true" placeholder="Example Faction">
       </div>
 
       <div class="form-part">
         <label for="maxHP">
           Max hp
         </label>
-        <input id="maxHP" type="number" formControlName="maxHP" required="true">
+        <input id="maxHP" type="number" formControlName="maxHP" required="true" placeholder="0">
       </div>
 
       <div class="form-part">
         <label for="hp">
           Hp
         </label>
-        <input id="hp" type="number" formControlName="hp" required="true">
+        <input id="hp" type="number" formControlName="hp" required="true" placeholder="0">
       </div>
 
       <div class="form-part">
         <label for="crewSize">
           Crew Size
         </label>
-        <input id="crewSize" type="number" formControlName="crewSize" required="true">
+        <input id="crewSize" type="number" formControlName="crewSize" required="true" placeholder="0">
       </div>
 
       <input type="submit" value="Submit">

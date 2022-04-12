@@ -2,6 +2,12 @@
   <h1>Megagame</h1>
 </a>
 
-<nav id="nav-bar">
-    <button *ngFor="let route of routes" [routerLink]="[route.link]" class="nav-button">{{route.name}}</button>
-</nav>
+  <nav *ngIf="routes.length >= 1" id="nav-bar">
+    <div class="dropdown">
+      <button class="nav-button"><img src="../../assets/img/icons/Dropdown_icon.png" alt="Menu"></button>
+      <div class="dropdown-content">
+        <a *ngFor="let route of routes" [routerLink]="[route.link]">{{route.name}}</a>
+      </div>
+    </div>
+      <button *ngFor="let route of routes" [routerLink]="[route.link]" class="nav-button hide-on-mobile">{{route.name}}</button>
+  </nav>

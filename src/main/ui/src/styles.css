@@ -4,6 +4,7 @@
 :root {
   --background: #282727;
   --grey: #6e6e6e;
+  --top-bar-color: #4b87bd;
 }
 
 html {
@@ -13,17 +14,13 @@ html {
 a {
   cursor: pointer;
   text-decoration: none;
-  font-family: Calibri, sans-serif;
-}
-
-a:hover {
-  opacity: 0.8;
+  font-family: Helvetica, sans-serif;
 }
 
 app-top-bar {
   width: 100%;
   height: 10vh;
-  background-color: #4b87bd;
+  background-color: var(--top-bar-color);
   display: flex;
   align-items: center;
 }
@@ -88,6 +85,7 @@ div.ship-info {
   text-align: center;
   margin-top: 5%;
   padding: 20px;
+  cursor: pointer;
 }
 
 .standard-button:hover {
@@ -97,3 +95,20 @@ div.ship-info {
 .standard-button:active {
   background-color: #c0c0c0;
 }
+
+.controller-link {
+  position: relative;
+  text-align: center;
+  margin: 2vh;
+  padding: 20px 50px;
+  font-size: 4rem;
+  border-radius: 5px;
+  border: 4px solid white;
+  transition: 0.3s;
+}
+
+.controller-link:hover {
+  background-color: white;
+  color: var(--background);
+}
+
