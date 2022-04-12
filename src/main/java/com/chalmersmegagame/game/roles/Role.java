@@ -5,7 +5,8 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public enum Role {
-    Captain("captain.md");
+    Captain("captain.md"),
+    Scientist("scientist.md");
 
     private String description = "";
     private String miniGame = "";

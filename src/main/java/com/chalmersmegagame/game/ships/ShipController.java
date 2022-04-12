@@ -73,7 +73,6 @@ public class ShipController {
     @PutMapping("/playerShip/{shipName}/resources/modify")
     public void modifyPlayerShipResources(@PathVariable String shipName, @RequestBody Map<String, Integer> resources) {
         for (String resource : resources.keySet()) {
-            System.out.println(resource + ", " + resources.get(resource));
             shipService.modifyPlayerShipResource(shipName, resource, resources.get(resource));
         }
     }
