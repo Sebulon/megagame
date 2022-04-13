@@ -35,6 +35,7 @@ li:last-child {
 
 .teams-list-item {
   transition: 0.3s;
+  cursor: pointer;
 }
 
 .teams-list-item:hover {
