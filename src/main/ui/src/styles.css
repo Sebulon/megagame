@@ -94,29 +94,3 @@ div.ship-info {
 .standard-button:active {
   background-color: #c0c0c0;
 }
-
-.controller-link {
-  position: relative;
-  text-align: center;
-  margin: 2vh;
-  padding: 20px 50px;
-  font-size: 4rem;
-  border-radius: 5px;
-  border: 4px solid white;
-  transition: 0.3s;
-}
-
-.controller-link:hover {
-  background-color: white;
-  color: var(--background);
-}
-
-.controller-link:active {
-  opacity: 0.5;
-}
-
-@media screen and (max-width: 500px) {
-  .controller-link {
-    font-size: 3rem;
-  }
-}

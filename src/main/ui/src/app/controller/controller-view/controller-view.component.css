@@ -12,21 +12,75 @@
 #headline {
   margin: 0;
   width: 90vw;
-  height: 10vh;
   left: 5vw;
   top: 10vh;
   text-align: center;
   font-size: 3rem;
   font-weight: bold;
+  padding: 10px 20px;
   color: white;
+}
+
+#controller-view-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  width: 70vw;
+  left: 15vw;
+  padding: 2.5vw;
 }
 
 a {
   color: white;
 }
 
+.controller-link {
+  width: 13vw;
+  height: 13vw;
+  text-align: center;
+  padding: 20px 50px;
+  font-size: 3vw;
+  border-radius: 5px;
+  border: 4px solid white;
+  transition: 0.3s;
+  margin-bottom: 2vw;
+  margin-left: 1vw;
+  margin-right: 1vw;
+}
+
+.controller-link img {
+  filter: invert(100%);
+  max-height: 9vw;
+  transition: 0.3s;
+}
+
+.controller-link:hover {
+  background-color: white;
+  color: var(--background);
+}
+
+.controller-link:hover img {
+  filter: none;
+}
+
+.controller-link:active {
+  opacity: 0.5;
+}
+
 @media screen and (max-width: 500px) {
+
+  #controller-view-content {
+    width: 90vw;
+    left: 5vw;
+  }
   .controller-link {
-    background-color: #333232;
+    font-size: 6vw;
+    width: 30vw;
+    height: 30vw;
+  }
+
+  .controller-link img {
+    max-height: 25vw;
   }
 }

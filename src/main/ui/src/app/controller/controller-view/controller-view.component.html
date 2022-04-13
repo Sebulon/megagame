@@ -2,16 +2,19 @@
   <div id="headline">
     Controller views:
   </div>
-  <a [routerLink]="'ships'" class="controller-link">
-     Ships
-  </a>
-  <a [routerLink]="'players'" class="controller-link">
-      Players
-  </a>
+  <div id="controller-view-content">
+    <a [routerLink]="'ships'" class="controller-link">
+      <img alt="Ships" src="../../../assets/img/icons/ShipIcon.png">
+       Ships
+    </a>
+    <a [routerLink]="'players'" class="controller-link">
+      <img alt="Players" src="../../../assets/img/icons/PlayerIcon.png">
+        Players
+    </a>
 
-  <a [routerLink]="'teams'">
-    <div class="controller-link">
-      Teams
-    </div>
-  </a>
+    <a [routerLink]="'Teams'"  class="controller-link">
+      <img alt="Teams" src="../../../assets/img/icons/TeamIcon.png">
+        Teams
+    </a>
+  </div>
 </div>
