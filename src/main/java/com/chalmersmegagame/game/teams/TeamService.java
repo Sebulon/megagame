@@ -1,6 +1,7 @@
 package com.chalmersmegagame.game.teams;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.chalmersmegagame.game.players.Player;
 import com.chalmersmegagame.game.players.PlayerService;
@@ -43,43 +44,25 @@ public class TeamService {
         addTeam(new Team(teamName));
     }
 
-    public void addTeamMember(Player player, Team team){
-        Team oldTeam = getTeamByPlayer(player);
-        if(oldTeam != null){
-            oldTeam.removeTeamMember(player);
-            teamRepository.save(oldTeam);
-        }
-        team.addTeamMember(player);
-        teamRepository.save(team);
-    } 
-
-    public void addTeamMember(String playerId, String teamName){
-        addTeamMember(playerService.getPlayer(playerId), getTeamByName(teamName));
-    }
-
-    public void removeTeamMember(String playerId, String teamName) {
-        Team current = getTeamByName(teamName);
-        current.removeTeamMember(playerService.getPlayer(playerId));
-        teamRepository.save(current);
-    }
-
-    
     public void removeTeam(Team team){
         teamRepository.findById(team.getName());
         PlayerShip teamShip = shipService.getPlayerShipByTeam(team);
         if(teamShip != null){
             shipService.removeTeamFromShip(teamShip);
         }
- 
+
         teamRepository.delete(team);
     }
 
 
-    public void changeTeam(Team team) {
-        Team realTeam = teamRepository.findById(team.getName()).orElse(null);
+    public void changeTeam(String teamName, List<String> playerNames) {
+        Team realTeam = teamRepository.findById(teamName).orElse(null);
         if (realTeam == null) return;
 
-        realTeam.setMembers(team.getMembers());
+        List<Player> newMembers = playerNames.stream()
+                .map(player -> playerService.getPlayer(player))
+                .collect(Collectors.toList());
+        realTeam.setMembers(newMembers);
         teamRepository.save(realTeam);
     }
 }

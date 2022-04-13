@@ -59,9 +59,9 @@ export class TeamChangeMembersComponent implements OnInit {
   }
 
   finish() {
-    let changedTeam: Team = {name: this.teamName, members: this.currentPlayers!!}
-    this.teamService.changeTeam(changedTeam).subscribe();
-    this.router.navigate([this.teamName, 'details'], {relativeTo: this.route.parent})
+    this.teamService.changeTeamMembers(this.teamName, this.currentPlayers!!.map(player => player.id)).subscribe(_ =>
+      this.router.navigate([this.teamName, 'details'], {relativeTo: this.route.parent})
+    );
   }
 
   ngOnInit(): void {

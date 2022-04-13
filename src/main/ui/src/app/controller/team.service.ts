@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpParams} from "@angular/common/http";
+import {HttpClient} from "@angular/common/http";
 import {Links} from "../links";
 import {Team} from "../objects/team";
 import {catchError, retry} from "rxjs/operators";
@@ -35,24 +35,8 @@ export class TeamService {
     return this.http.get<Team>(Links.teams.get(name));
   }
 
-  addPlayerToTeam(teamName: string, playerId: string) {
-    let params = new HttpParams().append('playerId', playerId).append('teamName', teamName);
-    return this.http.put(Links.teams.assignPlayer, undefined, {params: params}).pipe(
-      retry(3),
-      catchError(handleError)
-    )
-  }
-
-  removePlayerFromTeam(teamName: string, playerId: string) {
-    let params = new HttpParams().append('playerId', playerId).append('teamName', teamName);
-    return this.http.put(Links.teams.removePlayer, undefined, {params: params}).pipe(
-      retry(3),
-      catchError(handleError)
-    )
-  }
-
-  changeTeam(changedTeam: Team) {
-    return this.http.put(Links.teams.change, changedTeam).pipe(
+  changeTeamMembers(teamName: string, newMembers: string[]) {
+    return this.http.put(Links.teams.change(teamName), newMembers).pipe(
       retry(3),
       catchError(handleError)
     )

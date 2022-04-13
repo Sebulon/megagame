@@ -2,7 +2,6 @@ import {NgModule} from "@angular/core";
 import {ControllerRoutingModule} from "./controller-routing.module";
 import {ControllerShipComponent, ResourceChangeDialog} from "./controller-ship/controller-ship.component";
 import {ControllerShipsComponent} from "./controller-ships/controller-ships.component";
-import {ControllerPlayersComponent} from "./controller-players/controller-players.component";
 import {CommonModule} from "@angular/common";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatSliderModule} from "@angular/material/slider";
@@ -28,7 +27,6 @@ import {TeamChangeMembersComponent} from './teams/team-change-members/team-chang
     ControllerViewComponent,
     ControllerShipComponent,
     ControllerShipsComponent,
-    ControllerPlayersComponent,
     ResourceChangeDialog,
     TeamsComponent,
     PlayersComponent,
