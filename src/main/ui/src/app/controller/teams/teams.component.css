@@ -29,10 +29,6 @@ li:last-child {
   border: none;
 }
 
-#players-list {
-  border-left: 2px solid white;
-}
-
 .teams-list-item {
   transition: 0.3s;
   cursor: pointer;

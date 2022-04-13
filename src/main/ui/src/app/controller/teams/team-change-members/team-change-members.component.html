@@ -1,0 +1,7 @@
+<h2>Available members:</h2>
+<p *ngFor="let player of getAvailablePlayers()">{{player.id}}</p>
+<h2>Members in team:</h2>
+<div *ngIf="currentTeam">
+  <p *ngFor="let player of currentTeam.members">{{player.id}}</p>
+</div>
+

@@ -1,0 +1,10 @@
+<div *ngIf="team$ | async; let team">
+  <h2>{{team.name}}</h2>
+  <h4>Players:</h4>
+  <ul>
+    <li *ngFor="let member of team.members">
+      {{member.id}}
+    </li>
+  </ul>
+  <button (click)="goToChangeMembers(team.name)">Change members</button>
+</div>

@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {TeamService} from "../team.service";
 import {Observable} from "rxjs";
 import {Team} from "../../objects/team";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-teams',
@@ -11,26 +12,18 @@ import {Team} from "../../objects/team";
 export class TeamsComponent implements OnInit {
 
   $teams: Observable<Team[]>;
-  activeTeam: Team | null = null;
 
-  constructor(private teamService: TeamService) {
+  constructor(private teamService: TeamService,
+              private router: Router,
+              private route: ActivatedRoute) {
     this.$teams = teamService.getTeams();
   }
 
   ngOnInit(): void {
   }
 
-  setActiveTeam(team: Team) {
-    if(this.activeTeam != null) {
-      const listItem = document.getElementById(this.activeTeam.name);
-      if(listItem != null) {
-        listItem.classList.remove("active-team");
-      }
-    }
-    this.activeTeam = team;
-    const listItem = document.getElementById(this.activeTeam.name);
-    if(listItem != null) {
-      listItem.classList.add("active-team");
-    }
+  goToDetail(teamName: string) {
+    this.router.navigate([teamName, 'details'], {relativeTo: this.route})
   }
+
 }
