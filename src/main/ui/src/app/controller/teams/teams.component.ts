@@ -11,12 +11,12 @@ import {ActivatedRoute, Router} from "@angular/router";
 })
 export class TeamsComponent implements OnInit {
 
-  $teams: Observable<Team[]>;
+  teams$: Observable<Team[]>;
 
   constructor(private teamService: TeamService,
               private router: Router,
               private route: ActivatedRoute) {
-    this.$teams = teamService.getTeams();
+    this.teams$ = teamService.getTeams();
   }
 
   ngOnInit(): void {
@@ -36,13 +36,13 @@ export class TeamsComponent implements OnInit {
     }
 
     let newTeam: Team = {name: teamNameInput.value, members: []}
-    this.$teams.subscribe(teams => {
+    this.teams$.subscribe(teams => {
       if (teams.find(team => team.name == teamNameInput.value)) {
         console.warn("Teams cannot have the same name!");
         return;
       }
-      this.teamService.createTeam(newTeam).subscribe(_ => location.reload());
+      this.teamService.addTeam(newTeam);
       teamNameInput.value = '';
-    })
+    }).unsubscribe()
   }
 }
