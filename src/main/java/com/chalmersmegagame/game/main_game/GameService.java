@@ -8,6 +8,7 @@ import java.sql.Statement;
 import javax.persistence.*;
 import javax.transaction.Transactional;
 
+import com.chalmersmegagame.game.minigames.MinigameService;
 import com.chalmersmegagame.game.players.*;
 import com.chalmersmegagame.game.roles.Role;
 import com.chalmersmegagame.game.ships.*;
@@ -56,8 +57,8 @@ public class GameService {
         teamService.addTeam(team1);
         teamService.addTeam(team2);
 
-        shipService.addPlayerShip(new PlayerShip(team1, "High Charity", "The Covenant",10));
-        shipService.addPlayerShip(new PlayerShip(team2, "Unyielding Hierophant", "The Covenant",40));
+        shipService.addPlayerShip(new PlayerShip(team1, "High Charity", "The Covenant",10, 7));
+        shipService.addPlayerShip(new PlayerShip(team2, "Unyielding Hierophant", "The Covenant",40, 8));
 
         setCurrentTurn(1);
         

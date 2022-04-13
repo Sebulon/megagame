@@ -7,6 +7,7 @@ import java.util.Map;
 import javax.persistence.*;
 
 import com.chalmersmegagame.game.game_resources.*;
+import com.chalmersmegagame.game.minigames.Morale.MoraleMinigame;
 import com.chalmersmegagame.game.teams.*;
 
 import lombok.Data;
@@ -15,16 +16,17 @@ import lombok.Data;
 @Data
 public class PlayerShip extends Ship implements IHasResources, IHasTeam {
 
-
     @ElementCollection
     private Map<String, Integer> resources = new HashMap<>();
     @OneToOne
     private Team team;
+    @OneToOne(mappedBy = "playerShip", cascade=CascadeType.ALL)
+    private MoraleMinigame moraleMinigame;
 
     public PlayerShip() {
     }
 
-    public PlayerShip(Team team, String shipName, String faction, int maxHP) {
+    public PlayerShip(Team team, String shipName, String faction, int maxHP, int crewSize) {
         this.team = team;
         setName(shipName);
         setFaction(faction);
@@ -37,6 +39,9 @@ public class PlayerShip extends Ship implements IHasResources, IHasTeam {
         setMaxHP(maxHP);
         setHP(maxHP);
 
+        setCrewSize(crewSize);
+
+        moraleMinigame = new MoraleMinigame(this);
     }
 
     @Override
@@ -86,7 +91,7 @@ public class PlayerShip extends Ship implements IHasResources, IHasTeam {
             int newQuantity = oldQuantity - quantity;
 
             if (newQuantity < 0) {
-                throw new RuntimeException("Can not remove " + quantity + " " + resourceName + ", only has " + oldQuantity);
+                throw new IllegalArgumentException("Can not remove " + quantity + " " + resourceName + ", only has " + oldQuantity);
             } else {
                 resources.put(resourceName, newQuantity);
             }
@@ -94,8 +99,5 @@ public class PlayerShip extends Ship implements IHasResources, IHasTeam {
         } else {
             throw new IllegalArgumentException("This ship doesn't have the resource: " + resourceName);
         }
-
     }
-
-
 }

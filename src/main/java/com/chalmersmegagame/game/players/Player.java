@@ -3,7 +3,6 @@ package com.chalmersmegagame.game.players;
 import javax.persistence.*;
 
 import com.chalmersmegagame.game.roles.Role;
-import com.chalmersmegagame.game.ships.Ship;
 import lombok.Data;
 
 /**
