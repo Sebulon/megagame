@@ -11,6 +11,7 @@ import {Team} from "../../objects/team";
 export class TeamsComponent implements OnInit {
 
   $teams: Observable<Team[]>;
+  activeTeam: Team | null = null;
 
   constructor(private teamService: TeamService) {
     this.$teams = teamService.getTeams();
@@ -19,4 +20,17 @@ export class TeamsComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  setActiveTeam(team: Team) {
+    if(this.activeTeam != null) {
+      const listItem = document.getElementById(this.activeTeam.name);
+      if(listItem != null) {
+        listItem.classList.remove("active-team");
+      }
+    }
+    this.activeTeam = team;
+    const listItem = document.getElementById(this.activeTeam.name);
+    if(listItem != null) {
+      listItem.classList.add("active-team");
+    }
+  }
 }

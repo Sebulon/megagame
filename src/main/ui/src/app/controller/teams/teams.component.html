@@ -1,5 +1,31 @@
-<div id="list">
-  <div class="list-item" *ngFor="let team of $teams | async">
-    <a [routerLink]="[team.name]">{{team.name}}</a>
-  </div>
+<div id="teams-content">
+  <ul id="teams-list">
+    <li class="teams-list-item" id="{{team.name}}" *ngFor="let team of $teams | async" (click)="setActiveTeam(team)">
+     {{team.name}}
+    </li>
+  </ul>
+  <!--TODO make this list depend on active team, not static-->
+  <ul id="players-list" *ngIf="activeTeam">
+    <li class="player-list-item">
+      Test
+    </li>
+    <li class="player-list-item">
+      Test
+    </li>
+    <li class="player-list-item">
+      Test
+    </li>
+    <li class="player-list-item">
+      Test
+    </li>
+    <li class="player-list-item">
+      Test
+    </li>
+    <li class="player-list-item">
+      Test
+    </li>
+    <li class="player-list-item">
+      Test
+    </li>
+  </ul>
 </div>
