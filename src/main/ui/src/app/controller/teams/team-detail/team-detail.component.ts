@@ -16,13 +16,33 @@ export class TeamDetailComponent implements OnInit {
   constructor(private route: ActivatedRoute,
               private teamService: TeamService,
               private router: Router) {
-    route.params.subscribe(params => this.team$ = this.teamService.getTeam(params['teamName']));
+    route.params.subscribe(params => {
+      this.team$ = this.teamService.getTeam(params['teamName'])
+      this.navigateIfTeamIsNull();
+    });
   }
+
 
   ngOnInit(): void {
   }
 
   goToChangeMembers(teamName: string) {
     this.router.navigate([teamName, 'change'], {relativeTo: this.route.parent})
+  }
+
+  removeTeam(name: string) {
+    this.teamService.deleteTeam(name).subscribe(_ => location.reload());
+  }
+
+  private navigateIfTeamIsNull() {
+    this.team$!!.subscribe(team => {
+      if (!team) {
+        this.navigateToTeams()
+      }
+    })
+  }
+
+  private navigateToTeams() {
+    this.router.navigate(['teams'], {relativeTo: this.route.parent?.parent});
   }
 }

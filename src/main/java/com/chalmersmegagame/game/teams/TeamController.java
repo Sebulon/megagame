@@ -38,8 +38,8 @@ public class TeamController {
         teamService.changeTeam(teamName, newMembers);
     }
 
-    @DeleteMapping()
-    public void deleteTeam(@RequestBody Team team) {
-        teamService.removeTeam(team);
+    @DeleteMapping("/{teamName}/delete")
+    public void deleteTeam(@PathVariable String teamName) {
+        teamService.removeTeam(teamName);
     }
 }

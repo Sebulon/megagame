@@ -25,7 +25,7 @@ public class TeamService {
     }
 
     public Team getTeamByName(String name){
-        return teamRepository.findById(name).get();
+        return teamRepository.findById(name).orElse(null);
     }
 
     public Team getTeamByPlayer(Player player){
@@ -44,8 +44,9 @@ public class TeamService {
         addTeam(new Team(teamName));
     }
 
-    public void removeTeam(Team team){
-        teamRepository.findById(team.getName());
+    public void removeTeam(String teamName){
+        Team team = teamRepository.findById(teamName).orElse(null);
+        if (team == null) return;
         PlayerShip teamShip = shipService.getPlayerShipByTeam(team);
         if(teamShip != null){
             shipService.removeTeamFromShip(teamShip);

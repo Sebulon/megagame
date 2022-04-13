@@ -55,9 +55,10 @@ export class Links {
      */
     public static post = 'api/teams';
     public static all = 'api/teams/all';
-    public static delete = 'api/teams';
-    public static assignPlayer = 'api/teams/assignPlayer';
-    public static removePlayer = 'api/teams/removePlayer';
+
+    public static delete(teamName: string) {
+      return `api/teams/${teamName}/delete`
+    }
 
     public static change(teamName: string) {
       return `api/teams/${teamName}/change`;

@@ -26,4 +26,23 @@ export class TeamsComponent implements OnInit {
     this.router.navigate([teamName, 'details'], {relativeTo: this.route})
   }
 
+  createTeam(teamNameInput: HTMLInputElement) {
+    // TODO: add ability to create team with members
+    // TODO: add actual feedback to users when cannot create team
+
+    if (!/^[a-zA-Z].*/gm.test(teamNameInput.value)) {
+      console.warn("The team name " + teamNameInput.value + " does not start with a letter!");
+      return;
+    }
+
+    let newTeam: Team = {name: teamNameInput.value, members: []}
+    this.$teams.subscribe(teams => {
+      if (teams.find(team => team.name == teamNameInput.value)) {
+        console.warn("Teams cannot have the same name!");
+        return;
+      }
+      this.teamService.createTeam(newTeam).subscribe(_ => location.reload());
+      teamNameInput.value = '';
+    })
+  }
 }

@@ -24,8 +24,8 @@ export class TeamService {
     );
   }
 
-  deleteTeam(team: Team) {
-    return this.http.delete(Links.teams.delete, {body: team}).pipe(
+  deleteTeam(team: string) {
+    return this.http.delete(Links.teams.delete(team)).pipe(
       retry(3),
       catchError(handleError)
     )
