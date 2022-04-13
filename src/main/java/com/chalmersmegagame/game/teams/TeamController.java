@@ -43,6 +43,11 @@ public class TeamController {
         teamService.removeTeamMember(playerId, teamName);
     }
 
+    @PutMapping("/change")
+    public void changeTeam(@RequestBody Team team) {
+        teamService.changeTeam(team);
+    }
+
     @DeleteMapping()
     public void deleteTeam(@RequestBody Team team) {
         teamService.removeTeam(team);

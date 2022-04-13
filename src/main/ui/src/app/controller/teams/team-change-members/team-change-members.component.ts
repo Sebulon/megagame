@@ -3,7 +3,7 @@ import {PlayerService} from "../../../player.service";
 import {TeamService} from "../../team.service";
 import {Team} from "../../../objects/team";
 import {Player} from "../../../objects/player";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-team-change-members',
@@ -12,34 +12,56 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class TeamChangeMembersComponent implements OnInit {
 
-  teams?: Team[];
-  currentTeam?: Team;
-  allPlayers?: Player[];
+  teamName: string;
+  availablePlayers?: Player[];
+  currentPlayers?: Player[];
 
   constructor(private playerService: PlayerService,
               private teamService: TeamService,
-              private route: ActivatedRoute) {
-    playerService.getPlayers().subscribe(players => this.allPlayers = players);
+              private route: ActivatedRoute,
+              private router: Router) {
+    this.teamName = route.snapshot.paramMap.get("teamName")!!;
 
-    let teamName = route.snapshot.paramMap.get("teamName")!!;
-    teamService.getTeams().subscribe(teams => {
-      this.teams = teams;
-      this.currentTeam = teams.find(team => team.name == teamName);
-    })
+    playerService.getPlayers().subscribe(
+      players => teamService.getTeams().subscribe(
+        teams => {
+          this.currentPlayers = teams.find(team => this.teamName == team.name)!!.members;
+          this.getAvailablePlayers(teams, players);
+        }
+      )
+    );
   }
 
-  getAvailablePlayers() {
-    if (!this.teams || !this.allPlayers) return null;
-
-    let availablePlayers = this.allPlayers.slice()
-    for (let team of this.teams) {
+  private getAvailablePlayers(teams: Team[], players: Player[]) {
+    let availablePlayers = players.slice()
+    for (let team of teams) {
       for (let player of team.members) {
         let indexToRemove = availablePlayers.findIndex(player1 => player1.id == player.id);
         if (indexToRemove == -1) continue;
         availablePlayers.splice(indexToRemove, 1);
       }
     }
-    return availablePlayers;
+    this.availablePlayers = availablePlayers;
+  }
+
+  change(player: Player) {
+    let i0 = this.currentPlayers!!.findIndex(p1 => p1.id == player.id);
+    let i1 = this.availablePlayers!!.findIndex(p1 => p1.id == player.id);
+
+    if (i0 == -1) {
+      this.currentPlayers?.push(player);
+      this.availablePlayers?.splice(i1, 1);
+      return;
+    }
+
+    this.availablePlayers?.push(player);
+    this.currentPlayers?.splice(i0, 1);
+  }
+
+  finish() {
+    let changedTeam: Team = {name: this.teamName, members: this.currentPlayers!!}
+    this.teamService.changeTeam(changedTeam).subscribe();
+    this.router.navigate([this.teamName, 'details'], {relativeTo: this.route.parent})
   }
 
   ngOnInit(): void {

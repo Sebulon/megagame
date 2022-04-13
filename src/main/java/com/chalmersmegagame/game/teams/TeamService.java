@@ -75,6 +75,11 @@ public class TeamService {
     }
 
 
+    public void changeTeam(Team team) {
+        Team realTeam = teamRepository.findById(team.getName()).orElse(null);
+        if (realTeam == null) return;
 
-
+        realTeam.setMembers(team.getMembers());
+        teamRepository.save(realTeam);
+    }
 }

@@ -1,7 +1,10 @@
 <h2>Available members:</h2>
-<p *ngFor="let player of getAvailablePlayers()">{{player.id}}</p>
-<h2>Members in team:</h2>
-<div *ngIf="currentTeam">
-  <p *ngFor="let player of currentTeam.members">{{player.id}}</p>
+<div *ngIf="availablePlayers">
+  <p *ngFor="let player of availablePlayers" (click)="change(player)">{{player.id}}</p>
 </div>
+<h2>Members in team:</h2>
+<div *ngIf="currentPlayers">
+  <p *ngFor="let player of currentPlayers" (click)="change(player)">{{player.id}}</p>
+</div>
+<button (click)="finish()">Finish</button>
 

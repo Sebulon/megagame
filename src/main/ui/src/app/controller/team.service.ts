@@ -50,4 +50,11 @@ export class TeamService {
       catchError(handleError)
     )
   }
+
+  changeTeam(changedTeam: Team) {
+    return this.http.put(Links.teams.change, changedTeam).pipe(
+      retry(3),
+      catchError(handleError)
+    )
+  }
 }
