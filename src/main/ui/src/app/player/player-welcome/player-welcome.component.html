@@ -1,7 +1,7 @@
 <div id="info">
   <div *ngIf="player$ | async; let player">
 
-    <div id="role-img"><img alt="Role Icon" src="../../../assets/img/icons/UN-representative.png"> </div>
+    <div id="role-img"><img alt="Role Icon" src="../../../assets/img/icons/{{getRoleImg(player.role)}}"> </div>
     <div>
       <h2>Role: {{player.role}}</h2>
       <p [innerHTML]="formatText(player.description)"></p>

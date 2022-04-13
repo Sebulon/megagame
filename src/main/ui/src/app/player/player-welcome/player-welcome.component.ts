@@ -21,6 +21,26 @@ export class PlayerWelcomeComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  getRoleImg(role: string): string  {
+    //TODO Make sure these are correct after all roles are implemented
+    switch(role) {
+      case "Archeologist":
+        return "Archeologist.png";
+      case "Captain":
+        return "Captain.png";
+      case "Doctor":
+        return "Doctor.png";
+      case "Engineer":
+        return "Engineer.png";
+      case "Resource Officer":
+        return "Resource-officer.png";
+      case "Scientist":
+        return "Scientist.png";
+      default:
+        return "UN-representative.png";
+    }
+  }
+
   formatText(text: string) {
     return text.replace(/\.[s]*/g, ". ")
       .replace(/\*\*/g, "<b>")
