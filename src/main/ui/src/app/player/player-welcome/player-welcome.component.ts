@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {PlayerService} from "../../player.service";
-import {ActivatedRoute} from "@angular/router";
-import {Player} from "../../objects/player";
+import {ActivatedRoute, Router} from "@angular/router";
+import {Player} from "../../interfaces/player";
 import {Observable} from "rxjs";
 
 @Component({

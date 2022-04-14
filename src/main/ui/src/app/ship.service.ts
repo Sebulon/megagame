@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Ship} from "./objects/ship";
+import {Ship} from "./interfaces/ship";
 import {Links} from "./links";
 import {HttpClient} from "@angular/common/http";
 import {catchError, retry} from "rxjs/operators";

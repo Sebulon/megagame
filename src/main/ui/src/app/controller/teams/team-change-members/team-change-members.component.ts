@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {PlayerService} from "../../../player.service";
 import {TeamService} from "../../team.service";
-import {Team} from "../../../objects/team";
-import {Player} from "../../../objects/player";
+import {Team} from "../../../interfaces/team";
+import {Player} from "../../../interfaces/player";
 import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({

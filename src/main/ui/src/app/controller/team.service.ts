@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Links} from "../links";
-import {Team} from "../objects/team";
+import {Team} from "../interfaces/team";
 import {catchError, map, retry, switchMap, take} from "rxjs/operators";
 import {handleError} from "../errorHandler";
 import {BehaviorSubject} from "rxjs";

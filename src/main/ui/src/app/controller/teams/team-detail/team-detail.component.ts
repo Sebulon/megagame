@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {Observable} from "rxjs";
-import {Team} from "../../../objects/team";
+import {Team} from "../../../interfaces/team";
 import {TeamService} from "../../team.service";
 
 @Component({

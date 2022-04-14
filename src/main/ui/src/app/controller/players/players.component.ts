@@ -3,9 +3,9 @@ import {PlayerService} from "../../player.service";
 import {TeamService} from "../team.service";
 import {ShipService} from "../../ship.service";
 import {Observable} from "rxjs";
-import {Player} from "../../objects/player";
-import {Ship} from "../../objects/ship";
-import {Team} from "../../objects/team";
+import {Player} from "../../interfaces/player";
+import {Ship} from "../../interfaces/ship";
+import {Team} from "../../interfaces/team";
 
 @Component({
   selector: 'app-players',

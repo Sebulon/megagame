@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
 import {CanLoad, Route, Router} from "@angular/router";
 import {AuthService} from "./auth.service";
-import {UserRole} from "../objects/user-role";
+import {UserRole} from "../interfaces/user-role";
 
 @Injectable({providedIn: 'root'})
 export class AuthControllerGuard implements CanLoad {

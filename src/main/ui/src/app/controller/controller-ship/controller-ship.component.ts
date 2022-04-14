@@ -1,5 +1,5 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {Ship} from "../../objects/ship";
+import {Ship} from "../../interfaces/ship";
 import {ActivatedRoute, Router} from "@angular/router";
 import {ShipService} from "../../ship.service";
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material/dialog";

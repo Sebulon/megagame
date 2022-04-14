@@ -1,6 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
-import {Ship} from "../../objects/ship";
+import {Ship} from "../../interfaces/ship";
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material/dialog";
 import {ShipService} from "../../ship.service";
 import {PlayerService} from "../../player.service";

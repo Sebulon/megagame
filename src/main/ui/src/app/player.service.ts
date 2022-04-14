@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Links} from "./links";
-import {Player} from "./objects/player";
-import {Ship} from "./objects/ship";
+import {Player} from "./interfaces/player";
+import {Ship} from "./interfaces/ship";
 
 @Injectable({
   providedIn: 'root'
