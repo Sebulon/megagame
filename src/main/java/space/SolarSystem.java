@@ -7,6 +7,7 @@ public class SolarSystem {
     private int size;
     private ArrayList<ICelestialObject> objectList = new ArrayList<>();
     private Set<SolarSystem> connections;
+    private boolean visited;
 
     public SolarSystem (int size, IGravityWell gravityWell){
         this.size = size;
@@ -39,11 +40,23 @@ public class SolarSystem {
         solarSystem.addConnection(this);
     }
 
+    public void setVisited(boolean visited) {
+        this.visited = visited;
+    }
+
     public ArrayList <ICelestialObject> getCelestialObjects(){
         return objectList;
     }
 
     public Set<SolarSystem> getConnections() {
         return connections;
+    }
+
+    public boolean isVisited() {
+        return visited;
+    }
+
+    public int getSize() {
+        return size;
     }
 }
