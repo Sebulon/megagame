@@ -1,6 +1,5 @@
-package space;
+package com.chalmersmegagame.game.space;
 
-import java.util.ArrayList;
 import java.util.Set;
 
 public class Galaxy {
