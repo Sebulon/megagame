@@ -10,8 +10,11 @@ import javax.persistence.Entity;
 @Entity
 public class Planetoid extends CelestialBody implements IHasResources {
 
+    @SuppressWarnings("JpaAttributeTypeInspection")
     private HashMap<String, Integer> resources = new HashMap<>();
+    @SuppressWarnings("JpaAttributeTypeInspection")
     private HashMap<String, Integer> resourceQuantities;
+    @SuppressWarnings("JpaAttributeTypeInspection")
     private ArrayList<Planetoid> satellites = new ArrayList<>();
     private int satelliteWeight;
 
@@ -42,6 +45,10 @@ public class Planetoid extends CelestialBody implements IHasResources {
         this.type = type;
         this.satellites = satellites;
         satelliteWeight += satellites.stream().mapToInt(Planetoid :: getSize).sum();
+    }
+
+    public Planetoid() {
+
     }
 
     public ArrayList<Planetoid> getSatellites() {

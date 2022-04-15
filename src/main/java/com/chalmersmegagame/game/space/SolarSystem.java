@@ -18,6 +18,7 @@ public class SolarSystem {
     private int size;
     @OneToMany
     private List<CelestialBody> objects = new ArrayList<>();
+    @SuppressWarnings("JpaAttributeTypeInspection")
     private Set<SolarSystem> connections;
     private boolean visited;
 
