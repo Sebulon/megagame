@@ -3,14 +3,12 @@ package com.chalmersmegagame.game.players;
 import javax.persistence.*;
 
 import com.chalmersmegagame.game.roles.Role;
-import lombok.Data;
 
 /**
  * Class representing a player
  */
 
 @Entity
-@Data
 public class Player {
 
     @Id
@@ -35,15 +33,15 @@ public class Player {
         this.role = role;
     }
 
-    public String getDescription() {
-        return role.getDescription();
+    public String getRole(){
+        return role.getName();
     }
 
-    public String getMiniGameDescription() {
-        return role.getMiniGameDescription();
+    public String getId() {
+        return id;
     }
 
-    public Role getRole(){
-        return role;
+    public String getName() {
+        return name;
     }
 }

@@ -69,6 +69,13 @@ export class Links {
     }
   }
 
+  static roles = class {
+    public static all = 'api/roles/all'
+    public static get(role: string) {
+      return `api/roles/${role}`;
+    }
+  }
+
 
   static getController(id: string) {
     return `api/controller/${id}`;

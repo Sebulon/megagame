@@ -9,6 +9,7 @@ import {MatSliderModule} from "@angular/material/slider";
 import {FormsModule} from "@angular/forms";
 import {PlayerWelcomeComponent} from "./player-welcome/player-welcome.component";
 import { SolarSystemComponent } from './solar-system/solar-system.component';
+import { RoleSelectorComponent } from './role-selector/role-selector.component';
 
 @NgModule({
   imports: [
@@ -24,7 +25,8 @@ import { SolarSystemComponent } from './solar-system/solar-system.component';
     PlayerShipComponent,
     PlayerWelcomeComponent,
     ResourceGiftDialog,
-    SolarSystemComponent
+    SolarSystemComponent,
+    RoleSelectorComponent
   ]
 })
 export class PlayerModule {
