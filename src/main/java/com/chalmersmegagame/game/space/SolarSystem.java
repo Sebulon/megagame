@@ -2,6 +2,8 @@ package com.chalmersmegagame.game.space;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,10 +18,13 @@ public class SolarSystem {
     private int size;
     @OneToMany
     private List<CelestialBody> objects = new ArrayList<>();
+    private Set<SolarSystem> connections;
+    private boolean visited;
 
     public SolarSystem(){};
 
-    public <T extends CelestialBody & IGravityWell> SolarSystem (int size, T gravityWell){
+    public <T extends CelestialBody & IGravityWell> SolarSystem (int size, T gravityWell, String name){
+        this.name = name;
         this.size = size;
         objects.add(gravityWell);
     }
@@ -45,8 +50,25 @@ public class SolarSystem {
         }
     }
 
+    public void addConnection(SolarSystem solarSystem){
+        connections.add(solarSystem);
+        solarSystem.addConnection(this);
+    }
+
+    public void setVisited(boolean visited) {
+        this.visited = visited;
+    }
+
     public List <CelestialBody> getCelestialObjects(){
         return objects;
+    }
+
+    public Set<SolarSystem> getConnections() {
+        return connections;
+    }
+
+    public boolean isVisited() {
+        return visited;
     }
 
     public String getName(){
