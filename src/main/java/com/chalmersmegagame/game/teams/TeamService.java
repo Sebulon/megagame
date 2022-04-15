@@ -1,6 +1,7 @@
 package com.chalmersmegagame.game.teams;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.chalmersmegagame.game.players.Player;
 import com.chalmersmegagame.game.players.PlayerService;
@@ -24,11 +25,15 @@ public class TeamService {
     }
 
     public Team getTeamByName(String name){
-        return teamRepository.findById(name).get();
+        return teamRepository.findById(name).orElse(null);
     }
 
     public Team getTeamByPlayer(Player player){
         return teamRepository.findByMembers(player);
+    }
+
+    public Team getTeamByPlayer(String id) {
+        return getTeamByPlayer(playerService.getPlayer(id));
     }
 
     public void addTeam(Team team){
@@ -39,38 +44,26 @@ public class TeamService {
         addTeam(new Team(teamName));
     }
 
-    public void addTeamMember(Player player, Team team){
-        Team oldTeam = getTeamByPlayer(player);
-        if(oldTeam != null){
-            oldTeam.removeTeamMember(player);
-            teamRepository.save(oldTeam);
-        }
-        team.addTeamMember(player);
-        teamRepository.save(team);
-    } 
-
-    public void addTeamMember(String playerId, String teamName){
-        addTeamMember(playerService.getPlayer(playerId), getTeamByName(teamName));
-    }
-
-    public void removeTeamMember(String playerId, String teamName) {
-        Team current = getTeamByName(teamName);
-        current.removeTeamMember(playerService.getPlayer(playerId));
-        teamRepository.save(current);
-    }
-
-    
-    public void removeTeam(Team team){
-        teamRepository.findById(team.getName());
+    public void removeTeam(String teamName){
+        Team team = teamRepository.findById(teamName).orElse(null);
+        if (team == null) return;
         PlayerShip teamShip = shipService.getPlayerShipByTeam(team);
         if(teamShip != null){
             shipService.removeTeamFromShip(teamShip);
         }
- 
+
         teamRepository.delete(team);
     }
 
 
+    public void changeTeam(String teamName, List<String> playerNames) {
+        Team realTeam = teamRepository.findById(teamName).orElse(null);
+        if (realTeam == null) return;
 
-
+        List<Player> newMembers = playerNames.stream()
+                .map(player -> playerService.getPlayer(player))
+                .collect(Collectors.toList());
+        realTeam.setMembers(newMembers);
+        teamRepository.save(realTeam);
+    }
 }

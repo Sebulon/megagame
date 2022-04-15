@@ -32,7 +32,13 @@
 
 @media screen and (max-width: 500px) {
   #role-img {
-    width: Calc(100%);
+    position: relative;
+    float: left;
+    left: Calc((100% - 300px)/2);
+  }
+
+  h2{
+    text-align: center;
   }
 
 }

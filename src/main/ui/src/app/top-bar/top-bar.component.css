@@ -7,11 +7,10 @@
   flex-direction: row;
   justify-content: flex-end;
   width: Calc(100vw - 150px);
-  margin-right: 2vw;
 }
 
 .nav-button {
-  background-color: #4b87bd;
+  background-color: var(--top-bar-color);
   color: white;
   border-style: hidden;
   text-align: center;
@@ -19,6 +18,17 @@
   font-size: 16px;
   font-weight: bold;
   height: 10vh;
+  cursor: pointer;
+}
+
+.nav-button img {
+  width: auto;
+  height: auto;
+  max-height: 60%;
+  max-width: 60%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .nav-button:hover {
@@ -27,4 +37,50 @@
 
 .nav-button:active {
   background-color: #59a4e5;
+}
+
+.dropdown {
+  position: relative;
+  display: none;
+}
+
+.dropdown-content {
+  right: 0;
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 50vw;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  border-bottom: 2px solid var(--grey);
+}
+
+.dropdown-content a:active {
+  background-color: #4b87bd;
+  color: white;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown:hover .nav-button {
+  background-color: #315b7e;
+}
+
+@media screen and (max-width: 500px) {
+  .hide-on-mobile {
+    display: none;
+  }
+
+  .dropdown {
+    display: inline-block;
+  }
 }

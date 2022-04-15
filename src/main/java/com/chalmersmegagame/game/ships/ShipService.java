@@ -24,7 +24,6 @@ public class ShipService {
     @Autowired
     private TeamService teamService;
 
-
     private <T extends Ship> JpaRepository<T, String>  getRepoByContains(Ship ship){
         if(testShipRepository.existsById(ship.getName())){
             return (JpaRepository<T, String>) testShipRepository;
@@ -103,14 +102,18 @@ public class ShipService {
     }
 
     @Transactional
-    public void modifyPlayerShipResource(String shipName, String resource, int quantity) {
-        PlayerShip ship = getPlayerShipByName(shipName);
+    public void modifyPlayerShipResource(PlayerShip ship, String resource, int quantity) {
         if (quantity > 0) {
             ship.addResource(resource, quantity);
         } else if (quantity < 0) {
             ship.removeResource(resource, quantity * -1);
         }
-        //playerShipRepository.save(ship);
+    }
+
+    @Transactional
+    public void modifyPlayerShipResource(String shipName, String resource, int quantity) {
+        PlayerShip ship = getPlayerShipByName(shipName);
+        modifyPlayerShipResource(ship, resource, quantity);
     }
 
     public void playerShipResourceTransfer(String sendingShip, String receivingShip, String resourceName, int quantity) {
@@ -125,5 +128,9 @@ public class ShipService {
     @Transactional
     public void removeTeamFromShip(PlayerShip ship){
         ship.setTeam(null);
+    }
+
+    public PlayerShip getPlayerShipByPlayer(String id) {
+        return getPlayerShipByTeam(teamService.getTeamByPlayer(id));
     }
 }

@@ -1,0 +1,18 @@
+<table>
+  <thead>
+  <tr>
+    <th>Id</th>
+    <th>Name</th>
+    <th>Team</th>
+    <th>Ship</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let player of players$ | async">
+    <td>{{player.id}}</td>
+    <td>INSERT NAME HERE</td>
+    <td *ngIf="teams">{{getTeamName(player.id)}}</td>
+    <td *ngIf="ships">{{getShipName(player.id)}}</td>
+  </tr>
+  </tbody>
+</table>

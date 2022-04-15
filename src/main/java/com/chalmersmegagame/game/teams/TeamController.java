@@ -33,18 +33,13 @@ public class TeamController {
         teamService.addTeam(team);
     }
 
-    @PutMapping("/assignPlayer")
-    public void assignPlayerToTeam(@RequestParam String playerId, @RequestParam String teamName) {
-        teamService.addTeamMember(playerId, teamName);
+    @PutMapping("/{teamName}/change")
+    public void changeTeam(@PathVariable String teamName, @RequestBody List<String> newMembers) {
+        teamService.changeTeam(teamName, newMembers);
     }
 
-    @PutMapping("/removePlayer")
-    public void removePlayerFromTeam(@RequestParam String playerId, @RequestParam String teamName) {
-        teamService.removeTeamMember(playerId, teamName);
-    }
-
-    @DeleteMapping()
-    public void deleteTeam(@RequestBody Team team) {
-        teamService.removeTeam(team);
+    @DeleteMapping("/{teamName}/delete")
+    public void deleteTeam(@PathVariable String teamName) {
+        teamService.removeTeam(teamName);
     }
 }

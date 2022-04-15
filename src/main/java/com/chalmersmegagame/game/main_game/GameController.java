@@ -43,6 +43,11 @@ public class GameController {
         gameService.restoreDB(saveName);
     }
 
+    @DeleteMapping("/drop")
+    public void dropDB(){
+        gameService.dropDB();
+    }
+
     
 
 

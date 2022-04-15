@@ -1,6 +1,5 @@
 package com.chalmersmegagame.game.players;
 
-import com.chalmersmegagame.game.ships.Ship;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,15 +12,6 @@ public class PlayerController {
 
     @Autowired
     private PlayerService playerService;
-
-    @RequestMapping("/{id}/current-ship")
-    public Ship getPlayerBoardedShip(@PathVariable("id") String id) {
-        Player p = playerService.getPlayer(id);
-        if (p == null) return null;
-
-        //TODO: Boarded ship is always null
-        return p.getBoardedShip();
-    }
 
     @RequestMapping("/all")
     public ResponseEntity<?> getPlayers() {

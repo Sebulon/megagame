@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {emptyShip, Ship} from "../../objects/ship";
+import {emptyShip, Ship} from "../../interfaces/ship";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Observable} from "rxjs";
 import {FormBuilder} from "@angular/forms";

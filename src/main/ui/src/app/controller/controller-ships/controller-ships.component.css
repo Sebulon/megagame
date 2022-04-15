@@ -20,24 +20,38 @@
   color: white;
 }
 
-.controller-link {
-  position: relative;
-  display: inline-block;
-  background-color: var(--grey);
-  text-align: center;
-  margin-bottom: 1vh;
-  font-size: 6vh;
-  border-radius: 10px;
-  white-space: pre-wrap;
-  padding: 1vw;
+table, td, th {
+  text-align: left;
+  padding: 4px 8px;
+  overflow: hidden;
 }
 
-a {
+table {
+  font-size: 1.5rem;
+  border-collapse: collapse;
   color: white;
 }
 
-a:active {
-  color: white;
+td {
+  max-width: 30vw;
+}
+
+th, tr:last-child {
+  border-bottom: 2px solid white;
+}
+
+.ship-entries {
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.ship-entries:hover {
+  background-color: white;
+  color: var(--background);
+}
+
+.ship-entries:active {
+  opacity: 0.5;
 }
 
 #form-section {
@@ -46,6 +60,7 @@ a:active {
   color: white;
   border-radius: 5px;
   margin-top: 2vh;
+  resize: none;
 }
 
 #create-ship {
@@ -59,10 +74,16 @@ input {
   margin-bottom: 8px;
   margin-top: 2px;
   display: inline-block;
-  border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
   font-size: 2vh;
+  outline: none;
+  border: none;
+}
+
+input:focus {
+  border-bottom: 4px solid var(--background);
+  margin-bottom: 4px;
 }
 
 input[type=submit] {
@@ -83,6 +104,21 @@ input[type=submit]:hover {
 
 label {
   font-size: 2vh;
+}
+
+@media screen and (max-width: 500px) {
+  table, td, th {
+    border-bottom: 2px solid white;
+  }
+  table {
+    font-size: 1rem;
+  }
+
+  .ship-entries:active {
+    background-color: white;
+    color: var(--background);
+    opacity: 1;
+  }
 }
 
 

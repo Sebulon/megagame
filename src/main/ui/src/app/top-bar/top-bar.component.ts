@@ -47,7 +47,8 @@ export class TopBarComponent implements OnInit {
     let controllerRoutes = [
       {name: 'Overview', link: prefix},
       {name: 'Ships', link: prefix + '/ships'},
-      {name: 'Players', link: prefix + '/players'}
+      {name: 'Players', link: prefix + '/players'},
+      {name: 'Teams', link: prefix + '/teams'}
     ];
     return this.getRoutes(controllerRoutes, lastDirectory);
   }

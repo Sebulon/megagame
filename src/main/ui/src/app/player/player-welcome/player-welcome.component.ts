@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {PlayerService} from "../../player.service";
-import {ActivatedRoute} from "@angular/router";
-import {Player} from "../../objects/player";
+import {ActivatedRoute, Router} from "@angular/router";
+import {Player} from "../../interfaces/player";
 import {Observable} from "rxjs";
 
 @Component({
@@ -19,6 +19,26 @@ export class PlayerWelcomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  getRoleImg(role: string): string  {
+    //TODO Make sure these are correct after all roles are implemented
+    switch(role) {
+      case "Archeologist":
+        return "Archeologist.png";
+      case "Captain":
+        return "Captain.png";
+      case "Doctor":
+        return "Doctor.png";
+      case "Engineer":
+        return "Engineer.png";
+      case "Resource Officer":
+        return "Resource-officer.png";
+      case "Scientist":
+        return "Scientist.png";
+      default:
+        return "UN-representative.png";
+    }
   }
 
   formatText(text: string) {

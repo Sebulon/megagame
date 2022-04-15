@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Ship} from "./objects/ship";
+import {Ship} from "./interfaces/ship";
 import {Links} from "./links";
 import {HttpClient} from "@angular/common/http";
 import {catchError, retry} from "rxjs/operators";
@@ -16,20 +16,16 @@ export class ShipService {
   constructor(private http: HttpClient) {
   }
 
-  getPlayerShip(id: string) {
-    return this.http.get<Ship>(Links.playerShip(id));
-  }
-
   getShip(name: string) {
-    return this.http.get<Ship>(Links.getShip(name));
+    return this.http.get<Ship>(Links.ships.get(name));
   }
 
-  getResources(ship: string) {
-    return this.http.get<Map<string, number>>(Links.playerShipResource(ship));
+  getResources(shipName: string) {
+    return this.http.get<Map<string, number>>(Links.ships.getResources(shipName));
   }
 
   getShips() {
-    return this.http.get<Ship[]>(Links.ships);
+    return this.http.get<Ship[]>(Links.ships.all);
   }
 
   /**
@@ -37,7 +33,7 @@ export class ShipService {
    * @param newShip The ship data to create a ship with
    */
   addShip(newShip: Ship) {
-    return this.http.post(Links.postShip, newShip).pipe(
+    return this.http.post(Links.ships.post, newShip).pipe(
       retry(3),
       catchError(handleError)
     );
@@ -49,7 +45,7 @@ export class ShipService {
    * @param hpChange The amount to change with.
    */
   changeShipHP(ship: string, hpChange: number) {
-    return this.http.put(Links.changeShipHP(ship, hpChange), null).pipe(
+    return this.http.put(Links.ships.changeHP(ship, hpChange), null).pipe(
       retry(3),
       catchError(handleError)
     );
@@ -60,7 +56,7 @@ export class ShipService {
    * @param ship The name of the ship to be deleted.
    */
   deleteShip(ship: string) {
-    return this.http.delete(Links.deleteShip(ship)).pipe(
+    return this.http.delete(Links.ships.delete(ship)).pipe(
       retry(3),
       catchError(handleError)
     );
@@ -73,14 +69,14 @@ export class ShipService {
    * @param resources
    */
   sendResources(from: string, to: string, resources: Map<string, number>) {
-    return this.http.put(Links.sendResources(from, to), this.convertMap(resources)).pipe(
+    return this.http.put(Links.ships.sendResources(from, to), this.convertMap(resources)).pipe(
       retry(3),
       catchError(handleError)
     );
   }
 
   changeResources(ship: string, resources: Map<string, number>) {
-    return this.http.put(Links.changeResources(ship), this.convertMap(resources)).pipe(
+    return this.http.put(Links.ships.changeResources(ship), this.convertMap(resources)).pipe(
       retry(3),
       catchError(handleError)
     );

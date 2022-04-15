@@ -1,8 +1,7 @@
 <div id="log-in-body">
   <div id="login">
-    <label for="player-id" id="player-id-label">Enter Player ID</label>
-    <input id="player-id" #playerId/>
-    <button type="submit" class="submit-player-id" (click)="submitPlayerID(playerId.value)">Submit!</button>
+    <label for="player-id" id="player-id-label">Megagame!</label>
+    <input placeholder="Pin Code" autocomplete="off" id="player-id" #playerId>
+    <button type="submit" id="submit-player-id" (click)="submitID(playerId.value)">Enter</button>
   </div>
 </div>
-

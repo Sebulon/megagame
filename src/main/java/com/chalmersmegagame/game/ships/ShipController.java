@@ -27,7 +27,11 @@ public class ShipController {
     public PlayerShip getPlayerShipByTeam(@PathVariable String teamName){
         return shipService.getPlayerShipByTeamName(teamName);
     }
-    
+
+    @RequestMapping("/getPlayerShip/player/{id}")
+    public PlayerShip getPlayerShipByPlayer(@PathVariable String id) {
+        return shipService.getPlayerShipByPlayer(id);
+    }
 
     @RequestMapping("/allShips")
     public List<? extends Ship> getAllShips(){
@@ -69,7 +73,6 @@ public class ShipController {
     @PutMapping("/playerShip/{shipName}/resources/modify")
     public void modifyPlayerShipResources(@PathVariable String shipName, @RequestBody Map<String, Integer> resources) {
         for (String resource : resources.keySet()) {
-            System.out.println(resource + ", " + resources.get(resource));
             shipService.modifyPlayerShipResource(shipName, resource, resources.get(resource));
         }
     }
