@@ -14,6 +14,8 @@ public class Feature {
         this.name = name;
     }
 
+    public Feature() {}
+
     public String getDescription() {
         return description;
     }
