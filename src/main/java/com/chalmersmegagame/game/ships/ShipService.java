@@ -7,6 +7,7 @@ import java.util.NoSuchElementException;
 
 import javax.transaction.Transactional;
 
+import com.chalmersmegagame.game.game_resources.TransactionService;
 import com.chalmersmegagame.game.teams.Team;
 import com.chalmersmegagame.game.teams.TeamService;
 
@@ -23,6 +24,8 @@ public class ShipService {
     private PlayerShipRepository playerShipRepository;
     @Autowired
     private TeamService teamService;
+    @Autowired
+    private TransactionService transactionService;
 
     private <T extends Ship> JpaRepository<T, String>  getRepoByContains(Ship ship){
         if(testShipRepository.existsById(ship.getName())){
@@ -119,6 +122,7 @@ public class ShipService {
     public void playerShipResourceTransfer(String sendingShip, String receivingShip, String resourceName, int quantity) {
         modifyPlayerShipResource(sendingShip, resourceName, -quantity);
         modifyPlayerShipResource(receivingShip, resourceName, quantity);
+        transactionService.newTransaction(getPlayerShipByName(receivingShip), sendingShip, resourceName, quantity);
     }
 
     public void playerShipResourcesTransfer(String sendingShip, String receivingShip, Map<String, Integer> resources) {
