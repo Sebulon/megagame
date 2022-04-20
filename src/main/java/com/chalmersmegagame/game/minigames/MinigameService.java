@@ -11,6 +11,7 @@ import com.chalmersmegagame.game.minigames.Morale.MoraleMinigameRepository;
 import com.chalmersmegagame.game.minigames.RefineResource.RefineMinigameRepository;
 import com.chalmersmegagame.game.ships.*;
 import com.chalmersmegagame.game.space.Planetoid;
+import com.chalmersmegagame.game.space.services.CelestialBodyService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,6 +27,8 @@ public class MinigameService {
     RefineMinigameRepository refineMinigameRepository;
     @Autowired
     GatherMinigameRepository gatherMinigameRepository;
+    @Autowired
+    CelestialBodyService celestialBodyService;
 
     public MoraleMinigame getMoraleMinigame(PlayerShip ship){
         return moraleMinigameRepository.findById(ship.getName()).get();
@@ -70,7 +73,7 @@ public class MinigameService {
     }
 
     @Transactional
-    public void setGatherPlanet(PlayerShip ship, Planetoid planet){
+    public void setGatherSourcePlanet(PlayerShip ship, Planetoid planet){
         GatherMinigame gatherMinigame = gatherMinigameRepository.findById(ship.getName()).get();
         gatherMinigame.setSourcePlanet(planet);
     }
@@ -80,5 +83,18 @@ public class MinigameService {
         GatherMinigame gatherMinigame = gatherMinigameRepository.findById(ship.getName()).get();
         gatherMinigame.getAllocatedCrew().put(resource, crewQuantity);
     }
-    
+
+    @Transactional
+    public void resolveGatherAll(){
+        for(GatherMinigame gatherMinigame : gatherMinigameRepository.findAll()){
+            gatherMinigame.resolveGatherResources();
+        }
+    }
+
+    @Transactional
+    public void setGatherSourcePlanet(PlayerShip ship, String planetName){
+        GatherMinigame gatherMinigame = gatherMinigameRepository.findById(ship.getName()).get();
+        Planetoid planet = celestialBodyService.getPlanetoidByName(planetName);
+        gatherMinigame.setSourcePlanet(planet);
+    }
 }

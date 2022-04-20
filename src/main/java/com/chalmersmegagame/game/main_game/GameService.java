@@ -4,15 +4,23 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import javax.persistence.*;
 import javax.transaction.Transactional;
 
 import com.chalmersmegagame.game.minigames.MinigameService;
+import com.chalmersmegagame.game.minigames.Morale.MoraleMinigame;
 import com.chalmersmegagame.game.players.*;
 import com.chalmersmegagame.game.roles.Role;
 import com.chalmersmegagame.game.ships.*;
+import com.chalmersmegagame.game.space.CelestialBody;
+import com.chalmersmegagame.game.space.Planetoid;
 import com.chalmersmegagame.game.space.SolarSystem;
+import com.chalmersmegagame.game.space.Star;
+import com.chalmersmegagame.game.space.services.CelestialBodyService;
+import com.chalmersmegagame.game.space.services.SolarSystemService;
 import com.chalmersmegagame.game.teams.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +41,10 @@ public class GameService {
     private ShipService shipService;
     @Autowired
     private MinigameService minigameService;
+    @Autowired
+    private SolarSystemService solarSystemService;
+    @Autowired
+    private CelestialBodyService celestialBodyService;
 
     public MainGame game(){
         return gameRepository.findAll().get(0);
@@ -59,11 +71,28 @@ public class GameService {
         teamService.addTeam(team1);
         teamService.addTeam(team2);
 
+        Star star1 = celestialBodyService.createStar(2, "Yellow Star");
+
+        Planetoid planet1 = celestialBodyService.createPlanetoid(3, "Frozen Planet");
+        Planetoid planet2 = celestialBodyService.createPlanetoid(2, "Habitable Planet");
+
+        ArrayList<CelestialBody> celArr = new ArrayList<>(
+            Arrays.asList(star1,
+                          planet1,
+                          planet2));
+
+        SolarSystem solarSystem1 = solarSystemService.createSolarSystem(celArr);
+
+        game().setCurrentSystem(solarSystem1);
+
         shipService.addPlayerShip(new PlayerShip(team1, "High Charity", "The Covenant",10, 7));
         shipService.addPlayerShip(new PlayerShip(team2, "Unyielding Hierophant", "The Covenant",40, 8));
-
+        
         minigameService.addGatherResource(shipService.getPlayerShipByName("High Charity"), "RAW MATERIALS", 2, 5);
         minigameService.addGatherResource(shipService.getPlayerShipByName("Unyielding Hierophant"), "WATER", 1, 3);
+
+        minigameService.addMoraleMinigame(new MoraleMinigame(shipService.getPlayerShipByName("High Charity")));
+        minigameService.addMoraleMinigame(new MoraleMinigame(shipService.getPlayerShipByName("Unyielding Hierophant")));
 
         setCurrentTurn(1);
         

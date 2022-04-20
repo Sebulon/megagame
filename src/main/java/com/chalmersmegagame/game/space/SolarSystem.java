@@ -3,10 +3,7 @@ package com.chalmersmegagame.game.space;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 
 @Entity
 public class SolarSystem {
@@ -51,6 +48,10 @@ public class SolarSystem {
 
     public String getName(){
         return name;
+    }
+
+    public void setName(String name){
+        this.name = name;
     }
 
     public int getSize(){

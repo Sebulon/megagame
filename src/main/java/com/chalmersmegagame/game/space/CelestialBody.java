@@ -12,7 +12,7 @@ public abstract class CelestialBody implements ICelestialObject {
     @Id
     private String name;
     protected String type;
-    @ManyToMany
+    @ManyToMany 
     protected List<Feature> features = new ArrayList<>();
     protected int size;
     @Transient
@@ -46,5 +46,13 @@ public abstract class CelestialBody implements ICelestialObject {
     @Override
     public void setSize(int size) {
         this.size = size;
+    }
+
+    public String getName(){
+        return name;
+    }
+
+    public void setName(String name){
+        this.name = name;
     }
 }

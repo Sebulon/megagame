@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 @Entity
 public class Star extends CelestialBody implements IGravityWell {
 
+    public Star(){}
+
     public Star(int size, String type){
         if (!typeHandler.getStarTypes().contains(type)){
             throw new IllegalArgumentException("Illegal type");

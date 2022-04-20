@@ -1,6 +1,5 @@
 package com.chalmersmegagame.game.game_resources;
 
-import java.security.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;

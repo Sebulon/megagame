@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.persistence.*;
 
+import com.chalmersmegagame.game.game_resources.TransactionService;
 import com.chalmersmegagame.game.ships.*;
 import com.chalmersmegagame.game.space.Planetoid;
 import com.fasterxml.jackson.annotation.JsonBackReference;
@@ -14,6 +15,9 @@ import lombok.Data;
 @Entity
 @Data
 public class GatherMinigame {
+
+    @Transient
+    TransactionService transactionService;
 
     @Id
     String ship;
@@ -83,7 +87,15 @@ public class GatherMinigame {
         }else if(!minimumCrew.containsKey(resource)){
             throw new RuntimeException("No minimum crew for" + resource);
         }
-        
+         
+    }
+
+    public void resolveGatherResources(){
+        for(String resource : allocatedCrew.keySet()){
+            int quantityGathered = gatherResource(resource);
+            playerShip.addResource(resource, quantityGathered);
+            transactionService.newTransaction(playerShip, "Gathered from planet " + sourcePlanet.getName(), resource, quantityGathered);
+        }
     }
 
 

@@ -4,10 +4,7 @@ import com.chalmersmegagame.game.ships.PlayerShip;
 import com.chalmersmegagame.game.ships.ShipService;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("api/minigames")
@@ -33,13 +30,19 @@ public class MinigameController {
         minigameService.allocateCrewToGather(ship, resource, quantity);
     }
 
+    @PutMapping("/resolveGatherResources")
+    public void resolveGatherResourcesAll(){
+        minigameService.resolveGatherAll();
+    }
+
+    @PutMapping("/setGatherSourcePlanet")
+    public void setGatherSourcePlanet(@RequestParam PlayerShip ship, @RequestParam String planetName){
+        minigameService.setGatherSourcePlanet(ship, planetName);        
+    }
+
     @PutMapping("/test")
-    public int test(){
-        int x1 = 4;
-        double x2 = 3;
-        double x3 = 2;
-        double x = x1 * (1 + (x2 - x3)/2);
-        return (int) x;
+    public void test(){
+                
     }
     
 }

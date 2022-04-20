@@ -7,13 +7,15 @@ import java.util.HashMap;
 
 import javax.persistence.Entity;
 
-@Entity
+@Entity 
 public class Planetoid extends CelestialBody implements IHasResources {
 
     private HashMap<String, Integer> resources = new HashMap<>();
     private HashMap<String, Integer> resourceQuantities;
     private ArrayList<Planetoid> satellites = new ArrayList<>();
     private int satelliteWeight;
+
+    public Planetoid(){}
 
     public Planetoid (int size, String type){
 

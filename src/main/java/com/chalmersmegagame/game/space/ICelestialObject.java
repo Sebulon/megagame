@@ -1,6 +1,5 @@
 package com.chalmersmegagame.game.space;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public interface ICelestialObject {
