@@ -6,6 +6,8 @@
       {{member.id}}
     </li>
   </ul>
-  <button (click)="navigateToChangeMembers(team.name)">Change members</button>
-  <button (click)="removeTeam(team.name)">Delete</button>
+  <div id="team-buttons">
+    <button (click)="navigateToChangeMembers(team.name)" id="change-members">Change members</button>
+    <button (click)="removeTeam(team.name)" id="delete-team">Delete</button>
+  </div>
 </div>
