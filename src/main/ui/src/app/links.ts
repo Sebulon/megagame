@@ -4,6 +4,7 @@
 export class Links {
   static players = class {
     public static all = 'api/players/all';
+    public static create = 'api/players/add'
 
     public static get(id: string) {
       return `api/players/${id}`;
@@ -11,6 +12,10 @@ export class Links {
 
     public static ship(playerId: string) {
       return `api/ships/getPlayerShip/player/${playerId}`;
+    }
+
+    public static delete(playerId: string) {
+      return `api/players/delete/${playerId}`;
     }
   }
 

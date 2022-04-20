@@ -1,5 +1,7 @@
 package com.chalmersmegagame.game.players;
 
+import com.chalmersmegagame.game.teams.Team;
+import com.chalmersmegagame.game.teams.TeamService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +14,9 @@ public class PlayerService {
     @Autowired
     private PlayerRepository playerRepository;
 
+    @Autowired
+    private TeamService teamService;
+
     public Player getPlayer(String id) {
         return playerRepository.findById(id).orElse(null);
     }
@@ -20,8 +25,19 @@ public class PlayerService {
         return playerRepository.findAll();
     }
 
-    public void addPlayer(Player player){
+    public void addPlayer(Player player) {
         playerRepository.save(player);
     }
 
+    public void removePlayer(String id) {
+        Player player = playerRepository.findById(id).orElse(null);
+        if (player == null) return;
+
+        Team team = teamService.getTeamByPlayer(player);
+        if (team != null) {
+            team.removeTeamMember(player);
+        }
+
+        playerRepository.deleteById(id);
+    }
 }
