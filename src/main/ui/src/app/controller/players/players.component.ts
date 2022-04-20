@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {PlayerService} from "../../player.service";
 import {TeamService} from "../team.service";
 import {ShipService} from "../../ship.service";
@@ -12,11 +12,17 @@ import {Team} from "../../interfaces/team";
   templateUrl: './players.component.html',
   styleUrls: ['./players.component.css']
 })
-export class PlayersComponent implements OnInit {
+export class PlayersComponent implements OnInit, AfterViewInit {
 
   players$: Observable<Player[]>;
   ships: Ship[] | null = null;
   teams: Team[] | null = null;
+  isAddingPlayer = false;
+  selectedShip: string | null = null;
+  id: string | null = null;
+
+  @ViewChild('nameInput') inputElement?: ElementRef;
+  @ViewChild('addPlayerField') addPlayerField?: ElementRef;
 
   constructor(private playerService: PlayerService,
               private teamService: TeamService,
@@ -26,8 +32,15 @@ export class PlayersComponent implements OnInit {
     teamService.getTeams().subscribe(teams => this.teams = teams);
   }
 
+  //TODO: Update values in "real-time"
+
+  //TODO: Fix how create new players button only work once...
+
 
   ngOnInit(): void {
+  }
+
+  ngAfterViewInit() {
   }
 
   getTeamName(playerId: string) {
@@ -39,12 +52,48 @@ export class PlayersComponent implements OnInit {
   }
 
   getShipName(playerId: string) {
-    if (this.ships == null) return null;
     let teamName = this.getTeamName(playerId);
     if (teamName == null) return null;
+    return this.getShipBasedOnTeam(teamName);
+  }
+
+  generateId() {
+    const characters = 'abcdefghijklmnopqrstuvwxyz0123456789';
+    let result = '';
+    for (let i = 0; i < 5; i++) {
+      result += characters.charAt(Math.floor(Math.random() * characters.length));
+    }
+    return result;
+  }
+
+  getShipBasedOnTeam(team: string) {
+    if (team == null || team == '' || team == '-') return null;
+    if (this.ships == null) return null;
+
     let shipsContainingTeam = this.ships
-      .filter(ship => ship.team?.name == teamName);
+      .filter(ship => ship.team?.name == team);
     if (shipsContainingTeam.length == 0) return null;
     return shipsContainingTeam[0].name;
+  }
+
+  addPlayer() {
+    this.addPlayerField!!.nativeElement.hidden = false;
+    this.id = this.generateId();
+    this.inputElement!!.nativeElement.focus();
+  }
+
+  createPlayer(id: string, name: string, teamName: string) {
+    let player: Player = {id: id, name: name};
+    let members = this.teams?.find(team => team.name == teamName)?.members.map(member => member.id);
+
+    this.playerService.createPlayer(player).subscribe(_ => {
+      if (!members) return;
+      members.push(id);
+      this.teamService.changeTeamMembers(teamName, members).subscribe();
+    });
+  }
+
+  deletePlayer(player: Player) {
+    this.playerService.deletePlayer(player.id).subscribe();
   }
 }

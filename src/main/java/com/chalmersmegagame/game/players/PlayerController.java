@@ -2,9 +2,7 @@ package com.chalmersmegagame.game.players;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/players")
@@ -21,5 +19,15 @@ public class PlayerController {
     @RequestMapping("/{id}")
     public Player getPlayer(@PathVariable String id) {
         return playerService.getPlayer(id);
+    }
+
+    @PostMapping("/add")
+    public void createPlayer(@RequestBody Player newPlayer) {
+        playerService.addPlayer(newPlayer);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public void deletePlayer(@PathVariable String id) {
+        playerService.removePlayer(id);
     }
 }

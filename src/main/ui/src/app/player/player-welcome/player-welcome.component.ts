@@ -24,6 +24,7 @@ export class PlayerWelcomeComponent implements OnInit {
     this.player$.subscribe(player => {
       if (player.role == "" || player.role == null) {
         this.navigateToRoleSelection();
+        return;
       }
       roleService.getRole(player.role).subscribe(role => {
         this.description = role.description;
@@ -35,7 +36,7 @@ export class PlayerWelcomeComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  getRoleImg(role: string): string {
+  getRoleImg(role?: string): string {
     //TODO Make sure these are correct after all roles are implemented
     switch (role) {
       case "Archeologist":

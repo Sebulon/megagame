@@ -26,4 +26,12 @@ export class PlayerService {
   getPlayerShip(playerId: string) {
     return this.http.get<Ship>(Links.players.ship(playerId));
   }
+
+  createPlayer(player: Player) {
+    return this.http.post(Links.players.create, player);
+  }
+
+  deletePlayer(id: string) {
+    return this.http.delete(Links.players.delete(id));
+  }
 }

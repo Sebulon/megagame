@@ -10,9 +10,31 @@
   <tbody>
   <tr *ngFor="let player of players$ | async">
     <td>{{player.id}}</td>
-    <td>INSERT NAME HERE</td>
+    <td>{{player.name}}</td>
     <td *ngIf="teams">{{getTeamName(player.id)}}</td>
     <td *ngIf="ships">{{getShipName(player.id)}}</td>
+    <td>
+      <div (click)="deletePlayer(player)">X</div>
+    </td>
+  </tr>
+  <tr #addPlayerField [hidden]="true">
+    <td>
+      <input [value]="id" #idInput>
+    </td>
+    <td>
+      <input placeholder="name" #nameInput>
+    </td>
+    <td>
+      <select #teamSelector (change)="selectedShip = getShipBasedOnTeam(teamSelector.value)">
+        <option value="-">-</option>
+        <option *ngFor="let team of teams" value="{{team.name}}">{{team.name}}</option>
+      </select>
+    </td>
+    <td>
+      {{selectedShip}}
+    </td>
+    <td (click)="createPlayer(idInput.value, nameInput.value, teamSelector.value)">&check;</td>
   </tr>
   </tbody>
 </table>
+<button (click)="addPlayer()">Add player</button>
