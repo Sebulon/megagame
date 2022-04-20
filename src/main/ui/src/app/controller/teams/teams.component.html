@@ -1,15 +1,14 @@
-<h1>Teams:</h1>
 <div id="teams-content">
   <ul id="teams-list">
-    <li class="teams-list-item" *ngFor="let team of teams$ | async">
-      <a (click)="goToDetail(team.name)">{{team.name}}</a>
+    <li class="teams-list-item" *ngFor="let team of teams$ | async" (click)="goToDetail(team.name)">
+      {{team.name}}
+    </li>
+    <li>
+      <div id="create-team">
+        <input #teamName placeholder="Create Team">
+        <button (click)="createTeam(teamName)">Create Team</button>
+      </div>
     </li>
   </ul>
+  <router-outlet></router-outlet>
 </div>
-
-<div>
-  <input #teamName>
-  <button (click)="createTeam(teamName)">Create Team</button>
-</div>
-
-<router-outlet></router-outlet>

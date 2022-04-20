@@ -3,6 +3,7 @@ import {PlayerService} from "../../player.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Player} from "../../interfaces/player";
 import {Observable} from "rxjs";
+import {RoleService} from "../role.service";
 
 @Component({
   selector: 'app-player-welcome',
@@ -12,18 +13,31 @@ import {Observable} from "rxjs";
 export class PlayerWelcomeComponent implements OnInit {
 
   player$: Observable<Player>;
+  description?: string;
+  miniGameDescription?: string;
 
   constructor(private playerService: PlayerService,
+              private roleService: RoleService,
+              private router: Router,
               private route: ActivatedRoute) {
     this.player$ = playerService.getPlayer(route.snapshot.paramMap.get('id')!!);
+    this.player$.subscribe(player => {
+      if (player.role == "" || player.role == null) {
+        this.navigateToRoleSelection();
+      }
+      roleService.getRole(player.role).subscribe(role => {
+        this.description = role.description;
+        this.miniGameDescription = role.miniGameDescription;
+      });
+    })
   }
 
   ngOnInit(): void {
   }
 
-  getRoleImg(role: string): string  {
+  getRoleImg(role: string): string {
     //TODO Make sure these are correct after all roles are implemented
-    switch(role) {
+    switch (role) {
       case "Archeologist":
         return "Archeologist.png";
       case "Captain":
@@ -45,5 +59,9 @@ export class PlayerWelcomeComponent implements OnInit {
     return text.replace(/\.[s]*/g, ". ")
       .replace(/\*\*/g, "<b>")
       .replace(/<b>([^|]*)<b>/g, "<b>$1</b>")
+  }
+
+  private navigateToRoleSelection() {
+    this.router.navigate(['role-selector'], {relativeTo: this.route.parent})
   }
 }

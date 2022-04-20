@@ -1,9 +1,12 @@
 package com.chalmersmegagame.game.roles;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
+@JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public enum Role {
     Captain("captain.md"),
     Scientist("scientist.md");
@@ -34,6 +37,10 @@ public enum Role {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+    }
+
+    public String getName() {
+        return this.name();
     }
 
     public String getDescription() {

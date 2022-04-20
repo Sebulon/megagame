@@ -2,11 +2,11 @@
   <div *ngIf="player$ | async; let player">
 
     <div id="role-img"><img alt="Role Icon" src="../../../assets/img/icons/{{getRoleImg(player.role)}}"> </div>
-    <div>
+    <div *ngIf="description && miniGameDescription">
       <h2>Role: {{player.role}}</h2>
-      <p [innerHTML]="formatText(player.description)"></p>
+      <p [innerHTML]="formatText(description)"></p>
       <br>
-      <p [innerHTML]="formatText(player.miniGameDescription)"></p>
+      <p [innerHTML]="formatText(miniGameDescription)"></p>
     </div>
   </div>
   <button [routerLink]="'../ship'" class="standard-button">Go to Ship</button>
