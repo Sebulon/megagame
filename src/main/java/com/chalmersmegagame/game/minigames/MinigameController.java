@@ -27,5 +27,19 @@ public class MinigameController {
     public void allocateResourceMorale(@RequestParam PlayerShip ship, @RequestParam String resource, @RequestParam int quantity){
         minigameService.allocateResourceMorale(ship, resource, quantity);
     }
+
+    @PutMapping("/allocateCrew/gather")
+    public void allocateCrewGather(@RequestParam PlayerShip ship, @RequestParam String resource, @RequestParam int quantity){
+        minigameService.allocateCrewToGather(ship, resource, quantity);
+    }
+
+    @PutMapping("/test")
+    public int test(){
+        int x1 = 4;
+        double x2 = 3;
+        double x3 = 2;
+        double x = x1 * (1 + (x2 - x3)/2);
+        return (int) x;
+    }
     
 }

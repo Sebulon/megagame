@@ -20,7 +20,7 @@ public class MoraleMinigame{
     @OneToOne
     @JoinColumn(name = "ship")
     @MapsId
-    public PlayerShip playerShip;
+    private PlayerShip playerShip;
 
     int moraleScore = 5;
     @ElementCollection
@@ -61,8 +61,6 @@ public class MoraleMinigame{
         quantityMoraleImpact.put(half, -1);
         quantityMoraleImpact.put(normal, 0);
         quantityMoraleImpact.put(luxurious, 2);
-
-        quantityMoraleImpact.forEach((key, value) -> System.out.println(key + " " + value));
     }
 
     public void resolveMoraleCheck(){

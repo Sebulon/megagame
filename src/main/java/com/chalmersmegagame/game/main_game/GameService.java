@@ -31,6 +31,8 @@ public class GameService {
     private TeamService teamService;
     @Autowired
     private ShipService shipService;
+    @Autowired
+    private MinigameService minigameService;
 
     public MainGame game(){
         return gameRepository.findAll().get(0);
@@ -59,6 +61,9 @@ public class GameService {
 
         shipService.addPlayerShip(new PlayerShip(team1, "High Charity", "The Covenant",10, 7));
         shipService.addPlayerShip(new PlayerShip(team2, "Unyielding Hierophant", "The Covenant",40, 8));
+
+        minigameService.addGatherResource(shipService.getPlayerShipByName("High Charity"), "RAW MATERIALS", 2, 5);
+        minigameService.addGatherResource(shipService.getPlayerShipByName("Unyielding Hierophant"), "WATER", 1, 3);
 
         setCurrentTurn(1);
         

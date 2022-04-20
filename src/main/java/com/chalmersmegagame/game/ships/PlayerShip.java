@@ -7,10 +7,12 @@ import java.util.Map;
 import javax.persistence.*;
 
 import com.chalmersmegagame.game.game_resources.*;
+import com.chalmersmegagame.game.minigames.GatherResource.GatherMinigame;
 import com.chalmersmegagame.game.minigames.Morale.MoraleMinigame;
 import com.chalmersmegagame.game.teams.*;
 
 import lombok.Data;
+import lombok.ToString;
 
 @Entity
 @Data
@@ -20,9 +22,10 @@ public class PlayerShip extends Ship implements IHasResources, IHasTeam {
     private Map<String, Integer> resources = new HashMap<>();
     @OneToOne
     private Team team;
+    @ToString.Exclude
     @OneToOne(mappedBy = "playerShip", cascade=CascadeType.ALL)
     private MoraleMinigame moraleMinigame;
-
+    
     public PlayerShip() {
     }
 
@@ -31,10 +34,10 @@ public class PlayerShip extends Ship implements IHasResources, IHasTeam {
         setName(shipName);
         setFaction(faction);
 
-        addResource("Food", 10);
-        addResource("Water", 0);
-        addResource("Fuel", 50);
-        addResource("Materials", 30);
+        setResource("Food", 10);
+        setResource("Water", 0);
+        setResource("Fuel", 50);
+        setResource("Materials", 30);
 
         setMaxHP(maxHP);
         setHP(maxHP);
@@ -60,6 +63,10 @@ public class PlayerShip extends Ship implements IHasResources, IHasTeam {
     @Override
     public Team getTeam() {
         return team;
+    }
+
+    public void setResource(String resourceName, int quantity){
+        resources.put(resourceName, quantity);
     }
 
     @Override
