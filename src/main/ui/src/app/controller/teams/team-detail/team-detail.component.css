@@ -1,0 +1,41 @@
+button {
+  font-size: 1.4rem;
+  outline: none;
+  border: none;
+  color: white;
+  background-color: var(--background);
+  overflow: hidden;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin-bottom: 30px;
+}
+
+h2, h4 {
+  margin: 10px 20px;
+}
+
+#change-members, #delete-team {
+  padding: 10px 20px;
+  transition: 0.3s;
+  cursor: pointer;
+  margin: 10px 0;
+  border-radius: 3px;
+}
+
+#change-members:hover, #delete-team:hover {
+  color: var(--background);
+  background-color: white;
+}
+
+#change-members:active, #delete-team:active {
+  opacity: 0.6;
+}
+
+@media screen and (max-width: 500px) {
+  #change-members, #delete-team {
+    border: 2px solid white;
+  }
+}
