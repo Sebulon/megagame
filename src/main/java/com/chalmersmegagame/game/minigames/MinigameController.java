@@ -1,5 +1,7 @@
 package com.chalmersmegagame.game.minigames;
 
+import com.chalmersmegagame.game.minigames.vaultle.VaultleMinigameRepository;
+import com.chalmersmegagame.game.players.Player;
 import com.chalmersmegagame.game.ships.PlayerShip;
 import com.chalmersmegagame.game.ships.ShipService;
 
@@ -41,5 +43,14 @@ public class MinigameController {
         double x = x1 * (1 + (x2 - x3)/2);
         return (int) x;
     }
+
+/*
+    @PutMapping("/guess")
+    public int[] checkGuess(@RequestParam PlayerShip ship, @RequestParam String guess){
+        return minigameService.checkQuess(ship, guess);
+    }
+
+ */
+
     
 }
