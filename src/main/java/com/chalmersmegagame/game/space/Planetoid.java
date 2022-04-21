@@ -5,16 +5,18 @@ import com.chalmersmegagame.game.game_resources.IHasResources;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Planetoid extends CelestialBody implements IHasResources {
 
-    @SuppressWarnings("JpaAttributeTypeInspection")
+    @ElementCollection
     private HashMap<String, Integer> resources = new HashMap<>();
-    @SuppressWarnings("JpaAttributeTypeInspection")
+    @ElementCollection
     private HashMap<String, Integer> resourceQuantities;
-    @SuppressWarnings("JpaAttributeTypeInspection")
+    @OneToMany
     private ArrayList<Planetoid> satellites = new ArrayList<>();
     private int satelliteWeight;
 
