@@ -17,7 +17,7 @@ public class Galaxy {
     }
 
     public Galaxy() {
-        
+
     }
 
     public void pairSolarSystems(SolarSystem solarSystem1, SolarSystem solarSystem2){
