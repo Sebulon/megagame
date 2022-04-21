@@ -4,7 +4,7 @@
     <tr>
       <th>Name</th><th>Faction</th><th>CrewSize</th>
     </tr>
-    <tr *ngFor="let ship of ships | async" [routerLink]="ship.name" class="ship-entries">
+    <tr *ngFor="let ship of ships" [routerLink]="ship.name" class="ship-entries">
       <td>{{ship.name}}</td> <td>{{ship.faction}}</td> <td>{{ship.crewSize}}</td>
     </tr>
   </table>
@@ -45,6 +45,18 @@
           Crew Size
         </label>
         <input id="crewSize" type="number" formControlName="crewSize" required="true" placeholder="0">
+      </div>
+
+      <div class="form-part">
+        <label for="team">
+          Team
+        </label>
+        <select id="team" formControlName="team">
+          <option>-</option>
+          <option *ngFor="let team of getAcceptableTeams()">
+            {{team.name}}
+          </option>
+        </select>
       </div>
 
       <input type="submit" value="Submit">

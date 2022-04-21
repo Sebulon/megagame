@@ -11,6 +11,7 @@ import {Observable} from "rxjs";
   styleUrls: ['./controller-ship.component.css']
 })
 export class ControllerShipComponent implements OnInit {
+  //TODO: Make ship see all resources that are in circulation
 
   public ship$: Observable<Ship>;
   public hpChange: number | null = null;

@@ -23,4 +23,5 @@ export class emptyShip implements Ship {
   maxHP = 0;
   name = '';
   resourceQuantities = new Map<string, number>();
+  team = {name: '-', members: []}
 }
