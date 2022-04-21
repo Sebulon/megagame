@@ -1,7 +1,9 @@
 <div id="info">
   <div *ngIf="player$ | async; let player">
 
-    <div id="role-img"><img alt="Role Icon" src="../../../assets/img/icons/{{getRoleImg(player.role)}}"> </div>
+    <div *ngIf="player.role" id="role-img">
+      <img alt="Role Icon" src="../../../assets/img/icons/{{player.role}}.png">
+    </div>
     <div *ngIf="description && miniGameDescription">
       <h2>Role: {{player.role}}</h2>
       <p [innerHTML]="formatText(description)"></p>

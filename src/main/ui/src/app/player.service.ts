@@ -34,4 +34,8 @@ export class PlayerService {
   deletePlayer(id: string) {
     return this.http.delete(Links.players.delete(id));
   }
+
+  setRole(id: string, roleName: string) {
+    return this.http.put(Links.players.setRole(id), roleName);
+  }
 }

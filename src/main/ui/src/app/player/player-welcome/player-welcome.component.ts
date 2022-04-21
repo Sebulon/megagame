@@ -4,6 +4,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {Player} from "../../interfaces/player";
 import {Observable} from "rxjs";
 import {RoleService} from "../role.service";
+import {TextFormatService} from "../../text-format.service";
 
 @Component({
   selector: 'app-player-welcome',
@@ -18,6 +19,7 @@ export class PlayerWelcomeComponent implements OnInit {
 
   constructor(private playerService: PlayerService,
               private roleService: RoleService,
+              private textFormatService: TextFormatService,
               private router: Router,
               private route: ActivatedRoute) {
     this.player$ = playerService.getPlayer(route.snapshot.paramMap.get('id')!!);
@@ -36,30 +38,8 @@ export class PlayerWelcomeComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  getRoleImg(role?: string): string {
-    //TODO Make sure these are correct after all roles are implemented
-    switch (role) {
-      case "Archeologist":
-        return "Archeologist.png";
-      case "Captain":
-        return "Captain.png";
-      case "Doctor":
-        return "Doctor.png";
-      case "Engineer":
-        return "Engineer.png";
-      case "Resource Officer":
-        return "Resource-officer.png";
-      case "Scientist":
-        return "Scientist.png";
-      default:
-        return "UN-representative.png";
-    }
-  }
-
   formatText(text: string) {
-    return text.replace(/\.[s]*/g, ". ")
-      .replace(/\*\*/g, "<b>")
-      .replace(/<b>([^|]*)<b>/g, "<b>$1</b>")
+    return this.textFormatService.convertFromMarkdownToHtml(text);
   }
 
   private navigateToRoleSelection() {

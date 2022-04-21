@@ -1,5 +1,6 @@
 package com.chalmersmegagame.game.players;
 
+import com.chalmersmegagame.game.roles.Role;
 import com.chalmersmegagame.game.teams.Team;
 import com.chalmersmegagame.game.teams.TeamService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,5 +40,12 @@ public class PlayerService {
         }
 
         playerRepository.deleteById(id);
+    }
+
+    public void setRole(String id, String role) {
+        Player player = getPlayer(id);
+        Role newRole = Role.valueOf(role);
+        player.setRole(newRole);
+        playerRepository.save(player);
     }
 }

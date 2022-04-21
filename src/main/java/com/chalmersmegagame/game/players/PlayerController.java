@@ -30,4 +30,9 @@ public class PlayerController {
     public void deletePlayer(@PathVariable String id) {
         playerService.removePlayer(id);
     }
+
+    @PutMapping("/{id}/setRole")
+    public void setRoleOnPlayer(@PathVariable String id, @RequestBody String role) {
+        playerService.setRole(id, role);
+    }
 }
