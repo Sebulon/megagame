@@ -4,6 +4,8 @@ import com.chalmersmegagame.game.game_resources.IHasResources;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
@@ -13,11 +15,9 @@ import javax.persistence.OneToMany;
 public class Planetoid extends CelestialBody implements IHasResources {
 
     @ElementCollection
-    private HashMap<String, Integer> resources = new HashMap<>();
-    @ElementCollection
-    private HashMap<String, Integer> resourceQuantities;
+    private Map<String, Integer> resources = new HashMap<>();
     @OneToMany
-    private ArrayList<Planetoid> satellites = new ArrayList<>();
+    private List<Planetoid> satellites = new ArrayList<>();
     private int satelliteWeight;
 
     public Planetoid(){}
@@ -51,11 +51,7 @@ public class Planetoid extends CelestialBody implements IHasResources {
         satelliteWeight += satellites.stream().mapToInt(Planetoid :: getSize).sum();
     }
 
-    public Planetoid() {
-
-    }
-
-    public ArrayList<Planetoid> getSatellites() {
+    public List<Planetoid> getSatellites() {
         return satellites;
     }
 
@@ -72,12 +68,12 @@ public class Planetoid extends CelestialBody implements IHasResources {
 
     @Override
     public ArrayList<String> getResources() {
-        return new ArrayList<String>(this.resources.keySet());
+        return new ArrayList<>(this.resources.keySet());
     }
 
     @Override
-    public HashMap<String, Integer> getResourceQuantities() {
-        return this.resourceQuantities;
+    public Map<String, Integer> getResourceQuantities() {
+        return resources;
     }
 
     @Override
