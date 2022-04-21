@@ -64,7 +64,7 @@ public class MinigameService {
         Optional<GatherMinigame> opGather = gatherMinigameRepository.findById(ship.getName());
         gatherMinigame = opGather.orElseGet(() -> new GatherMinigame(ship));
         
-        gatherMinigame.addResource(resource, minimumCrew, baseExtractionRate);
+        gatherMinigame.addResourceCapability(resource, minimumCrew, baseExtractionRate);
         gatherMinigameRepository.save(gatherMinigame);
     }
 
