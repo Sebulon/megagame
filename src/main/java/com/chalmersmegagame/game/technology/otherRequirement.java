@@ -1,20 +1,21 @@
-package com.chalmersmegagame.game.space;
+package com.chalmersmegagame.game.technology;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-public class Feature {
+public class otherRequirement {
     @Id
     private String name;
     private String description;
+    private boolean achieved;
 
-    public Feature (String description, String name){
+    public otherRequirement (String description, String name){
         this.description = description;
         this.name = name;
     }
 
-    public Feature() {}
+    public otherRequirement() {}
 
     public String getDescription() {
         return description;
@@ -30,5 +31,13 @@ public class Feature {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public boolean isAchieved() {
+        return achieved;
+    }
+
+    public void setAchieved(boolean achieved) {
+        this.achieved = achieved;
     }
 }

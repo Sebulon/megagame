@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public abstract class Technology {
     private boolean researched, researchable;
     private ArrayList <Technology> requirements = new ArrayList<>();
+    private ArrayList <otherRequirement> otherRequirements = new ArrayList<>();
     private String description;
 
     public void update (){
@@ -12,7 +13,7 @@ public abstract class Technology {
             researchable = false;
         }
 
-        if (requirements.isEmpty() && researched == false){
+        if ((requirements.isEmpty() && otherRequirements.isEmpty()) && researched == false){
             researchable = true;
         }
 
@@ -21,6 +22,11 @@ public abstract class Technology {
 
             if (tech.isResearched() == true){
                 requirements.remove(tech);
+            }
+        }
+        for (otherRequirement req : otherRequirements){
+            if (req.isAchieved() == true){
+                otherRequirements.remove(req);
             }
         }
     }
