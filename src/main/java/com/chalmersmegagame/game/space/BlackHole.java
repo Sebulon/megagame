@@ -1,9 +1,16 @@
 package com.chalmersmegagame.game.space;
 
-public class BlackHole extends CelestialBody implements ICelestialObject{
+import javax.persistence.Entity;
+
+@Entity
+public class BlackHole extends CelestialBody implements IGravityWell{
 
     public BlackHole (int size){
         this.size = size;
         this.type = "Black Hole";
+    }
+
+    public BlackHole() {
+
     }
 }
