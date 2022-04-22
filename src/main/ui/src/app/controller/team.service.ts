@@ -5,6 +5,7 @@ import {Team} from "../interfaces/team";
 import {catchError, map, retry, switchMap, take} from "rxjs/operators";
 import {handleError} from "../errorHandler";
 import {BehaviorSubject} from "rxjs";
+import {Player} from "../interfaces/player";
 
 @Injectable({
   providedIn: 'root'
@@ -43,7 +44,16 @@ export class TeamService {
     return this.http.get<Team>(Links.teams.get(name));
   }
 
-  changeTeamMembers(teamName: string, newMembers: string[]) {
+  changeTeamMembers(teamName: string, newMembers: Player[]) {
+    this.teams$.pipe(
+      take(1),
+      switchMap(teams => this.http.put(Links.teams.change(teamName), newMembers).pipe(
+        map(() => teams.map(team => {
+          if (team.name == teamName) team.members = newMembers
+          return team;
+        }))
+      ))
+    ).subscribe(teams => this.teams$.next(teams))
     return this.http.put(Links.teams.change(teamName), newMembers).pipe(
       retry(3),
       catchError(handleError)

@@ -59,7 +59,7 @@ export class TeamChangeMembersComponent implements OnInit {
   }
 
   finish() {
-    this.teamService.changeTeamMembers(this.teamName, this.currentPlayers!!.map(player => player.id)).subscribe(_ =>
+    this.teamService.changeTeamMembers(this.teamName, this.currentPlayers!!).subscribe(_ =>
       this.router.navigate([this.teamName, 'details'], {relativeTo: this.route.parent})
     );
   }

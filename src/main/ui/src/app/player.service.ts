@@ -3,11 +3,15 @@ import {HttpClient} from "@angular/common/http";
 import {Links} from "./links";
 import {Player} from "./interfaces/player";
 import {Ship} from "./interfaces/ship";
+import {BehaviorSubject} from "rxjs";
+import {map, switchMap, take} from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root'
 })
 export class PlayerService {
+
+  private players$ = new BehaviorSubject<Player[]>([])
 
   constructor(private http: HttpClient) {
   }
@@ -16,7 +20,8 @@ export class PlayerService {
    * Get all players that the backend knows of.
    */
   getPlayers() {
-    return this.http.get<Player[]>(Links.players.all);
+    this.http.get<Player[]>(Links.players.all).subscribe(players => this.players$.next(players));
+    return this.players$.asObservable();
   }
 
   getPlayer(id: string) {
@@ -28,11 +33,21 @@ export class PlayerService {
   }
 
   createPlayer(player: Player) {
-    return this.http.post(Links.players.create, player);
+    this.players$.pipe(
+      take(1),
+      switchMap(players => this.http.post(Links.players.create, player).pipe(
+        map(() => [...players, player])
+      ))
+    ).subscribe(players => this.players$.next(players));
   }
 
   deletePlayer(id: string) {
-    return this.http.delete(Links.players.delete(id));
+    this.players$.pipe(
+      take(1),
+      switchMap(players => this.http.delete(Links.players.delete(id)).pipe(
+        map(() => players.filter(player => player.id != id))
+      ))
+    ).subscribe(teams => this.players$.next(teams))
   }
 
   setRole(id: string, roleName: string) {
