@@ -17,7 +17,7 @@ public class SolarSystem {
     private List<CelestialBody> objects = new ArrayList<>();
     @OneToMany
     private Set<SolarSystem> connections;
-    private Boolean visited;
+    private Boolean visited = false;
 
     public SolarSystem(){}
 

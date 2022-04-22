@@ -80,9 +80,14 @@ export class Links {
 
   static roles = class {
     public static all = 'api/roles/all'
+
     public static get(role: string) {
       return `api/roles/${role}`;
     }
+  }
+
+  static space = class {
+    public static currentSolarSystem = 'api/solar-systems/current'
   }
 
 
