@@ -9,7 +9,11 @@ import java.util.Scanner;
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public enum Role {
     Captain("captain.md"),
-    Scientist("scientist.md");
+    Doctor("doctor.md"),
+    Engineer("engineer.md"),
+    Scientist("scientist.md"),
+    UN_Representative("un-representative.md");
+
 
     private String description = "";
     private String miniGame = "";

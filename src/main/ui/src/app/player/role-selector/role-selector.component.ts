@@ -30,8 +30,12 @@ export class RoleSelectorComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  format(text: string) {
+  formatDescription(text: string) {
     return this.textFormatService.convertFromMarkdownToHtml(text);
+  }
+
+  formatName(name: string) {
+    return name.replace("_", "-");
   }
 
   setRole(role: Role) {

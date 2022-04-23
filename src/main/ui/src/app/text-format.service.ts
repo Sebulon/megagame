@@ -9,8 +9,8 @@ export class TextFormatService {
   }
 
   convertFromMarkdownToHtml(text: string) {
-    return text.replace(/\.[s]*/g, ". ")
-      .replace(/\*\*/g, "<b>")
-      .replace(/<b>([^|]*)<b>/g, "<b>$1</b>")
+    return text
+      .replace(/\\/gm, "<br>") // Convert break lines
+      .replace(/\*\*([^*]*)\*\*/gm, "<strong>$1</strong>") // Convert bold
   }
 }
