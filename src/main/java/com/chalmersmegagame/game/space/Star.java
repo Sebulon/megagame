@@ -15,7 +15,4 @@ public class Star extends CelestialBody implements IGravityWell {
         this.type = type;
     }
 
-    public Star() {
-
-    }
 }
