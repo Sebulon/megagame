@@ -17,6 +17,10 @@ export class Links {
     public static delete(playerId: string) {
       return `api/players/delete/${playerId}`;
     }
+
+    public static setRole(id: string) {
+      return `api/players/${id}/setRole`
+    }
   }
 
   static ships = class {
@@ -76,9 +80,14 @@ export class Links {
 
   static roles = class {
     public static all = 'api/roles/all'
+
     public static get(role: string) {
       return `api/roles/${role}`;
     }
+  }
+
+  static space = class {
+    public static currentSolarSystem = 'api/solar-systems/current'
   }
 
 

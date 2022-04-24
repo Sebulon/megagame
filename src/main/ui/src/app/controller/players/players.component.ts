@@ -32,11 +32,6 @@ export class PlayersComponent implements OnInit, AfterViewInit {
     teamService.getTeams().subscribe(teams => this.teams = teams);
   }
 
-  //TODO: Update values in "real-time"
-
-  //TODO: Fix how create new players button only work once...
-
-
   ngOnInit(): void {
   }
 
@@ -84,16 +79,18 @@ export class PlayersComponent implements OnInit, AfterViewInit {
 
   createPlayer(id: string, name: string, teamName: string) {
     let player: Player = {id: id, name: name};
-    let members = this.teams?.find(team => team.name == teamName)?.members.map(member => member.id);
+    let members = this.teams?.find(team => team.name == teamName)?.members;
 
-    this.playerService.createPlayer(player).subscribe(_ => {
-      if (!members) return;
-      members.push(id);
-      this.teamService.changeTeamMembers(teamName, members).subscribe();
-    });
+    this.playerService.createPlayer(player);
+
+    this.id = this.generateId();
+    if (!members) return;
+
+    members.push(player);
+    this.teamService.changeTeamMembers(teamName, members).subscribe();
   }
 
   deletePlayer(player: Player) {
-    this.playerService.deletePlayer(player.id).subscribe();
+    this.playerService.deletePlayer(player.id);
   }
 }

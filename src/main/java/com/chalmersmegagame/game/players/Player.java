@@ -44,4 +44,10 @@ public class Player {
     public String getName() {
         return name;
     }
+
+    public void setRole(Role role) {
+        if (this.role != null) throw new IllegalStateException("Should not change role if already assigned");
+
+        this.role = role;
+    }
 }

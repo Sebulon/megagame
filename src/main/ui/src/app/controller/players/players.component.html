@@ -14,7 +14,7 @@
     <td *ngIf="teams">{{getTeamName(player.id)}}</td>
     <td *ngIf="ships">{{getShipName(player.id)}}</td>
     <td>
-      <div (click)="deletePlayer(player)">X</div>
+      <div class="right-button" (click)="deletePlayer(player)">X</div>
     </td>
   </tr>
   <tr #addPlayerField [hidden]="true">
@@ -33,7 +33,7 @@
     <td>
       {{selectedShip}}
     </td>
-    <td (click)="createPlayer(idInput.value, nameInput.value, teamSelector.value)">&check;</td>
+    <td class="right-button" (click)="createPlayer(idInput.value, nameInput.value, teamSelector.value)">&check;</td>
   </tr>
   </tbody>
 </table>

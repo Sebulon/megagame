@@ -1,1 +1,9 @@
-<p>role-selector works!</p>
+<div *ngFor="let role of roles" (click)="selectedRole = role.name">
+  <img alt="Role Icon" src="../../../assets/img/icons/{{role.name}}.png">
+  <h2>{{formatName(role.name)}}</h2>
+  <div *ngIf="role.name == selectedRole">
+    <p [innerHTML]="formatDescription(role.description)"></p>
+    <p *ngIf="role.miniGameDescription" [innerHTML]="formatDescription(role.miniGameDescription)"></p>
+    <button (click)="setRole(role)">Select</button>
+  </div>
+</div>

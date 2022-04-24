@@ -34,7 +34,7 @@ public class TeamController {
     }
 
     @PutMapping("/{teamName}/change")
-    public void changeTeam(@PathVariable String teamName, @RequestBody List<String> newMembers) {
+    public void changeTeam(@PathVariable String teamName, @RequestBody List<Player> newMembers) {
         teamService.changeTeam(teamName, newMembers);
     }
 

@@ -20,15 +20,15 @@ public class TeamService {
     @Autowired
     private ShipService shipService;
 
-    public List<Team> getAllTeams(){
+    public List<Team> getAllTeams() {
         return teamRepository.findAll();
     }
 
-    public Team getTeamByName(String name){
+    public Team getTeamByName(String name) {
         return teamRepository.findById(name).orElse(null);
     }
 
-    public Team getTeamByPlayer(Player player){
+    public Team getTeamByPlayer(Player player) {
         return teamRepository.findByMembers(player);
     }
 
@@ -36,19 +36,19 @@ public class TeamService {
         return getTeamByPlayer(playerService.getPlayer(id));
     }
 
-    public void addTeam(Team team){
+    public void addTeam(Team team) {
         teamRepository.save(team);
     }
 
-    public void createTeam(String teamName){
+    public void createTeam(String teamName) {
         addTeam(new Team(teamName));
     }
 
-    public void removeTeam(String teamName){
+    public void removeTeam(String teamName) {
         Team team = teamRepository.findById(teamName).orElse(null);
         if (team == null) return;
         PlayerShip teamShip = shipService.getPlayerShipByTeam(team);
-        if(teamShip != null){
+        if (teamShip != null) {
             shipService.removeTeamFromShip(teamShip);
         }
 
@@ -56,12 +56,12 @@ public class TeamService {
     }
 
 
-    public void changeTeam(String teamName, List<String> playerNames) {
+    public void changeTeam(String teamName, List<Player> players) {
         Team realTeam = teamRepository.findById(teamName).orElse(null);
         if (realTeam == null) return;
 
-        List<Player> newMembers = playerNames.stream()
-                .map(player -> playerService.getPlayer(player))
+        List<Player> newMembers = players.stream()
+                .map(player -> playerService.getPlayer(player.getId()))
                 .collect(Collectors.toList());
         realTeam.setMembers(newMembers);
         teamRepository.save(realTeam);

@@ -59,6 +59,9 @@ export class PlayerShipComponent implements OnInit {
     });
   }
 
+  navigateToSpace() {
+    this.router.navigate(['solar-system'], {relativeTo: this.route.parent})
+  }
 }
 
 

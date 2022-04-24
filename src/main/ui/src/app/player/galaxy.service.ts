@@ -1,26 +1,17 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
+import {SolarSystem} from "../interfaces/solar-system";
+import {Links} from "../links";
 
 @Injectable({
   providedIn: 'root'
 })
 export class GalaxyService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   getActiveSolarSystem() {
-    //TODO
-    return this.http.get<CelestialObject[]>('../assets/solarSystem.json');
+    return this.http.get<SolarSystem>(Links.space.currentSolarSystem);
   }
-}
-
-export interface CelestialObject {
-  type: string,
-  size: number,
-  features: Feature[]
-}
-
-interface Feature {
-  name: string,
-  description: string
 }

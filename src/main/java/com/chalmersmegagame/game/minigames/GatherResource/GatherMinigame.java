@@ -10,6 +10,8 @@ import com.chalmersmegagame.game.ships.*;
 import com.chalmersmegagame.game.space.Planetoid;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import lombok.Data;
 
 @Entity
@@ -17,6 +19,7 @@ import lombok.Data;
 public class GatherMinigame {
 
     @Transient
+    @Autowired
     TransactionService transactionService;
 
     @Id
@@ -44,12 +47,12 @@ public class GatherMinigame {
         
     }
 
-    public void addResource(String resource, int minimumCrew, int baseExtractionRate){
+    public void addResourceCapability(String resource, int minimumCrew, int baseExtractionRate){
         this.minimumCrew.put(resource, minimumCrew);
         this.baseExtractionRate.put(resource, baseExtractionRate);
     }
 
-    public int gatherResource(String resource){
+    public int gatherResourceAmount(String resource){
         checkResource(resource);
 
         int availableResource;
@@ -78,7 +81,7 @@ public class GatherMinigame {
 
     public int gatherResource(String resource, Planetoid planet){
         sourcePlanet = planet;
-        return gatherResource(resource);
+        return gatherResourceAmount(resource);
     }
 
     private void checkResource(String resource){
@@ -87,12 +90,11 @@ public class GatherMinigame {
         }else if(!minimumCrew.containsKey(resource)){
             throw new RuntimeException("No minimum crew for" + resource);
         }
-         
     }
 
     public void resolveGatherResources(){
         for(String resource : allocatedCrew.keySet()){
-            int quantityGathered = gatherResource(resource);
+            int quantityGathered = gatherResourceAmount(resource);
             playerShip.addResource(resource, quantityGathered);
             transactionService.newTransaction(playerShip, "Gathered from planet " + sourcePlanet.getName(), resource, quantityGathered);
         }

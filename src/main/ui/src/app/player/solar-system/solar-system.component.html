@@ -1,14 +1,18 @@
-<div *ngIf="activeGalaxy" id="spaceBackground" [ngStyle]="{'background-image': 'url('+imgPath+'/SpaceBackground.png)'}">
-  <div *ngFor="let body of activeGalaxy" class="celestialBody" [ngStyle]="{'width': 'Calc('+body.size+'% + 100%/('+activeGalaxy.length+' + 2))'}">
+<div *ngIf="solarSystem$ | async; let solarSystem" id="spaceBackground"
+     [ngStyle]="{'background-image': 'url('+imgPath+'/SpaceBackground.png)'}">
+  <div *ngFor="let object of solarSystem.celestialObjects" class="celestialBody"
+       [ngStyle]="{'width': 'Calc('+object.size+'% + 100%/('+solarSystem.size+' + 2))'}">
     <img alt="Planet" src="{{imgPath}}/CelestialBody.png">
     <div class="information">
-      <h1>{{body.type}}</h1>
-      <h2>Size: {{body.size}}</h2>
-      <p *ngFor="let feature of body.features">
+      <h1>{{object.type}}</h1>
+      <h2>Size: {{object.size}}</h2>
+      <p *ngFor="let feature of object.features">
         <strong>{{feature.name}}</strong>
         <br>
         {{feature.description}}
       </p>
     </div>
   </div>
+  <button (click)="navigateToShip()">Go to ship</button>
 </div>
+

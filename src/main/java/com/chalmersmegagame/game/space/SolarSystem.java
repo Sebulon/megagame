@@ -17,9 +17,9 @@ public class SolarSystem {
     private List<CelestialBody> objects = new ArrayList<>();
     @OneToMany
     private Set<SolarSystem> connections;
-    private boolean visited;
+    private Boolean visited = false;
 
-    public SolarSystem(){};
+    public SolarSystem(){}
 
     public <T extends CelestialBody & IGravityWell> SolarSystem (int size, T gravityWell, String name){
         this.name = name;

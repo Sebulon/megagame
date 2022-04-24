@@ -3,7 +3,7 @@
   <h4>Players:</h4>
   <ul>
     <li *ngFor="let member of team.members">
-      {{member.id}}
+      {{member.name}} (<em>{{member.id}}</em>)
     </li>
   </ul>
   <div id="team-buttons">

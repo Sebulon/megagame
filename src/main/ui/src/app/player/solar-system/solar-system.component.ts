@@ -1,5 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {CelestialObject, GalaxyService} from "../galaxy.service";
+import {GalaxyService} from "../galaxy.service";
+import {Observable} from "rxjs";
+import {SolarSystem} from "../../interfaces/solar-system";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-solar-system',
@@ -9,14 +12,19 @@ import {CelestialObject, GalaxyService} from "../galaxy.service";
 export class SolarSystemComponent implements OnInit {
 
   imgPath = "../../../assets/img/space"
-  activeGalaxy: CelestialObject[] | null = null
+  solarSystem$: Observable<SolarSystem>;
 
-  constructor(private galaxyService: GalaxyService) {
-    galaxyService.getActiveSolarSystem().subscribe(galaxy => this.activeGalaxy = galaxy)
+  constructor(private galaxyService: GalaxyService,
+              private router: Router,
+              private route: ActivatedRoute) {
+    this.solarSystem$ = galaxyService.getActiveSolarSystem()
   }
 
   ngOnInit(): void {
   }
 
+  navigateToShip() {
+    this.router.navigate(['ship'], {relativeTo: this.route.parent})
+  }
 }
 
