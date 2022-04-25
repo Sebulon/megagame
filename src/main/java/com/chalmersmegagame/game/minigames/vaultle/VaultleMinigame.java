@@ -31,13 +31,10 @@ public class VaultleMinigame {
     private char[] theWordArray;
     @ElementCollection
     @OrderColumn
-    private static String[] dict = new String[]{"flake", "eagle", "squat", "apple", "pears","scare","bolts","poise","valve","nails","screw","cloth","query"};;
+    private static String[] dict = new String[]{"flake", "eagle", "squat", "apple", "pears","scare","bolts","poise","valve","nails","screw","cloth","query"};
     private int numOfGuesses;
     private int maxNumOfGuesses = 6;
     private Boolean win = false;
-    @ElementCollection
-    @OrderColumn
-    private int[] testArray = new int[]{0,0,0,0,0};
     @ElementCollection
     private List<String> previousGuesses = new ArrayList<String>();
     @ElementCollection
@@ -48,7 +45,6 @@ public class VaultleMinigame {
 
     public VaultleMinigame(PlayerShip playerShip){
         this.playerShip = playerShip;
-
     }
     //Randomises a new word and resets the proper values for a new game
     public void init() {
