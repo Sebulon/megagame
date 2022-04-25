@@ -1,5 +1,7 @@
 package com.chalmersmegagame.game.minigames;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import javax.transaction.Transactional;
@@ -86,29 +88,53 @@ public class MinigameService {
         gatherMinigame.getAllocatedCrew().put(resource, crewQuantity);
     }
 
-
+    //Below this: vaultle functions
     public VaultleMinigame getVaultleMinigame(PlayerShip ship){
-        if(vaultleMinigameRepository.findById(ship.getName()).isPresent()){
-            return vaultleMinigameRepository.findById(ship.getName()).get(); //Osäker
-        }
-        //Throw exeption
-        return null;
+        return vaultleMinigameRepository.findById(ship.getName()).get();
     }
 
     @Transactional
-    public void addVaultleMinigame(VaultleMinigame mg){ vaultleMinigameRepository.save(mg); }
+    public void addVaultleMinigame(VaultleMinigame mg){
+        vaultleMinigameRepository.save(mg);
+    }
 
     @Transactional
-    public int[] checkQuess(@RequestParam PlayerShip ship, String guess){
+    public int[] checkGuess(@RequestParam PlayerShip ship, String guess){
         VaultleMinigame mg = getVaultleMinigame(ship);
         return mg.guess(guess);
     }
 
+    //Remove this later?
     @Transactional
     public String getTheAnswer(PlayerShip ship){
         VaultleMinigame mg = getVaultleMinigame(ship);
         return mg.getTheWord();
     }
 
+    @Transactional
+    public void gameInit(PlayerShip ship){
+        VaultleMinigame mg = getVaultleMinigame(ship);
+        mg.init();
+    }
 
+    @Transactional
+    public void newWord(PlayerShip ship){
+        VaultleMinigame mg = getVaultleMinigame(ship);
+        mg.newWord();
+    }
+
+    @Transactional
+    public int getNumOfGuesses(PlayerShip ship){
+        return getVaultleMinigame(ship).getNumOfGuesses();
+    }
+
+    @Transactional
+    public Boolean getWin(PlayerShip ship){
+        return getVaultleMinigame(ship).getWin();
+    }
+
+    @Transactional
+    public List<String> getPreviousGuesses(PlayerShip ship){
+        return getVaultleMinigame(ship).getPreviousGuesses();
+    }
 }
