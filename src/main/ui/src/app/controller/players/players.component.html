@@ -13,11 +13,9 @@
     <td>{{player.name}}</td>
     <td *ngIf="teams">{{getTeamName(player.id)}}</td>
     <td *ngIf="ships">{{getShipName(player.id)}}</td>
-    <td>
-      <div class="right-button" (click)="deletePlayer(player)">X</div>
-    </td>
+    <td class ="right-button delete" (click)="deletePlayer(player)">X</td>
   </tr>
-  <tr #addPlayerField [hidden]="true">
+  <tr #addPlayerField [hidden]="true" class="create-player">
     <td>
       <input [value]="id" #idInput>
     </td>
@@ -33,8 +31,10 @@
     <td>
       {{selectedShip}}
     </td>
-    <td class="right-button" (click)="createPlayer(idInput.value, nameInput.value, teamSelector.value)">&check;</td>
+    <td class="right-button create" (click)="createPlayer(idInput.value, nameInput.value, teamSelector.value)">&check;</td>
+  </tr>
+  <tr>
+    <td class="add-player"(click)="addPlayer()">Add player</td>
   </tr>
   </tbody>
 </table>
-<button (click)="addPlayer()">Add player</button>
