@@ -33,12 +33,22 @@ public class DiceService {
         return dice;
     }
 
-    public int rollSum(){
+    public int rollSum(ArrayList<Die> dice){
         int sum = 0;
         for (Die die : dice){
             sum += die.roll();
         }
         return sum;
+    }
+
+    public int rollKeepHighest(ArrayList<Die> dice){
+        int returnInt = 0;
+        for (Die die : dice){
+            if (returnInt < die.roll()){
+                returnInt = die.roll();
+            }
+        }
+        return returnInt;
     }
 }
 
