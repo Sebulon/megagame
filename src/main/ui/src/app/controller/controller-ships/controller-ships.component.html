@@ -1,12 +1,16 @@
 <div id="controller-ships-body">
   <div id="headline">Ships: </div>
   <table>
+    <thead>
     <tr>
       <th>Name</th><th>Faction</th><th>CrewSize</th>
     </tr>
+    </thead>
+    <tbody>
     <tr *ngFor="let ship of ships" [routerLink]="ship.name" class="ship-entries">
       <td>{{ship.name}}</td> <td>{{ship.faction}}</td> <td>{{ship.crewSize}}</td>
     </tr>
+    </tbody>
   </table>
 
   <div id="form-section">
