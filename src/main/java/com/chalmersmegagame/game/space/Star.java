@@ -21,6 +21,5 @@ public class Star extends CelestialBody implements IGravityWell {
         BROWN_DWARF,
         NEUTRON,
         PULSAR,
-        WHITE_DWARF
     }
 }
