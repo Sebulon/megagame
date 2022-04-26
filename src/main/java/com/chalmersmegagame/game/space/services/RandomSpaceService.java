@@ -14,7 +14,7 @@ public class RandomSpaceService {
         diceService.addDie(6);
         int result = diceService.rollSum();
         if (result == 1){
-            return new BlackHole(size.nextInt(10));
+            return new BlackHole(size.nextInt(1) + 1);
         }
         else{
             return generateRandomStar();
@@ -31,10 +31,10 @@ public class RandomSpaceService {
         diceService.addDie(20);
         int result = diceService.rollSum();
         if (result == 1){
-            return new Star(size.nextInt(10), "Pulsar");
+            return new Star(size.nextInt(10) + 1, Star.StarTypes.PULSAR);
         }
         else if (result == 2){
-            return new Star(size.nextInt(10), "Neutron Star");
+            return new Star(size.nextInt(10) + 1, Star.StarTypes.NEUTRON);
         }
     }
 

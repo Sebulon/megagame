@@ -7,11 +7,20 @@ public class Star extends CelestialBody implements IGravityWell {
 
     public Star(){}
 
-    public Star(int size, String type){
-        if (!typeHandler.getStarTypes().contains(type)){
-            throw new IllegalArgumentException("Illegal type");
-        }
+    public Star(int size, StarTypes type){
         this.size = size;
         this.type = type;
+    }
+
+    public enum StarTypes{
+        YELLOW,
+        BLUE,
+        RED,
+        ORANGE,
+        WHITE,
+        BROWN_DWARF,
+        NEUTRON,
+        PULSAR,
+        WHITE_DWARF
     }
 }

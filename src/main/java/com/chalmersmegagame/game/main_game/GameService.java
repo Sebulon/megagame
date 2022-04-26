@@ -71,10 +71,10 @@ public class GameService {
         teamService.addTeam(team1);
         teamService.addTeam(team2);
 
-        Star star1 = celestialBodyService.createStar(2, "Yellow Star");
+        Star star1 = celestialBodyService.createStar(2, Star.StarTypes.YELLOW);
 
-        Planetoid planet1 = celestialBodyService.createPlanetoid(3, "Frozen Planet");
-        Planetoid planet2 = celestialBodyService.createPlanetoid(2, "Habitable Planet");
+        Planetoid planet1 = celestialBodyService.createPlanetoid(3, Planetoid.PlanetoidTypes.FROZEN);
+        Planetoid planet2 = celestialBodyService.createPlanetoid(2, Planetoid.PlanetoidTypes.HABITABLE);
 
         ArrayList<CelestialBody> celArr = new ArrayList<>(
             Arrays.asList(star1,

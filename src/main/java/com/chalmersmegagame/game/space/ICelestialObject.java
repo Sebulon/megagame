@@ -4,13 +4,13 @@ import java.util.List;
 
 public interface ICelestialObject {
 
-    public String getType();
+    public Enum getType();
 
     public int getSize();
 
     public List<Feature> getFeatures();
 
-    public void setType(String type);
+    public void setType(Enum type);
 
     public void setSize(int size);
 

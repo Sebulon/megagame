@@ -19,7 +19,7 @@ public class CelestialBodyService {
     int nameCount = 1;
 
     @Transactional
-    public Planetoid createPlanetoid(int size, String type){
+    public Planetoid createPlanetoid(int size, Enum type){
         Planetoid planet = new Planetoid(size, type);
         autoNameCelestialBody(planet);
         celestialBodyRepository.save(planet);
@@ -27,7 +27,7 @@ public class CelestialBodyService {
     }
 
     @Transactional
-    public Star createStar(int size, String type){
+    public Star createStar(int size, Star.StarTypes type){
         Star star = new Star(size, type);
         autoNameCelestialBody(star);
         celestialBodyRepository.save(star);

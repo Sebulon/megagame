@@ -22,16 +22,12 @@ public class Planetoid extends CelestialBody implements IHasResources {
 
     public Planetoid(){}
 
-    public Planetoid (int size, String type){
-
-        if (!typeHandler.getPlanetoidTypes().contains(type)){
-            throw new IllegalArgumentException("Illegal type");
-        }
+    public Planetoid (int size, Enum type){
         this.size = size;
         this.type = type;
     }
 
-    public Planetoid (int size, String type, Planetoid satellite){
+    public Planetoid (int size, Enum type, Planetoid satellite){
         if (satellite.size >= this.size){
             throw new IllegalArgumentException("Satellite is too large");
         }
@@ -41,7 +37,7 @@ public class Planetoid extends CelestialBody implements IHasResources {
         this.satelliteWeight += satellite.size;
     }
 
-    public Planetoid (int size, String type, ArrayList<Planetoid> satellites){
+    public Planetoid (int size, Enum type, ArrayList<Planetoid> satellites){
         if (satellites.stream().mapToInt(Planetoid :: getSize).sum() >= satelliteWeight){
             throw new IllegalArgumentException("The total size of the satellites is too large");
         }
@@ -101,6 +97,18 @@ public class Planetoid extends CelestialBody implements IHasResources {
         }else{
             throw new IllegalArgumentException("This ship doesn't have the resource: " + resourceName);
         }
+    }
+
+    public enum PlanetoidTypes{
+        HABITABLE,
+        APOCALYPTIC,
+        TOXIC,
+        FROZEN,
+        MOLTEN,
+        BARREN,
+        GAS_GIANT,
+        BROKEN,
+        ASTEROID
     }
 
 }

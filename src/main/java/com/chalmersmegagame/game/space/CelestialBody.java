@@ -11,12 +11,10 @@ public abstract class CelestialBody implements ICelestialObject {
 
     @Id
     private String name;
-    protected String type;
+    protected Enum type;
     @ManyToMany 
     protected List<Feature> features = new ArrayList<>();
     protected int size;
-    @Transient
-    protected TypeHandler typeHandler = TypeHandler.getInstance();
 
     @Override
     public int getSize(){
@@ -24,7 +22,7 @@ public abstract class CelestialBody implements ICelestialObject {
     }
 
     @Override
-    public String getType() {
+    public Enum getType() {
         return this.type;
     }
 
@@ -34,7 +32,7 @@ public abstract class CelestialBody implements ICelestialObject {
     }
 
     @Override
-    public void setType(String type) {
+    public void setType(Enum type) {
         this.type = type;
     }
 
