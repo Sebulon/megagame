@@ -1,11 +1,20 @@
 package com.chalmersmegagame.game.main_game;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.apache.commons.io.FilenameUtils;
 
 import javax.persistence.*;
 import javax.transaction.Transactional;
@@ -169,6 +178,20 @@ public class GameService {
             e.printStackTrace();
         }
         
+    }
+
+    public List<String> getSaveFileNames(){
+       File folder = new File("./src/main/resources/saves");
+       File[] files = folder.listFiles();
+       ArrayList<String> fileNames = new ArrayList<>();
+       for(File file : files){
+           String name = file.getName();
+           String shortName = FilenameUtils.removeExtension(name);
+           fileNames.add(shortName);           
+       }
+       
+
+        return fileNames;
     }
 
     

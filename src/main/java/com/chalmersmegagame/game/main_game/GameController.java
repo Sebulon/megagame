@@ -1,5 +1,7 @@
 package com.chalmersmegagame.game.main_game;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -48,6 +50,10 @@ public class GameController {
         gameService.dropDB();
     }
 
+    @RequestMapping("/saves")
+    public List<String> getSaveFileNames(){
+        return gameService.getSaveFileNames();
+    }
     
 
 
