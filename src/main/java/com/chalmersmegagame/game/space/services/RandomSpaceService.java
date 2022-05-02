@@ -88,7 +88,7 @@ public class RandomSpaceService {
             Planetoid frozen = new Planetoid(size, Planetoid.PlanetoidTypes.FROZEN);
             frozen.addResource("Water", randomNumber(10));
             frozen.addResource("Liquid Gasses",randomNumber(20));
-            frozen.addResource("Alien Animals", Math.max(randomNumber(10) - 8, 0));
+            frozen.addResource("Alien Aquatic Animals", Math.max(randomNumber(10) - 8, 0));
 
             if (randomNumber(6) > 4){
                 frozen.addSatellite(generateRandomPlanetoid(frozen.getSize() - 1));
