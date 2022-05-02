@@ -7,7 +7,6 @@ public class BlackHole extends CelestialBody implements IGravityWell{
 
     public BlackHole (int size){
         this.size = size;
-        this.type = "Black Hole";
     }
 
     public BlackHole() {
