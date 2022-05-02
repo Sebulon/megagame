@@ -11,6 +11,10 @@ public class DiceService {
         dice.add(new Die(type));
     }
 
+    public void clearDice(){
+        dice.clear();
+    }
+
     public ArrayList<Die> intArrayToDice(int[] array) {
         dice.clear();
         for (int i = 0; i < array.length; i++) {
