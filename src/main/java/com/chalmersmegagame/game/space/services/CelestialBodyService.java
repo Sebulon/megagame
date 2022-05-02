@@ -19,7 +19,7 @@ public class CelestialBodyService {
     int nameCount = 1;
 
     @Transactional
-    public Planetoid createPlanetoid(int size, Enum type){
+    public Planetoid createPlanetoid(int size, Planetoid.PlanetoidTypes type){
         Planetoid planet = new Planetoid(size, type);
         autoNameCelestialBody(planet);
         celestialBodyRepository.save(planet);
