@@ -6,10 +6,11 @@ table {
   color: white;
   margin-top: 5vh;
   margin-bottom: 5vh;
+  table-layout: fixed;
 }
 
 td {
-  width: 25%;
+  width: 30%;
   margin: 0;
   border-bottom: 2px solid white;
   overflow: hidden;
@@ -19,8 +20,12 @@ th, td {
   padding: 12px 10px 4px;
 }
 
+th:last-child, td:last-child {
+  width: 16px;
+}
+
 tr {
-  transition: 0.3s;
+  transition: 0.2s;
 }
 
 tbody tr:hover {
@@ -29,12 +34,76 @@ tbody tr:hover {
 }
 
 .right-button {
+  text-align: center;
+  font-weight: bold;
   cursor: pointer;
+  width: 1.3rem;
+  border: 1px solid white;
+  border-radius: 3px;
+  transition: 0.2s;
+}
+
+.delete:hover {
+  background-color: #9f0000;
+  color: white;
+}
+
+.create:hover {
+  background-color: var(--top-bar-color);
+  color: white;
+}
+
+.add-player {
+  border: 1px solid white;
+  border-radius: 3px;
+  transition: 0.2s;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.add-player:hover {
+  background-color: var(--top-bar-color);
+  color: white;
+}
+
+input {
+  background-color: white;
+  color: var(--background);
+  outline: none;
+  border: none;
+  font-size: 1.3rem;
+  width: 100%;
+  padding: 12px 0 4px;
+  transition: 0.2s;
+}
+
+input:focus {
+  text-decoration: underline;
+}
+
+.create-player {
+  background-color: white;
+  color: var(--background);
+}
+
+select {
+  width: 100%;
+  font-size: 1.3rem;
 }
 
 @media screen and (max-width: 500px) {
   table {
     width: 95vw;
     left: 2.5vw;
+  }
+
+  .delete {
+    background-color: #9f0000;
+    color: white;
+  }
+
+  .create {
+    background-color: var(--top-bar-color);
+    color: white;
   }
 }

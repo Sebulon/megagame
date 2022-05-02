@@ -10,7 +10,6 @@
 
 #headline {
   margin: 0;
-  width: 90vw;
   height: 7vh;
   left: 5vw;
   top: 10vh;
@@ -30,14 +29,16 @@ table {
   font-size: 1.5rem;
   border-collapse: collapse;
   color: white;
-}
-
-td {
-  max-width: 30vw;
+  width: 60%;
+  table-layout: fixed;
 }
 
 th, tr:last-child {
   border-bottom: 2px solid white;
+}
+
+th:last-child {
+  width: 20%;
 }
 
 .ship-entries {
@@ -68,7 +69,7 @@ th, tr:last-child {
   text-align: center;
 }
 
-input {
+input, select {
   width: 100%;
   padding: 12px 20px;
   margin-bottom: 8px;
@@ -88,7 +89,7 @@ input:focus {
 
 input[type=submit] {
   width: 100%;
-  background-color: #4b87bd;
+  background-color: var(--top-bar-color);
   color: white;
   padding: 14px 20px;
   margin: 8px 0;
@@ -96,10 +97,15 @@ input[type=submit] {
   border-radius: 4px;
   cursor: pointer;
   font-size: 3vh;
+  transition: 0.3s;
 }
 
 input[type=submit]:hover {
   background-color: #6db0ec;
+}
+
+input[type=submit]:active {
+  opacity: 0.7;
 }
 
 label {
@@ -111,7 +117,11 @@ label {
     border-bottom: 2px solid white;
   }
   table {
-    font-size: 1rem;
+    font-size: 1.5rem;
+    width: 90%;
+  }
+  th:last-child {
+    width: 33%;
   }
 
   .ship-entries:active {
