@@ -93,9 +93,16 @@ public class RandomSpaceService {
             if (randomNumber(6) > 4){
                 frozen.addSatellite(generateRandomPlanetoid(frozen.getSize() - 1));
             }
+            return frozen;
         }
         else if (result <= 14){
+            Planetoid barren = new Planetoid(size, Planetoid.PlanetoidTypes.BARREN);
+            barren.addResource("Minerals", randomNumber(10));
 
+            if (randomNumber(6) > 4){
+                barren.addSatellite(generateRandomPlanetoid(barren.getSize() - 1));
+            }
+            return barren;
         }
         else if (result <= 17){
 
