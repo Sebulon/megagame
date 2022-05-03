@@ -13,6 +13,7 @@ import com.chalmersmegagame.game.minigames.vaultle.VaultleMinigame;
 import com.chalmersmegagame.game.teams.*;
 
 import lombok.Data;
+import lombok.ToString;
 
 @Entity
 @Data

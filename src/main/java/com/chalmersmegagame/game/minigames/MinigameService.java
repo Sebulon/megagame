@@ -95,10 +95,11 @@ public class MinigameService {
     }
 
     @Transactional
-    public void setGatherSourcePlanet(PlayerShip ship, String planetName){
+    public void setGatherSourcePlanet(PlayerShip ship, String planetName) {
         GatherMinigame gatherMinigame = gatherMinigameRepository.findById(ship.getName()).get();
         Planetoid planet = celestialBodyService.getPlanetoidByName(planetName);
         gatherMinigame.setSourcePlanet(planet);
+    }
     //Below this: vaultle functions
     public VaultleMinigame getVaultleMinigame(PlayerShip ship){
         return vaultleMinigameRepository.findById(ship.getName()).get();
