@@ -1,5 +1,7 @@
 package com.chalmersmegagame.game.minigames;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import javax.transaction.Transactional;
@@ -9,12 +11,15 @@ import com.chalmersmegagame.game.minigames.GatherResource.GatherMinigameReposito
 import com.chalmersmegagame.game.minigames.Morale.MoraleMinigame;
 import com.chalmersmegagame.game.minigames.Morale.MoraleMinigameRepository;
 import com.chalmersmegagame.game.minigames.RefineResource.RefineMinigameRepository;
+import com.chalmersmegagame.game.minigames.vaultle.VaultleMinigame;
+import com.chalmersmegagame.game.minigames.vaultle.VaultleMinigameRepository;
 import com.chalmersmegagame.game.ships.*;
 import com.chalmersmegagame.game.space.Planetoid;
 import com.chalmersmegagame.game.space.services.CelestialBodyService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Service
 public class MinigameService {
@@ -29,6 +34,8 @@ public class MinigameService {
     GatherMinigameRepository gatherMinigameRepository;
     @Autowired
     CelestialBodyService celestialBodyService;
+    @Autowired
+    VaultleMinigameRepository vaultleMinigameRepository;
 
     public MoraleMinigame getMoraleMinigame(PlayerShip ship){
         return moraleMinigameRepository.findById(ship.getName()).get();
@@ -92,5 +99,53 @@ public class MinigameService {
         GatherMinigame gatherMinigame = gatherMinigameRepository.findById(ship.getName()).get();
         Planetoid planet = celestialBodyService.getPlanetoidByName(planetName);
         gatherMinigame.setSourcePlanet(planet);
+    //Below this: vaultle functions
+    public VaultleMinigame getVaultleMinigame(PlayerShip ship){
+        return vaultleMinigameRepository.findById(ship.getName()).get();
+    }
+
+    @Transactional
+    public void addVaultleMinigame(VaultleMinigame mg){
+        vaultleMinigameRepository.save(mg);
+    }
+
+    @Transactional
+    public int[] checkGuess(@RequestParam PlayerShip ship, String guess){
+        VaultleMinigame mg = getVaultleMinigame(ship);
+        return mg.guess(guess);
+    }
+
+    //Remove this later?
+    @Transactional
+    public String getTheAnswer(PlayerShip ship){
+        VaultleMinigame mg = getVaultleMinigame(ship);
+        return mg.getTheWord();
+    }
+
+    @Transactional
+    public void gameInit(PlayerShip ship){
+        VaultleMinigame mg = getVaultleMinigame(ship);
+        mg.init();
+    }
+
+    @Transactional
+    public void newWord(PlayerShip ship){
+        VaultleMinigame mg = getVaultleMinigame(ship);
+        mg.newWord();
+    }
+
+    @Transactional
+    public int getNumOfGuesses(PlayerShip ship){
+        return getVaultleMinigame(ship).getNumOfGuesses();
+    }
+
+    @Transactional
+    public Boolean getWin(PlayerShip ship){
+        return getVaultleMinigame(ship).getWin();
+    }
+
+    @Transactional
+    public List<String> getPreviousGuesses(PlayerShip ship){
+        return getVaultleMinigame(ship).getPreviousGuesses();
     }
 }

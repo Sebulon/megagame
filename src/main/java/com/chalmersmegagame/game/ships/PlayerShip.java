@@ -7,6 +7,9 @@ import java.util.Map;
 import javax.persistence.*;
 
 import com.chalmersmegagame.game.game_resources.*;
+import com.chalmersmegagame.game.minigames.GatherResource.GatherMinigame;
+import com.chalmersmegagame.game.minigames.Morale.MoraleMinigame;
+import com.chalmersmegagame.game.minigames.vaultle.VaultleMinigame;
 import com.chalmersmegagame.game.teams.*;
 
 import lombok.Data;
@@ -19,6 +22,15 @@ public class PlayerShip extends Ship implements IHasResources, IHasTeam {
     private Map<String, Integer> resources = new HashMap<>();
     @OneToOne
     private Team team;
+    /*
+    @ToString.Exclude
+    @OneToOne(mappedBy = "playerShip", cascade=CascadeType.ALL)
+    private MoraleMinigame moraleMinigame;
+    */
+    @ToString.Exclude
+    @OneToOne(mappedBy = "playerShip", cascade=CascadeType.ALL)
+    private VaultleMinigame vaultleMinigame;
+
     
     public PlayerShip() {
     }
@@ -38,7 +50,11 @@ public class PlayerShip extends Ship implements IHasResources, IHasTeam {
 
         setCrewSize(crewSize);
 
+        //When I tried to merge, I guess it commented out one of them? Or was the first one 
+        //already commented out?
         //moraleMinigame = new MoraleMinigame(this);
+        //moraleMinigame = new MoraleMinigame(this);
+        vaultleMinigame = new VaultleMinigame(this);
     }
 
     @Override
