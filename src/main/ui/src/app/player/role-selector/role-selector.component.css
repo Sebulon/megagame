@@ -17,6 +17,7 @@
   flex-direction: column;
   max-width: 300px;
   padding-top: 50px;
+  cursor: pointer;
 }
 
 .role-name {
@@ -49,6 +50,7 @@
   display: flex;
   align-items: center;
   flex-direction: column;
+  cursor: default;
 }
 
 button {
@@ -61,6 +63,7 @@ button {
   background-color: var(--background);
   overflow: hidden;
   transition: 0.3s;
+  cursor: pointer;
 }
 
 button:hover {
