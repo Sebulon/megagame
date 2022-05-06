@@ -1,9 +1,13 @@
-<div *ngFor="let role of roles" (click)="selectedRole = role.name">
-  <img alt="Role Icon" src="../../../assets/img/icons/{{role.name}}.png">
-  <h2>{{formatName(role.name)}}</h2>
-  <div *ngIf="role.name == selectedRole">
-    <p [innerHTML]="formatDescription(role.description)"></p>
-    <p *ngIf="role.miniGameDescription" [innerHTML]="formatDescription(role.miniGameDescription)"></p>
-    <button (click)="setRole(role)">Select</button>
+<div id="role-container">
+  <div *ngFor="let role of roles" (click)="selectedRole = role.name" class="role">
+    <div class="role-img">
+    <img alt="{{role.name}}" src="../../../assets/img/icons/{{role.name}}.png">
+    </div>
+    <span class="role-name">{{formatName(role.name)}}</span>
+    <div *ngIf="role.name == selectedRole" class="role-desc">
+      <p [innerHTML]="formatDescription(role.description)"></p>
+      <p *ngIf="role.miniGameDescription" [innerHTML]="formatDescription(role.miniGameDescription)"></p>
+      <button (click)="setRole(role)">Select</button>
+    </div>
   </div>
 </div>
