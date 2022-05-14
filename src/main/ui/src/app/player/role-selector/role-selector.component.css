@@ -1,0 +1,84 @@
+#role-container {
+  position: relative;
+  width: 90%;
+  left: 5%;
+  padding-top: 5%;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: row;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  color: white;
+}
+
+.role {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  max-width: 300px;
+  padding-top: 50px;
+  cursor: pointer;
+}
+
+.role-name {
+  font-weight: bold;
+  font-size: 2rem;
+}
+
+.role-img {
+  float: right;
+  background-color: white;
+  right: 0;
+  bottom: 0;
+  border-radius: 50%;
+  width: 300px;
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.role-img img {
+  width: auto;
+  height: auto;
+  max-width: 240px;
+  max-height: 240px;
+}
+
+.role-desc {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  cursor: default;
+}
+
+button {
+  font-size: 1.4rem;
+  outline: none;
+  border: 2px solid white;
+  border-radius: 2px;
+  color: white;
+  padding: 5px 10px;
+  background-color: var(--background);
+  overflow: hidden;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: white;
+  color: var(--background);
+}
+
+button:active {
+  opacity: 0.6;
+}
+
+@media screen and (max-width: 500px) {
+  #role-img {
+    position: relative;
+    float: left;
+    left: Calc((100% - 300px) / 2);
+  }
+}

@@ -15,8 +15,7 @@ public class Player {
     private String id;
 
     private String name;
-
-    // TODO: Should not only be captain
+    
     @Enumerated(EnumType.STRING)
     private Role role;
 
